@@ -1,0 +1,28 @@
+{
+  "name": "@ninja/server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@ninja/shared": "*",
+    "colyseus": "0.18.9",
+    "@colyseus/ws-transport": "0.18.4",
+    "@colyseus/tools": "0.18.7",
+    "express": "4.21.2",
+    "cors": "2.8.5",
+    "ws": "8.18.1"
+  },
+  "devDependencies": {
+    "@types/express": "5.0.0",
+    "@types/cors": "2.8.17",
+    "@types/ws": "8.5.14",
+    "@types/node": "22.13.9"
+  }
+}

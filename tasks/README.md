@@ -22,5 +22,3 @@ Chỉ làm một task `todo` có dependency `done` và gate phase trước đạ
 | [P8 — QA và độ ổn định](P8.md) | Abuse/reconnect/E2E và soak không phá trận. | 4 |
 | [P9 — Demo PC kín](P9.md) | Hai PC khác mạng chơi hết trận và chủ dự án nghiệm thu. | 4 |
 | [P10 — Mobile sau PC](P10.md) | Kiểm touch/performance/browser/crossplay trên thiết bị thật. | 4 |
-
-Task có dependency đủ đầu tiên: **[P0-02](P0.md#p0-02)**. Vẫn phải kiểm gate và phạm vi chủ dự án giao trước khi bắt đầu.

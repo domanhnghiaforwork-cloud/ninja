@@ -1,0 +1,26 @@
+{
+  "name": "ninja-arena",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/shared",
+    "apps/server",
+    "apps/client"
+  ],
+  "scripts": {
+    "typecheck": "npm run --workspaces --if-present typecheck",
+    "build": "npm run --workspaces --if-present build",
+    "test": "vitest run",
+    "lint": "npm run typecheck && python3 scripts/validate_docs.py",
+    "dev:server": "npm run --workspace=apps/server dev",
+    "dev:client": "npm run --workspace=apps/client dev",
+    "dev": "npm run --workspace=apps/server dev & npm run --workspace=apps/client dev",
+    "start": "npm run --workspace=apps/server start"
+  },
+  "devDependencies": {
+    "typescript": "5.8.2",
+    "vitest": "3.0.7",
+    "tsx": "4.19.3"
+  }
+}

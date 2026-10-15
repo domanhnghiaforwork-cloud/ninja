@@ -123,20 +123,6 @@ def validate(root):
             require(phase_ids.index(lookup[dep]['phase']) <= phase_ids.index(t['phase']), f"Forward phase dependency: {tid}")
             if not t['optional']:
                 require(not lookup[dep]['optional'], f"Optional task blocks required task: {tid}")
-        if t['status'] in {'in_progress', 'ready_for_review', 'done'}:
-            require(all(lookup[d]['status'] == 'done' for d in t['depends_on']), f"Unfinished dependency of active/accepted task: {tid}")
-        if t['status'] == 'skipped':
-            require(t['optional'], f"Required task cannot be skipped: {tid}")
-        if t['status'] in {'done', 'skipped'}:
-            review = t['review']
-            expected_review = 'accepted' if t['status'] == 'done' else 'skip_accepted'
-            require(isinstance(review, dict) and review.get('decision') == expected_review, f"Accepted review missing: {tid}")
-            require(all(review.get(x) for x in ['reviewer', 'date', 'evidence']), f"Incomplete review: {tid}")
-            require(t['evidence'], f"Evidence missing: {tid}")
-        if t['status'] in {'ready_for_review', 'done', 'skipped'} and tid != 'P0-01':
-            require(t['evidence'], f"Evidence missing: {tid}")
-            inside_file(root, t['reportPath'])
-
     visited = set()
     active = set()
 
@@ -152,6 +138,22 @@ def validate(root):
 
     for tid in lookup:
         visit(tid)
+
+    for t in tasks:
+        tid = t["id"]
+        if t['status'] in {'in_progress', 'ready_for_review', 'done'}:
+            require(all(lookup[d]['status'] == 'done' for d in t['depends_on']), f"Unfinished dependency of active/accepted task: {tid}")
+        if t['status'] == 'skipped':
+            require(t['optional'], f"Required task cannot be skipped: {tid}")
+        if t['status'] in {'done', 'skipped'}:
+            review = t['review']
+            expected_review = 'accepted' if t['status'] == 'done' else 'skip_accepted'
+            require(isinstance(review, dict) and review.get('decision') == expected_review, f"Accepted review missing: {tid}")
+            require(all(review.get(x) for x in ['reviewer', 'date', 'evidence']), f"Incomplete review: {tid}")
+            require(t['evidence'], f"Evidence missing: {tid}")
+        if t['status'] in {'ready_for_review', 'done', 'skipped'} and tid != 'P0-01':
+            require(t['evidence'], f"Evidence missing: {tid}")
+            inside_file(root, t['reportPath'])
     for p in phases:
         pid = p['id']
         for field in ['title', 'goal', 'deliverable', 'activation']:

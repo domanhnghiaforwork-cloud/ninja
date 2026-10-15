@@ -1,0 +1,20 @@
+{
+  "name": "@ninja/client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build",
+    "typecheck": "tsc --noEmit",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ninja/shared": "*",
+    "phaser": "4.2.1",
+    "colyseus.js": "0.16.22"
+  },
+  "devDependencies": {
+    "vite": "6.2.0"
+  }
+}

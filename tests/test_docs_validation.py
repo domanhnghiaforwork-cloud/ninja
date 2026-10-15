@@ -67,22 +67,37 @@ class DocumentationContracts(unittest.TestCase):
         self.reject('Dependency cycle')
 
     def test_early_start_rejected(self):
-        self.mutate_json('spec/backlog.json', lambda b: b['tasks'][2].update(status='in_progress'))
+        def change(b):
+            lookup = {t['id']: t for t in b['tasks']}
+            task = next(t for t in b['tasks'] if not all(lookup[d]['status'] == 'done' for d in t['depends_on']))
+            task.update(status='in_progress')
+        self.mutate_json('spec/backlog.json', change)
         self.reject('Unfinished dependency')
 
     def test_dependency_shortcut_cannot_skip_prior_phase_gate(self):
         def change(b):
-            task = next(t for t in b['tasks'] if t['id'] == 'P1-01')
-            task.update(depends_on=['P0-01'], status='in_progress')
+            phase_ids = [p['id'] for p in b['phases']]
+            lookup = {t['id']: t for t in b['tasks']}
+            for t in b['tasks']:
+                prior = b['phases'][:phase_ids.index(t['phase'])]
+                if any(lookup[tid]['status'] != 'done' for p in prior for tid in p['requiredTasks']):
+                    t.update(depends_on=['P0-01'], status='in_progress')
+                    break
         self.mutate_json('spec/backlog.json', change)
         self.reject('Earlier phase required tasks incomplete')
 
     def test_done_requires_accepted_review(self):
-        self.mutate_json('spec/backlog.json', lambda b: b['tasks'][1].update(status='done'))
+        def change(b):
+            task = next(t for t in b['tasks'] if not t.get('review'))
+            task.update(status='done')
+        self.mutate_json('spec/backlog.json', change)
         self.reject('Accepted review missing')
 
     def test_required_task_cannot_skip(self):
-        self.mutate_json('spec/backlog.json', lambda b: b['tasks'][1].update(status='skipped'))
+        def change(b):
+            task = next(t for t in b['tasks'] if not t['optional'])
+            task.update(status='skipped')
+        self.mutate_json('spec/backlog.json', change)
         self.reject('Required task cannot be skipped')
 
     def test_missing_task_contract_rejected(self):

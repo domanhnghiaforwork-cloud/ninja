@@ -1,0 +1,39 @@
+{
+  "version": "0.1.0",
+  "meta": {
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "footAnchor": {
+      "x": 32,
+      "y": 60
+    },
+    "directions": ["N", "NE", "E", "SE", "S", "SW", "W", "NW"],
+    "actions": ["idle", "run", "attack", "guard", "parry", "dodge", "hitstun", "ko"]
+  },
+  "fallbacks": {
+    "actionFallbacks": {
+      "startup": "attack",
+      "active": "attack",
+      "recovery": "idle",
+      "moving": "run",
+      "guard_break": "hitstun",
+      "knockdown": "ko"
+    },
+    "directionFallbacks": {
+      "NE": "E",
+      "SE": "E",
+      "NW": "W",
+      "SW": "W"
+    }
+  },
+  "clips": {
+    "idle": { "frames": 4, "frameRate": 8, "repeat": -1 },
+    "run": { "frames": 6, "frameRate": 12, "repeat": -1 },
+    "attack": { "frames": 4, "frameRate": 16, "repeat": 0 },
+    "guard": { "frames": 2, "frameRate": 6, "repeat": -1 },
+    "parry": { "frames": 3, "frameRate": 14, "repeat": 0 },
+    "dodge": { "frames": 4, "frameRate": 16, "repeat": 0 },
+    "hitstun": { "frames": 2, "frameRate": 10, "repeat": 0 },
+    "ko": { "frames": 4, "frameRate": 6, "repeat": 0 }
+  }
+}

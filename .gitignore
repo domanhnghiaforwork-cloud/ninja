@@ -7,3 +7,16 @@ __pycache__/
 
 # Export bundles (source of truth remains the working files)
 artifacts/
+
+# Node / monorepo dependencies and build outputs (P0-03+)
+node_modules/
+dist/
+build/
+.vite/
+npm-debug.log*
+
+# OS / Editor temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo

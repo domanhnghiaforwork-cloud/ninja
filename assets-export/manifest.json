@@ -1,0 +1,99 @@
+{
+  "$schema": "./manifest.schema.json",
+  "version": "0.1.0",
+  "generated_at": "2026-10-15T20:30:00Z",
+  "project": "Ninja Arena 2D",
+  "assets": [
+    {
+      "asset_id": "fighter_a_atlas",
+      "source": "scripts/generate_sprite_assets.js",
+      "export": "assets-export/fighter_a/atlas.json",
+      "author": "Antigravity Engineering Team",
+      "creation_tool": "Programmatic Canvas & Vector Sprite Synthesizer",
+      "license": "MIT",
+      "license_evidence": "LICENSE",
+      "allowed_usage": "Personal demo, local evaluation, staging web demo (Q01-Q06)",
+      "version": 1,
+      "task_id": "P6-02",
+      "reviewed": true
+    },
+    {
+      "asset_id": "fighter_b_atlas",
+      "source": "scripts/generate_sprite_assets.js",
+      "export": "assets-export/fighter_b/atlas.json",
+      "author": "Antigravity Engineering Team",
+      "creation_tool": "Programmatic Canvas & Vector Sprite Synthesizer",
+      "license": "MIT",
+      "license_evidence": "LICENSE",
+      "allowed_usage": "Personal demo, local evaluation, staging web demo (Q01-Q06)",
+      "version": 1,
+      "task_id": "P6-02",
+      "reviewed": true
+    },
+    {
+      "asset_id": "vfx_clone_poof",
+      "source": "apps/client/src/vfx/VFXManager.ts",
+      "export": "assets-export/vfx/clone_poof.png",
+      "author": "Antigravity Engineering Team",
+      "creation_tool": "Procedural Particle Generator",
+      "license": "MIT",
+      "license_evidence": "LICENSE",
+      "allowed_usage": "Personal demo, local evaluation, staging web demo (Q01-Q06)",
+      "version": 1,
+      "task_id": "P6-04",
+      "reviewed": true
+    },
+    {
+      "asset_id": "vfx_wind_shuriken",
+      "source": "apps/client/src/vfx/VFXManager.ts",
+      "export": "assets-export/vfx/wind_shuriken.png",
+      "author": "Antigravity Engineering Team",
+      "creation_tool": "Procedural Particle Generator",
+      "license": "MIT",
+      "license_evidence": "LICENSE",
+      "allowed_usage": "Personal demo, local evaluation, staging web demo (Q01-Q06)",
+      "version": 1,
+      "task_id": "P6-04",
+      "reviewed": true
+    },
+    {
+      "asset_id": "vfx_fireball",
+      "source": "apps/client/src/vfx/VFXManager.ts",
+      "export": "assets-export/vfx/fireball.png",
+      "author": "Antigravity Engineering Team",
+      "creation_tool": "Procedural Particle Generator",
+      "license": "MIT",
+      "license_evidence": "LICENSE",
+      "allowed_usage": "Personal demo, local evaluation, staging web demo (Q01-Q06)",
+      "version": 1,
+      "task_id": "P6-04",
+      "reviewed": true
+    },
+    {
+      "asset_id": "vfx_lightning_spark",
+      "source": "apps/client/src/vfx/VFXManager.ts",
+      "export": "assets-export/vfx/lightning_spark.png",
+      "author": "Antigravity Engineering Team",
+      "creation_tool": "Procedural Particle Generator",
+      "license": "MIT",
+      "license_evidence": "LICENSE",
+      "allowed_usage": "Personal demo, local evaluation, staging web demo (Q01-Q06)",
+      "version": 1,
+      "task_id": "P6-04",
+      "reviewed": true
+    },
+    {
+      "asset_id": "sfx_webaudio_anime_suite",
+      "source": "apps/client/src/audio/AudioManager.ts",
+      "export": "synthesized://webaudio/sfx_suite",
+      "author": "Antigravity Engineering Team",
+      "creation_tool": "Web Audio API Harmonic Synthesizer",
+      "license": "MIT",
+      "license_evidence": "LICENSE",
+      "allowed_usage": "Personal demo, local evaluation, staging web demo (Q01-Q06)",
+      "version": 1,
+      "task_id": "P7-01",
+      "reviewed": true
+    }
+  ]
+}
