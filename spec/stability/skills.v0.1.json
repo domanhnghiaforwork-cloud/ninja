@@ -1,0 +1,619 @@
+{
+  "documentVersion": "0.1.0",
+  "runtimeSchemaVersion": 1,
+  "status": "planned_seed_not_runtime_integrated",
+  "skills": [
+    {
+      "id": "fighter_a_clone_feint",
+      "ownerId": "fighter_a",
+      "role": "decoy/zoning",
+      "cost": {
+        "chakra": 25,
+        "stamina": 0
+      },
+      "cooldownTicks": 300,
+      "timing": {
+        "startupTicks": 9,
+        "activeTicks": 1,
+        "recoveryTicks": 8
+      },
+      "targeting": {
+        "mode": "self",
+        "rangeWU": 64,
+        "requiresLos": true,
+        "aimQuantization": "direction8"
+      },
+      "hitPolicy": {
+        "scope": "perCastPerTarget",
+        "maxHitsPerTarget": 1,
+        "minIntervalTicks": 0,
+        "sharedDirectAndAoe": true
+      },
+      "effect": {
+        "damage": 0,
+        "statuses": []
+      },
+      "behavior": {
+        "kind": "decoy",
+        "params": {
+          "spawnDistanceWU": 64,
+          "lifetimeTicks": 90,
+          "hitsToDestroy": 1
+        }
+      },
+      "interrupt": {
+        "beforeActive": "cancel_no_refund",
+        "afterActive": "persist_spawned_entities"
+      },
+      "presentationId": "fighter_a_clone_feint_visual",
+      "budgets": {
+        "maxActivePerCaster": 1,
+        "maxSpawnPerCast": 1
+      }
+    },
+    {
+      "id": "fighter_a_wind_shuriken",
+      "ownerId": "fighter_a",
+      "role": "ranged skillshot",
+      "cost": {
+        "chakra": 25,
+        "stamina": 0
+      },
+      "cooldownTicks": 150,
+      "timing": {
+        "startupTicks": 10,
+        "activeTicks": 1,
+        "recoveryTicks": 12
+      },
+      "targeting": {
+        "mode": "directional",
+        "rangeWU": 540,
+        "requiresLos": true,
+        "aimQuantization": "direction8"
+      },
+      "hitPolicy": {
+        "scope": "perCastPerTarget",
+        "maxHitsPerTarget": 1,
+        "minIntervalTicks": 0,
+        "sharedDirectAndAoe": true
+      },
+      "effect": {
+        "damage": 95,
+        "statuses": []
+      },
+      "behavior": {
+        "kind": "projectile",
+        "params": {
+          "speedWUPerSecond": 620,
+          "radiusWU": 22,
+          "rangeWU": 540,
+          "lifetimeTicks": 30,
+          "impactRadiusWU": 0
+        }
+      },
+      "interrupt": {
+        "beforeActive": "cancel_no_refund",
+        "afterActive": "persist_spawned_entities"
+      },
+      "presentationId": "fighter_a_wind_shuriken_visual",
+      "budgets": {
+        "maxActivePerCaster": 1,
+        "maxSpawnPerCast": 1
+      }
+    },
+    {
+      "id": "fighter_a_wind_fan",
+      "ownerId": "fighter_a",
+      "role": "multi-angle pressure",
+      "cost": {
+        "chakra": 30,
+        "stamina": 0
+      },
+      "cooldownTicks": 240,
+      "timing": {
+        "startupTicks": 12,
+        "activeTicks": 1,
+        "recoveryTicks": 12
+      },
+      "targeting": {
+        "mode": "directional",
+        "rangeWU": 460,
+        "requiresLos": true,
+        "aimQuantization": "direction8"
+      },
+      "hitPolicy": {
+        "scope": "perCastPerTarget",
+        "maxHitsPerTarget": 1,
+        "minIntervalTicks": 0,
+        "sharedDirectAndAoe": true
+      },
+      "effect": {
+        "damage": 65,
+        "statuses": []
+      },
+      "behavior": {
+        "kind": "fan",
+        "params": {
+          "speedWUPerSecond": 520,
+          "radiusWU": 14,
+          "rangeWU": 460,
+          "lifetimeTicks": 30,
+          "impactRadiusWU": 0,
+          "count": 3,
+          "spreadStepDegrees": 15
+        }
+      },
+      "interrupt": {
+        "beforeActive": "cancel_no_refund",
+        "afterActive": "persist_spawned_entities"
+      },
+      "presentationId": "fighter_a_wind_fan_visual",
+      "budgets": {
+        "maxActivePerCaster": 3,
+        "maxSpawnPerCast": 3
+      }
+    },
+    {
+      "id": "fighter_a_gust_field",
+      "ownerId": "fighter_a",
+      "role": "zone/slow",
+      "cost": {
+        "chakra": 30,
+        "stamina": 0
+      },
+      "cooldownTicks": 300,
+      "timing": {
+        "startupTicks": 12,
+        "activeTicks": 1,
+        "recoveryTicks": 12
+      },
+      "targeting": {
+        "mode": "ground",
+        "rangeWU": 320,
+        "requiresLos": true,
+        "aimQuantization": "direction8"
+      },
+      "hitPolicy": {
+        "scope": "perPulsePerTarget",
+        "maxHitsPerTarget": 4,
+        "minIntervalTicks": 30,
+        "sharedDirectAndAoe": true
+      },
+      "effect": {
+        "damage": 10,
+        "statuses": [
+          {
+            "type": "slow",
+            "magnitudePermille": 200,
+            "durationTicks": 30,
+            "stackPolicy": "refresh"
+          }
+        ]
+      },
+      "behavior": {
+        "kind": "zone",
+        "params": {
+          "radiusWU": 100,
+          "lifetimeTicks": 120,
+          "pulseIntervalTicks": 30,
+          "telegraphTicks": 12
+        }
+      },
+      "interrupt": {
+        "beforeActive": "cancel_no_refund",
+        "afterActive": "persist_spawned_entities"
+      },
+      "presentationId": "fighter_a_gust_field_visual",
+      "budgets": {
+        "maxActivePerCaster": 1,
+        "maxSpawnPerCast": 1
+      }
+    },
+    {
+      "id": "fighter_a_snare_seal",
+      "ownerId": "fighter_a",
+      "role": "arming trap",
+      "cost": {
+        "chakra": 25,
+        "stamina": 0
+      },
+      "cooldownTicks": 270,
+      "timing": {
+        "startupTicks": 12,
+        "activeTicks": 1,
+        "recoveryTicks": 12
+      },
+      "targeting": {
+        "mode": "ground",
+        "rangeWU": 280,
+        "requiresLos": true,
+        "aimQuantization": "direction8"
+      },
+      "hitPolicy": {
+        "scope": "perCastPerTarget",
+        "maxHitsPerTarget": 1,
+        "minIntervalTicks": 0,
+        "sharedDirectAndAoe": true
+      },
+      "effect": {
+        "damage": 35,
+        "statuses": [
+          {
+            "type": "root",
+            "magnitudePermille": 1000,
+            "durationTicks": 12,
+            "stackPolicy": "ignore"
+          }
+        ]
+      },
+      "behavior": {
+        "kind": "trap",
+        "params": {
+          "radiusWU": 36,
+          "lifetimeTicks": 180,
+          "armDelayTicks": 24,
+          "maxTriggers": 1
+        }
+      },
+      "interrupt": {
+        "beforeActive": "cancel_no_refund",
+        "afterActive": "persist_spawned_entities"
+      },
+      "presentationId": "fighter_a_snare_seal_visual",
+      "budgets": {
+        "maxActivePerCaster": 1,
+        "maxSpawnPerCast": 1
+      }
+    },
+    {
+      "id": "fighter_a_wind_screen",
+      "ownerId": "fighter_a",
+      "role": "temporary hard cover",
+      "cost": {
+        "chakra": 35,
+        "stamina": 0
+      },
+      "cooldownTicks": 360,
+      "timing": {
+        "startupTicks": 15,
+        "activeTicks": 1,
+        "recoveryTicks": 12
+      },
+      "targeting": {
+        "mode": "ground",
+        "rangeWU": 220,
+        "requiresLos": true,
+        "aimQuantization": "direction8"
+      },
+      "hitPolicy": {
+        "scope": "perCastPerTarget",
+        "maxHitsPerTarget": 1,
+        "minIntervalTicks": 0,
+        "sharedDirectAndAoe": true
+      },
+      "effect": {
+        "damage": 0,
+        "statuses": []
+      },
+      "behavior": {
+        "kind": "wall",
+        "params": {
+          "widthWU": 100,
+          "heightWU": 24,
+          "lifetimeTicks": 90,
+          "health": 150,
+          "minActorClearanceWU": 48,
+          "requiresEscapePath": true
+        }
+      },
+      "interrupt": {
+        "beforeActive": "cancel_no_refund",
+        "afterActive": "persist_spawned_entities"
+      },
+      "presentationId": "fighter_a_wind_screen_visual",
+      "budgets": {
+        "maxActivePerCaster": 1,
+        "maxSpawnPerCast": 1
+      }
+    },
+    {
+      "id": "fighter_b_fireball",
+      "ownerId": "fighter_b",
+      "role": "projectile with LOS impact AoE",
+      "cost": {
+        "chakra": 30,
+        "stamina": 0
+      },
+      "cooldownTicks": 210,
+      "timing": {
+        "startupTicks": 15,
+        "activeTicks": 1,
+        "recoveryTicks": 12
+      },
+      "targeting": {
+        "mode": "directional",
+        "rangeWU": 600,
+        "requiresLos": true,
+        "aimQuantization": "direction8"
+      },
+      "hitPolicy": {
+        "scope": "perCastPerTarget",
+        "maxHitsPerTarget": 1,
+        "minIntervalTicks": 0,
+        "sharedDirectAndAoe": true
+      },
+      "effect": {
+        "damage": 105,
+        "statuses": []
+      },
+      "behavior": {
+        "kind": "projectile",
+        "params": {
+          "speedWUPerSecond": 500,
+          "radiusWU": 26,
+          "rangeWU": 600,
+          "lifetimeTicks": 40,
+          "impactRadiusWU": 80
+        }
+      },
+      "interrupt": {
+        "beforeActive": "cancel_no_refund",
+        "afterActive": "persist_spawned_entities"
+      },
+      "presentationId": "fighter_b_fireball_visual",
+      "budgets": {
+        "maxActivePerCaster": 1,
+        "maxSpawnPerCast": 1
+      }
+    },
+    {
+      "id": "fighter_b_lightning_counter",
+      "ownerId": "fighter_b",
+      "role": "committed front counter",
+      "cost": {
+        "chakra": 25,
+        "stamina": 0
+      },
+      "cooldownTicks": 240,
+      "timing": {
+        "startupTicks": 4,
+        "activeTicks": 5,
+        "recoveryTicks": 16
+      },
+      "targeting": {
+        "mode": "front_arc",
+        "rangeWU": 180,
+        "requiresLos": true,
+        "aimQuantization": "direction8"
+      },
+      "hitPolicy": {
+        "scope": "perCastPerTarget",
+        "maxHitsPerTarget": 1,
+        "minIntervalTicks": 0,
+        "sharedDirectAndAoe": true
+      },
+      "effect": {
+        "damage": 125,
+        "statuses": []
+      },
+      "behavior": {
+        "kind": "counter",
+        "params": {
+          "frontArcDegrees": 120,
+          "rangeWU": 180,
+          "windowTicks": 5,
+          "blockOutsideRange": true,
+          "maxTriggers": 1
+        }
+      },
+      "interrupt": {
+        "beforeActive": "cancel_no_refund",
+        "afterActive": "persist_spawned_entities"
+      },
+      "presentationId": "fighter_b_lightning_counter_visual",
+      "budgets": {
+        "maxActivePerCaster": 1,
+        "maxSpawnPerCast": 1
+      }
+    },
+    {
+      "id": "fighter_b_ember_burst",
+      "ownerId": "fighter_b",
+      "role": "timed three-shot burst",
+      "cost": {
+        "chakra": 30,
+        "stamina": 0
+      },
+      "cooldownTicks": 240,
+      "timing": {
+        "startupTicks": 12,
+        "activeTicks": 9,
+        "recoveryTicks": 16
+      },
+      "targeting": {
+        "mode": "directional",
+        "rangeWU": 520,
+        "requiresLos": true,
+        "aimQuantization": "direction8"
+      },
+      "hitPolicy": {
+        "scope": "perCastPerTarget",
+        "maxHitsPerTarget": 1,
+        "minIntervalTicks": 0,
+        "sharedDirectAndAoe": true
+      },
+      "effect": {
+        "damage": 60,
+        "statuses": []
+      },
+      "behavior": {
+        "kind": "burst",
+        "params": {
+          "speedWUPerSecond": 560,
+          "radiusWU": 12,
+          "rangeWU": 520,
+          "lifetimeTicks": 32,
+          "impactRadiusWU": 0,
+          "count": 3,
+          "intervalTicks": 4
+        }
+      },
+      "interrupt": {
+        "beforeActive": "cancel_no_refund",
+        "afterActive": "cancel_remaining_spawns"
+      },
+      "presentationId": "fighter_b_ember_burst_visual",
+      "budgets": {
+        "maxActivePerCaster": 3,
+        "maxSpawnPerCast": 3
+      }
+    },
+    {
+      "id": "fighter_b_fire_patch",
+      "ownerId": "fighter_b",
+      "role": "telegraphed pulse zone",
+      "cost": {
+        "chakra": 30,
+        "stamina": 0
+      },
+      "cooldownTicks": 300,
+      "timing": {
+        "startupTicks": 15,
+        "activeTicks": 1,
+        "recoveryTicks": 12
+      },
+      "targeting": {
+        "mode": "ground",
+        "rangeWU": 340,
+        "requiresLos": true,
+        "aimQuantization": "direction8"
+      },
+      "hitPolicy": {
+        "scope": "perPulsePerTarget",
+        "maxHitsPerTarget": 3,
+        "minIntervalTicks": 30,
+        "sharedDirectAndAoe": true
+      },
+      "effect": {
+        "damage": 22,
+        "statuses": []
+      },
+      "behavior": {
+        "kind": "zone",
+        "params": {
+          "radiusWU": 90,
+          "lifetimeTicks": 90,
+          "pulseIntervalTicks": 30,
+          "telegraphTicks": 15
+        }
+      },
+      "interrupt": {
+        "beforeActive": "cancel_no_refund",
+        "afterActive": "persist_spawned_entities"
+      },
+      "presentationId": "fighter_b_fire_patch_visual",
+      "budgets": {
+        "maxActivePerCaster": 1,
+        "maxSpawnPerCast": 1
+      }
+    },
+    {
+      "id": "fighter_b_lightning_line",
+      "ownerId": "fighter_b",
+      "role": "charged instantaneous line",
+      "cost": {
+        "chakra": 35,
+        "stamina": 0
+      },
+      "cooldownTicks": 300,
+      "timing": {
+        "startupTicks": 18,
+        "activeTicks": 1,
+        "recoveryTicks": 18
+      },
+      "targeting": {
+        "mode": "directional",
+        "rangeWU": 500,
+        "requiresLos": true,
+        "aimQuantization": "direction8"
+      },
+      "hitPolicy": {
+        "scope": "perCastPerTarget",
+        "maxHitsPerTarget": 1,
+        "minIntervalTicks": 0,
+        "sharedDirectAndAoe": true
+      },
+      "effect": {
+        "damage": 100,
+        "statuses": []
+      },
+      "behavior": {
+        "kind": "beam",
+        "params": {
+          "lengthWU": 500,
+          "widthWU": 20,
+          "chargeTicks": 18,
+          "maxTargets": 1
+        }
+      },
+      "interrupt": {
+        "beforeActive": "cancel_no_refund",
+        "afterActive": "persist_spawned_entities"
+      },
+      "presentationId": "fighter_b_lightning_line_visual",
+      "budgets": {
+        "maxActivePerCaster": 1,
+        "maxSpawnPerCast": 1
+      }
+    },
+    {
+      "id": "fighter_b_thunder_step",
+      "ownerId": "fighter_b",
+      "role": "swept mobility utility",
+      "cost": {
+        "chakra": 10,
+        "stamina": 25
+      },
+      "cooldownTicks": 180,
+      "timing": {
+        "startupTicks": 2,
+        "activeTicks": 8,
+        "recoveryTicks": 10
+      },
+      "targeting": {
+        "mode": "self",
+        "rangeWU": 140,
+        "requiresLos": true,
+        "aimQuantization": "direction8"
+      },
+      "hitPolicy": {
+        "scope": "perCastPerTarget",
+        "maxHitsPerTarget": 1,
+        "minIntervalTicks": 0,
+        "sharedDirectAndAoe": true
+      },
+      "effect": {
+        "damage": 0,
+        "statuses": []
+      },
+      "behavior": {
+        "kind": "dash",
+        "params": {
+          "distanceWU": 140,
+          "travelTicks": 8,
+          "iframeStartOffset": 0,
+          "iframeEndOffset": 3
+        }
+      },
+      "interrupt": {
+        "beforeActive": "cancel_no_refund",
+        "afterActive": "finish_committed_movement"
+      },
+      "presentationId": "fighter_b_thunder_step_visual",
+      "budgets": {
+        "maxActivePerCaster": 1,
+        "maxSpawnPerCast": 1
+      }
+    }
+  ]
+}

@@ -1,5 +1,11 @@
 # 11 — Rủi ro và nguồn tham khảo v0.1
 
+## Bổ sung cho kế hoạch ổn định
+
+Nguồn chính thức để đối chiếu khi triển khai: [Colyseus fixed input/timestep](https://docs.colyseus.io/netcode/server-input), [prediction/reconciliation](https://docs.colyseus.io/netcode/client-prediction), [Box2D collision/shape cast](https://box2d.org/documentation/md_collision.html), [JSON Schema 2020-12 core](https://json-schema.org/draft/2020-12/json-schema-core). Đã mở để đối chiếu trong lượt lập kế hoạch; không có nghĩa đã kiểm runtime của repo hoặc phải thêm Box2D dependency.
+
+Rủi ro mới cần gate: expanded-AABB góc vuông gây phantom contact, target moving sweep bị bỏ qua, muzzle offset spawn xuyên wall, damage snapshot đi trước projectile render, ID cast chỉ theo tick bị trùng, config/source constants phân đôi, planned data bị ghi nhầm integrated. Docs14–17 đặt test contracts để kiểm, không bảo đảm thư viện tự giải quyết.
+
 ## Rủi ro cần theo dõi
 
 | ID | Rủi ro | Xử lý / task |

@@ -1,0 +1,3073 @@
+{
+  "metadata": {
+    "name": "Naruto-inspired PvPvE Shinobi Skill Graph",
+    "version": "1.0",
+    "locale": "vi-VN",
+    "note": "Tài liệu thiết kế không chính thức. Nút source_label=game_design là sáng tạo, không phải năng lực xác nhận từ nguyên tác. Nhiều hiệu ứng được điều chỉnh cho PvP.",
+    "licensing": "Nếu thương mại hóa bằng tên, hình ảnh hoặc nhẫn thuật Naruto, cần xin phép chủ sở hữu quyền."
+  },
+  "match_config_proposal": {
+    "match_size": "18 người (6 đội x 3), có thể thử solo trong chế độ riêng",
+    "match_minutes": 42,
+    "hero_level_cap": 20,
+    "skill_points_per_match": 12,
+    "max_active_skills": 4,
+    "max_ultimate_skills": 1,
+    "max_passives": 3,
+    "max_signature_traits": 1,
+    "tier_gates": {
+      "0": 1,
+      "1": 1,
+      "2": 4,
+      "3": 8,
+      "4": 12,
+      "5": 17
+    },
+    "currency": [
+      "XP lên cấp",
+      "Ryō mua/nâng nhẫn thuật và đồ",
+      "Tư liệu/cuộn/mảnh từ hoạt động",
+      "Điểm kỹ năng"
+    ],
+    "fair_rng": [
+      "Pity: sau 4 lần hoàn thành cùng loại mục tiêu đảm bảo được chọn một tư liệu trong nhóm phù hợp",
+      "Tư liệu mở quyền lựa chọn, không tự cộng 100% sát thương",
+      "Không khóa toàn bộ build cơ bản sau RNG",
+      "Boss/điểm nóng có 3 phút cảnh báo và nhiều lối tiếp cận"
+    ]
+  },
+  "source_label_definitions": {
+    "canon_adapted": "Tên/khái niệm xuất hiện trong Naruto; hiệu ứng và yêu cầu trong trận được điều chỉnh cho game",
+    "game_design": "Kỹ năng hoặc biến thể đề xuất riêng cho game, không mặc định là nguyên tác"
+  },
+  "nodes": [
+    {
+      "id": "BASE_CHAKRA",
+      "name": "Kiểm soát chakra",
+      "tree": "Nền tảng",
+      "tier": 0,
+      "requires_all": [],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tài nguyên"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Tăng hiệu quả sử dụng chakra"
+    },
+    {
+      "id": "BASE_MOVE",
+      "name": "Bước chân ninja",
+      "tree": "Nền tảng",
+      "tier": 0,
+      "requires_all": [],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cơ động"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Chạy tường và né tránh cơ bản"
+    },
+    {
+      "id": "BASE_SUB",
+      "name": "Thế thân thuật",
+      "tree": "Nền tảng",
+      "tier": 0,
+      "requires_all": [],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "phòng thủ"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": "E",
+      "gameplay_effect": "Thoát một đòn có báo trước"
+    },
+    {
+      "id": "BASE_TRANSFORM",
+      "name": "Biến thân thuật",
+      "tree": "Nền tảng",
+      "tier": 0,
+      "requires_all": [],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "đánh lừa"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": "E",
+      "gameplay_effect": "Ngụy trang để thoát giao tranh"
+    },
+    {
+      "id": "BASE_CLONE",
+      "name": "Phân thân thuật",
+      "tree": "Nền tảng",
+      "tier": 0,
+      "requires_all": [],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "đánh lừa"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": "E",
+      "gameplay_effect": "Phân thân đánh lạc hướng, không gây sát thương đáng kể"
+    },
+    {
+      "id": "BASE_WEAPON",
+      "name": "Nhẫn cụ sơ cấp",
+      "tree": "Nền tảng",
+      "tier": 0,
+      "requires_all": [],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm xa"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Kunai, shuriken, dây thép"
+    },
+    {
+      "id": "BASE_WALL",
+      "name": "Bám tường",
+      "tree": "Nền tảng",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA",
+        "BASE_MOVE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cơ động"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Leo qua vách và giảm địa hình cản trở"
+    },
+    {
+      "id": "BASE_WATERWALK",
+      "name": "Đi trên mặt nước",
+      "tree": "Nền tảng",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cơ động"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Vượt hồ sông, tránh giảm tốc"
+    },
+    {
+      "id": "BASE_DODGE",
+      "name": "Thế thân tinh luyện",
+      "tree": "Nền tảng",
+      "tier": 2,
+      "requires_all": [
+        "BASE_SUB",
+        "BASE_MOVE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "phòng thủ",
+        "cơ động"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Rút ngắn hồi chiêu thế thân; không miễn khống chế liên tục"
+    },
+    {
+      "id": "BASE_SHADOWCLONE",
+      "name": "Ảnh phân thân thuật",
+      "tree": "Nền tảng",
+      "tier": 2,
+      "requires_all": [
+        "BASE_CLONE",
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Cuộn Ảnh Phân Thân hoặc hoàn thành huấn luyện",
+      "combat_roles": [
+        "đánh lừa",
+        "hỗ trợ"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": "B",
+      "gameplay_effect": "Tạo một bản sao có hành động giới hạn; chia nguồn chakra"
+    },
+    {
+      "id": "BASE_MULTI_CLONE",
+      "name": "Đa trọng ảnh phân thân",
+      "tree": "Nền tảng",
+      "tier": 4,
+      "requires_all": [
+        "BASE_SHADOWCLONE"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Bí quyển cấm thuật và chỉ số chakra rất cao",
+      "combat_roles": [
+        "triệu hồi",
+        "diện rộng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Phân thân số lượng nhiều, hao chakra cực lớn và dễ bị diện rộng khắc chế"
+    },
+    {
+      "id": "BASE_TOOLWIRE",
+      "name": "Bẫy dây thép",
+      "tree": "Nền tảng",
+      "tier": 1,
+      "requires_all": [
+        "BASE_WEAPON"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "bẫy",
+        "khống chế"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Gài bẫy làm chậm trên đường di chuyển"
+    },
+    {
+      "id": "BASE_THROW",
+      "name": "Phi tiêu phân thân",
+      "tree": "Nền tảng",
+      "tier": 2,
+      "requires_all": [
+        "BASE_WEAPON",
+        "BASE_CLONE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm xa",
+        "đánh lừa"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Phóng loạt shuriken và phân thân giả"
+    },
+    {
+      "id": "BASE_SENSOR",
+      "name": "Cảm nhận chakra sơ cấp",
+      "tree": "Nền tảng",
+      "tier": 2,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "trinh sát"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Phát hiện dấu vết chakra trong phạm vi nhỏ"
+    },
+    {
+      "id": "FIRE_ROOT",
+      "name": "Hỏa Độn: khai mở",
+      "tree": "Nguyên tố Hỏa",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Có thiên phú hoặc học quyển Hỏa Độn",
+      "combat_roles": [
+        "nguyên tố"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Mở một thuộc tính chakra cơ bản"
+    },
+    {
+      "id": "WIND_ROOT",
+      "name": "Phong Độn: khai mở",
+      "tree": "Nguyên tố Phong",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Có thiên phú hoặc học quyển Phong Độn",
+      "combat_roles": [
+        "nguyên tố"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Mở một thuộc tính chakra cơ bản"
+    },
+    {
+      "id": "LIGHT_ROOT",
+      "name": "Lôi Độn: khai mở",
+      "tree": "Nguyên tố Lôi",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Có thiên phú hoặc học quyển Lôi Độn",
+      "combat_roles": [
+        "nguyên tố"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Mở một thuộc tính chakra cơ bản"
+    },
+    {
+      "id": "EARTH_ROOT",
+      "name": "Thổ Độn: khai mở",
+      "tree": "Nguyên tố Thổ",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Có thiên phú hoặc học quyển Thổ Độn",
+      "combat_roles": [
+        "nguyên tố"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Mở một thuộc tính chakra cơ bản"
+    },
+    {
+      "id": "WATER_ROOT",
+      "name": "Thủy Độn: khai mở",
+      "tree": "Nguyên tố Thủy",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Có thiên phú hoặc học quyển Thủy Độn",
+      "combat_roles": [
+        "nguyên tố"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Mở một thuộc tính chakra cơ bản"
+    },
+    {
+      "id": "FIRE_BALL",
+      "name": "Hào Hỏa Cầu",
+      "tree": "Nguyên tố Hỏa",
+      "tier": 2,
+      "requires_all": [
+        "FIRE_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm trung",
+        "diện rộng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": "C",
+      "gameplay_effect": "Quả cầu lửa gây sát thương theo vùng"
+    },
+    {
+      "id": "FIRE_PHOENIX",
+      "name": "Phụng Tiên Hỏa",
+      "tree": "Nguyên tố Hỏa",
+      "tier": 2,
+      "requires_all": [
+        "FIRE_ROOT",
+        "BASE_WEAPON"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm xa",
+        "kiểm soát"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": "C",
+      "gameplay_effect": "Nhiều viên hỏa cầu nhỏ, trúng nhiều đòn"
+    },
+    {
+      "id": "FIRE_WALL",
+      "name": "Tường lửa",
+      "tree": "Nguyên tố Hỏa",
+      "tier": 3,
+      "requires_all": [
+        "FIRE_BALL"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế",
+        "diện rộng"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Vùng lửa cắt đường và làm nóng mặt đất"
+    },
+    {
+      "id": "FIRE_DRAGON",
+      "name": "Long Hỏa Thuật",
+      "tree": "Nguyên tố Hỏa",
+      "tier": 3,
+      "requires_all": [
+        "FIRE_PHOENIX"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "dồn sát thương"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Luồng lửa mạnh theo đường thẳng"
+    },
+    {
+      "id": "FIRE_ZONE",
+      "name": "Hỏa vực lan truyền",
+      "tree": "Nguyên tố Hỏa",
+      "tier": 4,
+      "requires_all": [
+        "FIRE_WALL",
+        "FIRE_DRAGON"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "diện rộng"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Mở rộng vùng cháy; yếu khi đối thủ có Thủy thuần thục"
+    },
+    {
+      "id": "FIRE_TRAP",
+      "name": "Hỏa ấn phục kích",
+      "tree": "Nguyên tố Hỏa",
+      "tier": 3,
+      "requires_all": [
+        "FIRE_PHOENIX",
+        "BASE_TOOLWIRE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "bẫy"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Gắn hiệu ứng phát hỏa lên nhẫn cụ"
+    },
+    {
+      "id": "WIND_GUST",
+      "name": "Phong áp",
+      "tree": "Nguyên tố Phong",
+      "tier": 2,
+      "requires_all": [
+        "WIND_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "đẩy lùi",
+        "phòng thủ"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Hất lùi mục tiêu và đạn đạo nhẹ"
+    },
+    {
+      "id": "WIND_BLADE",
+      "name": "Phong nhận",
+      "tree": "Nguyên tố Phong",
+      "tier": 2,
+      "requires_all": [
+        "WIND_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm xa",
+        "sát thương"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Đường gió sắc gây thương tổn"
+    },
+    {
+      "id": "WIND_STEP",
+      "name": "Bộ pháp cuồng phong",
+      "tree": "Nguyên tố Phong",
+      "tier": 3,
+      "requires_all": [
+        "WIND_GUST",
+        "BASE_MOVE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cơ động"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Lướt nhanh theo chiều gió"
+    },
+    {
+      "id": "WIND_VACUUM",
+      "name": "Chân Không Ngọc",
+      "tree": "Nguyên tố Phong",
+      "tier": 3,
+      "requires_all": [
+        "WIND_BLADE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm xa",
+        "dồn sát thương"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Đạn gió xuyên theo hướng bắn"
+    },
+    {
+      "id": "WIND_SHURIKEN",
+      "name": "Shuriken phong chakra",
+      "tree": "Nguyên tố Phong",
+      "tier": 3,
+      "requires_all": [
+        "WIND_BLADE",
+        "BASE_WEAPON"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm xa",
+        "xuyên giáp"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Cường hóa shuriken bằng chakra gió"
+    },
+    {
+      "id": "WIND_STORM",
+      "name": "Phong bạo",
+      "tree": "Nguyên tố Phong",
+      "tier": 4,
+      "requires_all": [
+        "WIND_STEP",
+        "WIND_VACUUM"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "diện rộng",
+        "khống chế"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Vùng lốc hút nhẹ và làm lệch đường bay"
+    },
+    {
+      "id": "LIGHT_SPARK",
+      "name": "Lôi tiễn",
+      "tree": "Nguyên tố Lôi",
+      "tier": 2,
+      "requires_all": [
+        "LIGHT_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm xa"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Đạn điện gây sát thương tức thời"
+    },
+    {
+      "id": "LIGHT_ARMOR",
+      "name": "Lôi giáp sơ cấp",
+      "tree": "Nguyên tố Lôi",
+      "tier": 2,
+      "requires_all": [
+        "LIGHT_ROOT",
+        "BASE_MOVE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cơ động",
+        "phòng thủ"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Tăng tốc ngắn, tiêu hao chakra liên tục"
+    },
+    {
+      "id": "LIGHT_CHAIN",
+      "name": "Lôi chuỗi",
+      "tree": "Nguyên tố Lôi",
+      "tier": 3,
+      "requires_all": [
+        "LIGHT_SPARK"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế",
+        "tầm xa"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Điện truyền qua mục tiêu bị ướt ở gần"
+    },
+    {
+      "id": "LIGHT_CHIDORI",
+      "name": "Thiên Điểu",
+      "tree": "Nguyên tố Lôi",
+      "tier": 3,
+      "requires_all": [
+        "LIGHT_ROOT",
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Cuộn huấn luyện đột kích; nếu không có nhãn thuật cần cơ chế nhìn hướng đâm an toàn",
+      "combat_roles": [
+        "cận chiến",
+        "dồn sát thương"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": "A",
+      "gameplay_effect": "Đòn đâm nhanh nhưng bị hạn chế tầm nhìn và khó đổi hướng"
+    },
+    {
+      "id": "LIGHT_RAIRI",
+      "name": "Lôi Thiết",
+      "tree": "Nguyên tố Lôi",
+      "tier": 4,
+      "requires_all": [
+        "LIGHT_CHIDORI"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Thử thách tinh luyện Thiên Điểu",
+      "combat_roles": [
+        "cận chiến",
+        "dồn sát thương"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Biến thể đòn đâm uy lực cao; hồi chiêu dài"
+    },
+    {
+      "id": "LIGHT_FIELD",
+      "name": "Trận địa lôi",
+      "tree": "Nguyên tố Lôi",
+      "tier": 4,
+      "requires_all": [
+        "LIGHT_CHAIN",
+        "LIGHT_ARMOR"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "diện rộng",
+        "khống chế"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Lưới điện ngắn hạn gây áp lực tại vùng nước"
+    },
+    {
+      "id": "EARTH_WALL",
+      "name": "Thổ Lưu Bích",
+      "tree": "Nguyên tố Thổ",
+      "tier": 2,
+      "requires_all": [
+        "EARTH_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "phòng thủ"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Tường đất chặn đạn/đường đi"
+    },
+    {
+      "id": "EARTH_PROJECTILE",
+      "name": "Thổ đạn",
+      "tree": "Nguyên tố Thổ",
+      "tier": 2,
+      "requires_all": [
+        "EARTH_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm xa"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Ném mảnh đất đá tạo áp lực"
+    },
+    {
+      "id": "EARTH_MOLE",
+      "name": "Ẩn trong đất",
+      "tree": "Nguyên tố Thổ",
+      "tier": 3,
+      "requires_all": [
+        "EARTH_WALL",
+        "BASE_MOVE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "ẩn nấp",
+        "cơ động"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Độn thổ tới đoạn ngắn; lộ dấu vết khi đi dưới đất"
+    },
+    {
+      "id": "EARTH_BOG",
+      "name": "Đầm lầy bùn",
+      "tree": "Nguyên tố Thổ",
+      "tier": 3,
+      "requires_all": [
+        "EARTH_PROJECTILE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế",
+        "diện rộng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Làm chậm và giảm hiệu quả lướt"
+    },
+    {
+      "id": "EARTH_FORT",
+      "name": "Thành đất liên hoàn",
+      "tree": "Nguyên tố Thổ",
+      "tier": 4,
+      "requires_all": [
+        "EARTH_WALL",
+        "EARTH_BOG"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "phòng thủ",
+        "địa hình"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Tường đất kéo dài chặn lối nhưng phá được"
+    },
+    {
+      "id": "EARTH_GRAB",
+      "name": "Thổ trói chân",
+      "tree": "Nguyên tố Thổ",
+      "tier": 3,
+      "requires_all": [
+        "EARTH_BOG"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Trói từ mặt đất sau thời gian cảnh báo"
+    },
+    {
+      "id": "WATER_BULLET",
+      "name": "Thủy Đạn",
+      "tree": "Nguyên tố Thủy",
+      "tier": 2,
+      "requires_all": [
+        "WATER_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm xa"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Đạn nước gây sát thương và trạng thái ướt"
+    },
+    {
+      "id": "WATER_WALL",
+      "name": "Thủy Trận Bích",
+      "tree": "Nguyên tố Thủy",
+      "tier": 2,
+      "requires_all": [
+        "WATER_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "phòng thủ"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Màn nước chống Hỏa và cản đường"
+    },
+    {
+      "id": "WATER_PRISON",
+      "name": "Thủy Lao Thuật",
+      "tree": "Nguyên tố Thủy",
+      "tier": 3,
+      "requires_all": [
+        "WATER_BULLET"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Giữ mục tiêu gần; người thi triển phải duy trì và chịu rủi ro"
+    },
+    {
+      "id": "WATER_DRAGON",
+      "name": "Thủy Long Đạn",
+      "tree": "Nguyên tố Thủy",
+      "tier": 3,
+      "requires_all": [
+        "WATER_BULLET"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm xa",
+        "dồn sát thương"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Rồng nước phóng thẳng theo hướng chọn"
+    },
+    {
+      "id": "WATER_MIST",
+      "name": "Vụ Ẩn",
+      "tree": "Nguyên tố Thủy",
+      "tier": 3,
+      "requires_all": [
+        "WATER_WALL"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "ẩn nấp",
+        "khống chế tầm nhìn"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Tạo sương mù che khuất tầm nhìn"
+    },
+    {
+      "id": "WATER_SURGE",
+      "name": "Thủy triều",
+      "tree": "Nguyên tố Thủy",
+      "tier": 4,
+      "requires_all": [
+        "WATER_DRAGON",
+        "WATER_MIST"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "diện rộng"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Dòng nước thay đổi chiến trường, làm ướt trên diện rộng"
+    },
+    {
+      "id": "TAI_ROOT",
+      "name": "Thể thuật cơ bản",
+      "tree": "Chuyên môn Thể thuật",
+      "tier": 1,
+      "requires_all": [
+        "BASE_MOVE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cận chiến"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Đòn cơ bản và combo tay chân"
+    },
+    {
+      "id": "TAI_COMBO",
+      "name": "Liên hoàn quyền",
+      "tree": "Chuyên môn Thể thuật",
+      "tier": 2,
+      "requires_all": [
+        "TAI_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cận chiến",
+        "dồn sát thương"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Chuỗi đánh có thể bị né hay ngắt"
+    },
+    {
+      "id": "TAI_LOTUS",
+      "name": "Biểu Liên Hoa",
+      "tree": "Chuyên môn Thể thuật",
+      "tier": 3,
+      "requires_all": [
+        "TAI_COMBO"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Huấn luyện tốc độ hoặc mở Bát Môn sơ bộ",
+      "combat_roles": [
+        "cận chiến",
+        "dồn sát thương"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Không chiến và quật ngã; cần áp sát"
+    },
+    {
+      "id": "TAI_GATE_1",
+      "name": "Bát Môn: Khai Môn",
+      "tree": "Chuyên môn Thể thuật",
+      "tier": 3,
+      "requires_all": [
+        "TAI_COMBO"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Bí quyển rèn luyện Bát Môn",
+      "combat_roles": [
+        "cường hóa",
+        "cận chiến"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Tăng tốc ngắn, tăng mỏi"
+    },
+    {
+      "id": "TAI_GATE_3",
+      "name": "Bát Môn: Sinh Môn",
+      "tree": "Chuyên môn Thể thuật",
+      "tier": 4,
+      "requires_all": [
+        "TAI_GATE_1"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Ấn luyện thể cấp cao",
+      "combat_roles": [
+        "cường hóa",
+        "cận chiến"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Tăng tốc và áp lực tấn công; hao sức khỏe"
+    },
+    {
+      "id": "TAI_GATE_6",
+      "name": "Bát Môn: Cảnh Môn",
+      "tree": "Chuyên môn Thể thuật",
+      "tier": 5,
+      "requires_all": [
+        "TAI_GATE_3"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Thử thách thể thuật cuối",
+      "combat_roles": [
+        "cường hóa",
+        "diện rộng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Sức mạnh cực lớn trong thời gian ngắn, bị suy kiệt sau đó"
+    },
+    {
+      "id": "GEN_ROOT",
+      "name": "Ảo thuật căn bản",
+      "tree": "Chuyên môn Ảo thuật",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "đánh lừa",
+        "khống chế"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Tạo nhiễu giác quan nhỏ"
+    },
+    {
+      "id": "GEN_MIRAGE",
+      "name": "Phân ảnh ảo giác",
+      "tree": "Chuyên môn Ảo thuật",
+      "tier": 2,
+      "requires_all": [
+        "GEN_ROOT",
+        "BASE_CLONE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "đánh lừa"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Tạo mục tiêu giả có thể bị phát hiện"
+    },
+    {
+      "id": "GEN_SNARE",
+      "name": "Ảo cảnh trói buộc",
+      "tree": "Chuyên môn Ảo thuật",
+      "tier": 3,
+      "requires_all": [
+        "GEN_MIRAGE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Làm chậm nhận thức; có cách hóa giải bằng đồng đội/chakra"
+    },
+    {
+      "id": "GEN_DOMAIN",
+      "name": "Mê trận cảm giác",
+      "tree": "Chuyên môn Ảo thuật",
+      "tier": 4,
+      "requires_all": [
+        "GEN_SNARE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "diện rộng",
+        "khống chế"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Tạo vùng nhiễu định hướng, bị cảm nhận chakra khắc chế"
+    },
+    {
+      "id": "MED_ROOT",
+      "name": "Y thuật cơ bản",
+      "tree": "Chuyên môn Y thuật",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Cuộn y thuật sơ cấp",
+      "combat_roles": [
+        "hồi phục",
+        "hỗ trợ"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Chữa máu ngoài giao tranh"
+    },
+    {
+      "id": "MED_PALM",
+      "name": "Chưởng Tiên Thuật",
+      "tree": "Chuyên môn Y thuật",
+      "tier": 2,
+      "requires_all": [
+        "MED_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "hồi phục",
+        "hỗ trợ"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Hồi máu mục tiêu liên tục, dễ bị ngắt"
+    },
+    {
+      "id": "MED_ANTIDOTE",
+      "name": "Giải độc",
+      "tree": "Chuyên môn Y thuật",
+      "tier": 2,
+      "requires_all": [
+        "MED_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "hỗ trợ",
+        "giải hiệu ứng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Xóa độc/tác hại trung bình"
+    },
+    {
+      "id": "MED_PRECISION",
+      "name": "Dao mổ chakra",
+      "tree": "Chuyên môn Y thuật",
+      "tier": 3,
+      "requires_all": [
+        "MED_PALM"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cận chiến",
+        "hỗ trợ"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Đòn chính xác gây suy yếu cơ thể"
+    },
+    {
+      "id": "MED_FIELD",
+      "name": "Trận địa y thuật",
+      "tree": "Chuyên môn Y thuật",
+      "tier": 4,
+      "requires_all": [
+        "MED_PALM",
+        "MED_ANTIDOTE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "hồi phục",
+        "diện rộng"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Vùng chữa trị có thể bị phá"
+    },
+    {
+      "id": "SEAL_ROOT",
+      "name": "Phong ấn sơ cấp",
+      "tree": "Chuyên môn Phong ấn",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Học từ thầy hoặc cuộn Phong ấn",
+      "combat_roles": [
+        "bẫy",
+        "hỗ trợ"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Đặt phù và lưu trữ nhẫn cụ"
+    },
+    {
+      "id": "SEAL_TRAP",
+      "name": "Bùa trói chakra",
+      "tree": "Chuyên môn Phong ấn",
+      "tier": 2,
+      "requires_all": [
+        "SEAL_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "bẫy",
+        "khống chế"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Kích hoạt trói ngắn khi bước vào"
+    },
+    {
+      "id": "SEAL_BARRIER",
+      "name": "Kết giới",
+      "tree": "Chuyên môn Phong ấn",
+      "tier": 3,
+      "requires_all": [
+        "SEAL_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "phòng thủ",
+        "kiểm soát"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Rào chắn có giới hạn độ bền"
+    },
+    {
+      "id": "SEAL_SUPPRESS",
+      "name": "Ấn áp chakra",
+      "tree": "Chuyên môn Phong ấn",
+      "tier": 4,
+      "requires_all": [
+        "SEAL_TRAP",
+        "SEAL_BARRIER"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Giảm hiệu quả cường hóa và triệu hồi"
+    },
+    {
+      "id": "PUP_ROOT",
+      "name": "Khôi lỗi cơ bản",
+      "tree": "Chuyên môn Khôi lỗi",
+      "tier": 1,
+      "requires_all": [
+        "BASE_WEAPON",
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Học thuật điều khiển con rối",
+      "combat_roles": [
+        "triệu hồi",
+        "khống chế"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Điều khiển khôi lỗi tầm gần"
+    },
+    {
+      "id": "PUP_WEAPON",
+      "name": "Khôi lỗi nhẫn cụ",
+      "tree": "Chuyên môn Khôi lỗi",
+      "tier": 2,
+      "requires_all": [
+        "PUP_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm xa"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Gắn vũ khí nhỏ lên rối"
+    },
+    {
+      "id": "PUP_POISON",
+      "name": "Khôi lỗi độc",
+      "tree": "Chuyên môn Khôi lỗi",
+      "tier": 3,
+      "requires_all": [
+        "PUP_WEAPON"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Tìm độc dược hoặc luyện hóa",
+      "combat_roles": [
+        "sát thương theo thời gian"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Độc tích lũy, hóa giải bởi y thuật"
+    },
+    {
+      "id": "PUP_DUO",
+      "name": "Song khôi lỗi",
+      "tree": "Chuyên môn Khôi lỗi",
+      "tier": 4,
+      "requires_all": [
+        "PUP_WEAPON"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "triệu hồi"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Điều khiển hai rối yếu thay vì một rối mạnh"
+    },
+    {
+      "id": "SUM_ROOT",
+      "name": "Khế ước triệu hồi",
+      "tree": "Chuyên môn Triệu hồi",
+      "tier": 2,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Nhận khế ước từ phụ bản/nhân vật hướng dẫn",
+      "combat_roles": [
+        "triệu hồi"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Chọn một dòng khế ước"
+    },
+    {
+      "id": "SUM_TOAD",
+      "name": "Triệu hồi cóc",
+      "tree": "Chuyên môn Triệu hồi",
+      "tier": 3,
+      "requires_all": [
+        "SUM_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Khế ước Cóc",
+      "combat_roles": [
+        "đấu sĩ",
+        "hỗ trợ"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Đồng minh vật lý và cơ động"
+    },
+    {
+      "id": "SUM_SNAKE",
+      "name": "Triệu hồi rắn",
+      "tree": "Chuyên môn Triệu hồi",
+      "tier": 3,
+      "requires_all": [
+        "SUM_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Khế ước Rắn",
+      "combat_roles": [
+        "khống chế",
+        "độc"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Khống chế điểm hoặc gây độc"
+    },
+    {
+      "id": "SUM_SLUG",
+      "name": "Triệu hồi sên",
+      "tree": "Chuyên môn Triệu hồi",
+      "tier": 3,
+      "requires_all": [
+        "SUM_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Khế ước Sên",
+      "combat_roles": [
+        "hồi phục"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Trợ chiến thiên về hồi máu"
+    },
+    {
+      "id": "SUM_GREAT",
+      "name": "Đại triệu hồi",
+      "tree": "Chuyên môn Triệu hồi",
+      "tier": 5,
+      "requires_all": [
+        "SUM_ROOT"
+      ],
+      "requires_any": [
+        [
+          "SUM_TOAD",
+          "SUM_SNAKE",
+          "SUM_SLUG"
+        ]
+      ],
+      "unlock_gate": "Hoàn thành thử thách của linh thú",
+      "combat_roles": [
+        "triệu hồi",
+        "tối thượng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Gọi linh thú cỡ lớn ngắn hạn, có thời gian triệu hồi"
+    },
+    {
+      "id": "SHAPE_ROOT",
+      "name": "Biến đổi hình thái chakra",
+      "tree": "Chuyên môn Biến đổi hình thái",
+      "tier": 2,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "sát thương"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Điều khiển độ xoáy và cấu trúc chakra"
+    },
+    {
+      "id": "SHAPE_RASENGAN",
+      "name": "Rasengan",
+      "tree": "Chuyên môn Biến đổi hình thái",
+      "tier": 3,
+      "requires_all": [
+        "SHAPE_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Huấn luyện biến đổi hình thái",
+      "combat_roles": [
+        "cận chiến",
+        "dồn sát thương"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Cầu chakra xoáy dồn sát thương"
+    },
+    {
+      "id": "SHAPE_RASENSHURIKEN",
+      "name": "Phong Độn: Rasenshuriken",
+      "tree": "Chuyên môn Biến đổi hình thái",
+      "tier": 5,
+      "requires_all": [
+        "SHAPE_RASENGAN",
+        "WIND_SHURIKEN"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Bí quyển kết hợp nâng cao và thử thách tinh luyện",
+      "combat_roles": [
+        "diện rộng",
+        "tối thượng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Kỹ năng bùng nổ mạnh, thi triển có cảnh báo rõ"
+    },
+    {
+      "id": "UCH_EYE1",
+      "name": "Sharingan một câu ngọc",
+      "tree": "Uchiha",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Gia tộc Uchiha + thức tỉnh cơ bản",
+      "combat_roles": [
+        "trinh sát",
+        "né tránh"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Quan sát chuyển động tốt hơn"
+    },
+    {
+      "id": "UCH_FIRE",
+      "name": "Tập quán Hỏa Độn Uchiha",
+      "tree": "Uchiha",
+      "tier": 1,
+      "requires_all": [
+        "UCH_EYE1"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "nguyên tố"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Giảm chi phí học Hỏa Độn (không phải huyết kế)"
+    },
+    {
+      "id": "UCH_EYE2",
+      "name": "Sharingan hai câu ngọc",
+      "tree": "Uchiha",
+      "tier": 2,
+      "requires_all": [
+        "UCH_EYE1"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Rèn luyện nhãn thuật",
+      "combat_roles": [
+        "né tránh"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Dự đoán đòn có hoạt ảnh rõ"
+    },
+    {
+      "id": "UCH_EYE3",
+      "name": "Sharingan ba câu ngọc",
+      "tree": "Uchiha",
+      "tier": 3,
+      "requires_all": [
+        "UCH_EYE2"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Cuộn lĩnh ngộ Sharingan",
+      "combat_roles": [
+        "trinh sát",
+        "đánh lừa"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Tăng hiệu quả đọc đòn và nhìn ảo thuật"
+    },
+    {
+      "id": "UCH_GEN",
+      "name": "Ảo thuật Sharingan",
+      "tree": "Uchiha",
+      "tier": 3,
+      "requires_all": [
+        "UCH_EYE3",
+        "GEN_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Ảo thuật nhìn thẳng, có đối kháng bằng né ánh mắt/giải ảo"
+    },
+    {
+      "id": "UCH_COPY",
+      "name": "Sao chép nhẫn thuật phổ thông",
+      "tree": "Uchiha",
+      "tier": 3,
+      "requires_all": [
+        "UCH_EYE3"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "linh hoạt"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Sao chép tạm một thuật có thể học, không sao chép huyết kế"
+    },
+    {
+      "id": "UCH_SHURIKEN",
+      "name": "Shurikenjutsu Uchiha",
+      "tree": "Uchiha",
+      "tier": 2,
+      "requires_all": [
+        "UCH_EYE2",
+        "BASE_WEAPON"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm xa"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Làm lệch đường bay shuriken bằng dây thép"
+    },
+    {
+      "id": "UCH_MANGEKYO",
+      "name": "Mangekyō Sharingan",
+      "tree": "Uchiha",
+      "tier": 5,
+      "requires_all": [
+        "UCH_EYE3"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Ký ức thức tỉnh hiếm + nhiệm vụ áp lực tâm lý mang tính hư cấu, không yêu cầu hại đồng đội",
+      "combat_roles": [
+        "thức tỉnh",
+        "tối thượng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Mở một bộ năng lực nhãn thuật riêng; tiêu hao lớn và tích lũy mỏi mắt"
+    },
+    {
+      "id": "UCH_SUSANOO",
+      "name": "Susanoo chưa hoàn chỉnh",
+      "tree": "Uchiha",
+      "tier": 5,
+      "requires_all": [
+        "UCH_MANGEKYO"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Đã mở Mangekyō ở cả hai mắt theo gói thức tỉnh",
+      "combat_roles": [
+        "phòng thủ",
+        "tối thượng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Triệu hồi giáp chakra ngắn hạn; hao nhiều tài nguyên"
+    },
+    {
+      "id": "UCH_FLAME",
+      "name": "Nhánh Mangekyō: Hắc viêm",
+      "tree": "Uchiha",
+      "tier": 5,
+      "requires_all": [
+        "UCH_MANGEKYO"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Gói nhãn thuật hắc viêm hiếm, không mặc định cho Uchiha",
+      "combat_roles": [
+        "sát thương theo thời gian"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Lửa đen tồn tại ngắn, tiêu hao năng lực nhãn thuật"
+    },
+    {
+      "id": "UCH_SPACE",
+      "name": "Nhánh Mangekyō: Không gian",
+      "tree": "Uchiha",
+      "tier": 5,
+      "requires_all": [
+        "UCH_MANGEKYO"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Gói nhãn thuật không gian hiếm, loại trừ gói hắc viêm",
+      "combat_roles": [
+        "cơ động",
+        "né tránh"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Né hoặc dịch chuyển ngắn, thời gian bất khả xâm phạm rất ngắn"
+    },
+    {
+      "id": "HYG_EYE",
+      "name": "Byakugan",
+      "tree": "Hyūga",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Gia tộc Hyūga",
+      "combat_roles": [
+        "trinh sát"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Phát hiện chakra, mở tầm nhìn rộng nhưng có điểm mù"
+    },
+    {
+      "id": "HYG_GENTLE",
+      "name": "Nhu Quyền",
+      "tree": "Hyūga",
+      "tier": 2,
+      "requires_all": [
+        "HYG_EYE",
+        "TAI_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cận chiến",
+        "khống chế"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Tấn công hệ thống chakra đối phương"
+    },
+    {
+      "id": "HYG_POINT",
+      "name": "Điểm huyệt chakra",
+      "tree": "Hyūga",
+      "tier": 2,
+      "requires_all": [
+        "HYG_GENTLE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Giảm hồi chakra trong thời gian ngắn"
+    },
+    {
+      "id": "HYG_64",
+      "name": "Bát Quái 64 Chưởng",
+      "tree": "Hyūga",
+      "tier": 3,
+      "requires_all": [
+        "HYG_POINT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cận chiến",
+        "dồn sát thương"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Liên hoàn đòn đánh trúng sẽ tăng mức phong tỏa chakra"
+    },
+    {
+      "id": "HYG_ROTATION",
+      "name": "Bát Quái Hồi Thiên",
+      "tree": "Hyūga",
+      "tier": 3,
+      "requires_all": [
+        "HYG_EYE",
+        "HYG_GENTLE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "phòng thủ"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Xoay tạo vòng phòng ngự tiêu hao chakra"
+    },
+    {
+      "id": "HYG_AIRPALM",
+      "name": "Bát Quái Không Chưởng",
+      "tree": "Hyūga",
+      "tier": 3,
+      "requires_all": [
+        "HYG_GENTLE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm trung",
+        "đẩy lùi"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Phóng sóng chakra tầm ngắn"
+    },
+    {
+      "id": "HYG_LION",
+      "name": "Nhu Bộ Song Sư Quyền",
+      "tree": "Hyūga",
+      "tier": 4,
+      "requires_all": [
+        "HYG_64"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Cuộn lĩnh ngộ Nhu Quyền cao cấp",
+      "combat_roles": [
+        "cận chiến",
+        "dồn sát thương"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Đòn gần có hình thái đầu sư tử chakra"
+    },
+    {
+      "id": "NARA_SHADOW",
+      "name": "Ảnh Chân Tự Thuật",
+      "tree": "Nara",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Gia tộc Nara hoặc truyền thụ Hiden hợp lệ",
+      "combat_roles": [
+        "khống chế"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Nối bóng trói kẻ địch, cần đường bóng liên tục"
+    },
+    {
+      "id": "NARA_RANGE",
+      "name": "Kéo dài bóng",
+      "tree": "Nara",
+      "tier": 2,
+      "requires_all": [
+        "NARA_SHADOW"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Tăng độ dài nhưng hao chakra tỉ lệ khoảng cách"
+    },
+    {
+      "id": "NARA_BIND",
+      "name": "Ảnh Thủ Trói Thuật",
+      "tree": "Nara",
+      "tier": 2,
+      "requires_all": [
+        "NARA_SHADOW"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Tăng thời gian giam chân nếu đứng đúng vị trí"
+    },
+    {
+      "id": "NARA_NECK",
+      "name": "Ảnh Thủ Thắt Cổ",
+      "tree": "Nara",
+      "tier": 3,
+      "requires_all": [
+        "NARA_BIND"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cận chiến",
+        "khống chế"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Trói và gây sát thương theo thời gian khi duy trì"
+    },
+    {
+      "id": "NARA_SEW",
+      "name": "Ảnh Phược Thuật",
+      "tree": "Nara",
+      "tier": 3,
+      "requires_all": [
+        "NARA_RANGE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế",
+        "tầm trung"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Tua bóng nhọn tiến theo đường thẳng"
+    },
+    {
+      "id": "NARA_MULTI",
+      "name": "Mạng lưới ảnh",
+      "tree": "Nara",
+      "tier": 4,
+      "requires_all": [
+        "NARA_SEW",
+        "NARA_BIND"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "diện rộng",
+        "khống chế"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Chia bóng thành nhiều nhánh trói yếu hơn"
+    },
+    {
+      "id": "YAM_MIND",
+      "name": "Tâm Chuyển Thân Thuật",
+      "tree": "Yamanaka",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Gia tộc Yamanaka hoặc truyền thụ Hiden hợp lệ",
+      "combat_roles": [
+        "khống chế"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Chiếm quyền điều khiển mục tiêu ngắn hạn; thân mình đứng yên"
+    },
+    {
+      "id": "YAM_SIGNAL",
+      "name": "Tâm Truyền Thân",
+      "tree": "Yamanaka",
+      "tier": 2,
+      "requires_all": [
+        "YAM_MIND"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "trinh sát",
+        "hỗ trợ"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Liên lạc định hướng đồng minh"
+    },
+    {
+      "id": "YAM_SWITCH",
+      "name": "Tâm Chuyển Thân tầm xa",
+      "tree": "Yamanaka",
+      "tier": 3,
+      "requires_all": [
+        "YAM_MIND"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Tăng tầm, dễ bị cắt liên kết"
+    },
+    {
+      "id": "YAM_DISTURB",
+      "name": "Tâm Loạn Thân Thuật",
+      "tree": "Yamanaka",
+      "tier": 3,
+      "requires_all": [
+        "YAM_MIND"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Làm nhiễu hành động của đối thủ"
+    },
+    {
+      "id": "YAM_NETWORK",
+      "name": "Mạng liên lạc tâm trí",
+      "tree": "Yamanaka",
+      "tier": 4,
+      "requires_all": [
+        "YAM_SIGNAL",
+        "YAM_DISTURB"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "hỗ trợ",
+        "trinh sát"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Liên kết tín hiệu đồng đội trong phạm vi xác định"
+    },
+    {
+      "id": "AKI_EXPAND",
+      "name": "Bội Hóa Thuật",
+      "tree": "Akimichi",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Gia tộc Akimichi hoặc truyền thụ Hiden hợp lệ",
+      "combat_roles": [
+        "đấu sĩ"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Tăng kích thước và tầm đánh, dễ bị trúng đòn hơn"
+    },
+    {
+      "id": "AKI_PART",
+      "name": "Bộ phận bội hóa",
+      "tree": "Akimichi",
+      "tier": 2,
+      "requires_all": [
+        "AKI_EXPAND"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cận chiến"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Cường hóa riêng tay/chân cho đòn đánh"
+    },
+    {
+      "id": "AKI_ROLL",
+      "name": "Nhục Đạn Chiến Xa",
+      "tree": "Akimichi",
+      "tier": 2,
+      "requires_all": [
+        "AKI_EXPAND",
+        "TAI_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cơ động",
+        "cận chiến"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Lăn xuyên đội hình, khó chuyển hướng"
+    },
+    {
+      "id": "AKI_MEGA",
+      "name": "Siêu Bội Hóa",
+      "tree": "Akimichi",
+      "tier": 3,
+      "requires_all": [
+        "AKI_PART"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "đỡ đòn",
+        "diện rộng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Kích thước rất lớn, bị khắc chế bởi khống chế"
+    },
+    {
+      "id": "AKI_BUTTERFLY",
+      "name": "Chế độ Cánh Bướm",
+      "tree": "Akimichi",
+      "tier": 5,
+      "requires_all": [
+        "AKI_MEGA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Tu luyện đặc biệt hoặc bí dược có tác dụng phụ",
+      "combat_roles": [
+        "dồn sát thương",
+        "tối thượng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Dồn năng lượng lớn thành đòn hủy diệt, sau đó suy kiệt"
+    },
+    {
+      "id": "ABU_INSECT",
+      "name": "Kikaichū – côn trùng chakra",
+      "tree": "Aburame",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Gia tộc Aburame, cộng sinh côn trùng",
+      "combat_roles": [
+        "triệu hồi",
+        "kiểm soát"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Triệu hồi bầy ký sinh cơ bản"
+    },
+    {
+      "id": "ABU_DRAIN",
+      "name": "Trùng hút chakra",
+      "tree": "Aburame",
+      "tier": 2,
+      "requires_all": [
+        "ABU_INSECT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "bào mòn"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Hút chakra từ mục tiêu gắn trùng"
+    },
+    {
+      "id": "ABU_SCOUT",
+      "name": "Trinh sát bằng côn trùng",
+      "tree": "Aburame",
+      "tier": 2,
+      "requires_all": [
+        "ABU_INSECT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "trinh sát"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Gửi bầy côn trùng dò đường"
+    },
+    {
+      "id": "ABU_COCOON",
+      "name": "Kén trùng phòng thủ",
+      "tree": "Aburame",
+      "tier": 3,
+      "requires_all": [
+        "ABU_INSECT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "phòng thủ"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Đám côn trùng đỡ đạn nhẹ"
+    },
+    {
+      "id": "ABU_SWARM",
+      "name": "Bão trùng",
+      "tree": "Aburame",
+      "tier": 4,
+      "requires_all": [
+        "ABU_DRAIN",
+        "ABU_SCOUT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "diện rộng",
+        "bào mòn"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Thả vùng côn trùng cản giao tranh"
+    },
+    {
+      "id": "INU_PARTNER",
+      "name": "Đồng hành nhẫn khuyển",
+      "tree": "Inuzuka",
+      "tier": 1,
+      "requires_all": [
+        "BASE_MOVE"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Gia tộc Inuzuka và nhẫn khuyển",
+      "combat_roles": [
+        "triệu hồi",
+        "trinh sát"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Bạn đồng hành theo dấu mục tiêu"
+    },
+    {
+      "id": "INU_FOUR",
+      "name": "Tứ Cước Thuật",
+      "tree": "Inuzuka",
+      "tier": 2,
+      "requires_all": [
+        "INU_PARTNER",
+        "TAI_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cơ động",
+        "cận chiến"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Tăng di chuyển và áp sát"
+    },
+    {
+      "id": "INU_CLONE",
+      "name": "Thú Nhân Phân Thân",
+      "tree": "Inuzuka",
+      "tier": 2,
+      "requires_all": [
+        "INU_PARTNER"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "đánh lừa",
+        "cận chiến"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Chó biến hình hỗ trợ tấn công"
+    },
+    {
+      "id": "INU_FANG",
+      "name": "Nha Thông Nha",
+      "tree": "Inuzuka",
+      "tier": 3,
+      "requires_all": [
+        "INU_FOUR",
+        "INU_CLONE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cận chiến",
+        "dồn sát thương"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Đòn xoay đồng bộ người và chó"
+    },
+    {
+      "id": "INU_WOLF",
+      "name": "Song Đầu Lang",
+      "tree": "Inuzuka",
+      "tier": 4,
+      "requires_all": [
+        "INU_FANG"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cận chiến",
+        "tối thượng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Hợp thể tạm tăng sát thương và kích thước"
+    },
+    {
+      "id": "UZU_VITAL",
+      "name": "Sinh lực Uzumaki",
+      "tree": "Uzumaki",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Gia tộc Uzumaki",
+      "combat_roles": [
+        "đỡ đòn",
+        "tài nguyên"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Chakra tối đa cao hơn chút, khả năng duy trì tốt"
+    },
+    {
+      "id": "UZU_SEAL",
+      "name": "Di sản phong ấn Uzumaki",
+      "tree": "Uzumaki",
+      "tier": 2,
+      "requires_all": [
+        "UZU_VITAL",
+        "SEAL_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "phong ấn"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Ưu thế chi phí học phong ấn và khả năng duy trì kết giới"
+    },
+    {
+      "id": "UZU_REGEN",
+      "name": "Hồi phục sinh lực",
+      "tree": "Uzumaki",
+      "tier": 3,
+      "requires_all": [
+        "UZU_VITAL",
+        "MED_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "hồi phục"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Tái tạo vừa phải ngoài giao tranh; không bất tử"
+    },
+    {
+      "id": "UZU_CHAIN",
+      "name": "Kim Cang Phong Tỏa",
+      "tree": "Uzumaki",
+      "tier": 4,
+      "requires_all": [
+        "UZU_SEAL"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Huyết thống tương thích hiếm và nhiệm vụ phong ấn",
+      "combat_roles": [
+        "khống chế"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Phóng dây xích chakra trói và khóa cường hóa"
+    },
+    {
+      "id": "UZU_BARRIER",
+      "name": "Kết giới Kim Cang",
+      "tree": "Uzumaki",
+      "tier": 5,
+      "requires_all": [
+        "UZU_CHAIN",
+        "SEAL_BARRIER"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Hạch kết giới hiếm",
+      "combat_roles": [
+        "phòng thủ",
+        "khống chế"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Kết giới trói trong vùng nhỏ, tiêu hao lớn"
+    },
+    {
+      "id": "YUKI_ICE",
+      "name": "Băng Độn",
+      "tree": "Yuki",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Huyết kế Yuki (không chỉ cần Thủy và Phong)",
+      "combat_roles": [
+        "nguyên tố",
+        "khống chế"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Mở biến đổi chakra băng"
+    },
+    {
+      "id": "YUKI_NEEDLE",
+      "name": "Băng châm",
+      "tree": "Yuki",
+      "tier": 2,
+      "requires_all": [
+        "YUKI_ICE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm xa"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Đạn băng làm chậm"
+    },
+    {
+      "id": "YUKI_WALL",
+      "name": "Băng tường",
+      "tree": "Yuki",
+      "tier": 3,
+      "requires_all": [
+        "YUKI_ICE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "phòng thủ",
+        "địa hình"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Tường băng có thể phá bằng sát thương"
+    },
+    {
+      "id": "YUKI_MIRROR",
+      "name": "Ma Kính Băng Tinh",
+      "tree": "Yuki",
+      "tier": 4,
+      "requires_all": [
+        "YUKI_NEEDLE",
+        "YUKI_WALL"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cơ động",
+        "đánh lừa"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Kết giới gương băng cho phép di chuyển giữa các gương"
+    },
+    {
+      "id": "HOZ_LIQUID",
+      "name": "Thủy Hóa Thuật",
+      "tree": "Hōzuki",
+      "tier": 1,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Gia tộc Hōzuki",
+      "combat_roles": [
+        "cơ động",
+        "phòng thủ"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Hóa lỏng tránh sát thương vật lý trong thời gian ngắn"
+    },
+    {
+      "id": "HOZ_WATERGUN",
+      "name": "Thủy Thiết Pháo",
+      "tree": "Hōzuki",
+      "tier": 2,
+      "requires_all": [
+        "HOZ_LIQUID"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm xa",
+        "dồn sát thương"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Đạn nước nén tầm xa"
+    },
+    {
+      "id": "HOZ_ESCAPE",
+      "name": "Hóa lỏng xuyên khe",
+      "tree": "Hōzuki",
+      "tier": 3,
+      "requires_all": [
+        "HOZ_LIQUID"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cơ động",
+        "ẩn nấp"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Thoát qua kẽ nhỏ, bị Lôi Độn khắc chế"
+    },
+    {
+      "id": "HOZ_BODY",
+      "name": "Thủy hình bộc phát",
+      "tree": "Hōzuki",
+      "tier": 4,
+      "requires_all": [
+        "HOZ_WATERGUN",
+        "HOZ_ESCAPE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "đỡ đòn"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Đòn hóa lỏng phản công mạnh, rủi ro trước điện"
+    },
+    {
+      "id": "SAGE_ROOT",
+      "name": "Cảm nhận năng lượng tự nhiên",
+      "tree": "Đặc biệt Tiên thuật",
+      "tier": 3,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Hoàn thành thử thách khế ước linh thú và huấn luyện",
+      "combat_roles": [
+        "trinh sát"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Bắt đầu tích lũy tiên lực; cần đứng yên hoặc dùng vùng đặc biệt"
+    },
+    {
+      "id": "SAGE_MODE",
+      "name": "Tiên Nhân Thuật",
+      "tree": "Đặc biệt Tiên thuật",
+      "tier": 5,
+      "requires_all": [
+        "SAGE_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Lõi tiên thuật + thử thách cân bằng chakra",
+      "combat_roles": [
+        "cường hóa",
+        "tối thượng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Cường hóa vật lý/cảm nhận, có thời lượng giới hạn"
+    },
+    {
+      "id": "SAGE_FROGKATA",
+      "name": "Ếch Quyền Tiên Thuật",
+      "tree": "Đặc biệt Tiên thuật",
+      "tier": 5,
+      "requires_all": [
+        "SAGE_MODE",
+        "TAI_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Khế ước Cóc",
+      "combat_roles": [
+        "cận chiến"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Vùng tấn công cận chiến mở rộng bằng tiên lực"
+    },
+    {
+      "id": "FORBIDDEN_SEAL",
+      "name": "Cấm thuật: phong ấn bộc phát",
+      "tree": "Đặc biệt Cấm thuật",
+      "tier": 5,
+      "requires_all": [
+        "SEAL_SUPPRESS"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Chìa khóa cấm thuật từ sự kiện tranh chấp",
+      "combat_roles": [
+        "khống chế",
+        "tối thượng"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Vô hiệu hóa cường hóa mạnh trong thời gian ngắn, đổi lại bị khóa chính kỹ năng"
+    },
+    {
+      "id": "RARE_WOOD",
+      "name": "Mộc Độn đặc thù",
+      "tree": "Đặc biệt Huyết kế",
+      "tier": 5,
+      "requires_all": [
+        "EARTH_ROOT",
+        "WATER_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Huyết kế đặc biệt gắn với Hashirama, KHÔNG nhận chỉ nhờ hai nguyên tố",
+      "combat_roles": [
+        "kiểm soát",
+        "địa hình"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Dựng cấu trúc gỗ trói và chặn đường"
+    },
+    {
+      "id": "RARE_MAGNET",
+      "name": "Từ Độn đặc thù",
+      "tree": "Đặc biệt Huyết kế",
+      "tier": 5,
+      "requires_all": [
+        "EARTH_ROOT",
+        "WIND_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Huyết kế Từ Độn tương thích đặc biệt, KHÔNG nhận chỉ nhờ hai nguyên tố",
+      "combat_roles": [
+        "kiểm soát",
+        "địa hình"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Điều khiển hạt kim loại/cát sắt giới hạn"
+    },
+    {
+      "id": "RARE_BOIL",
+      "name": "Phí Độn đặc thù",
+      "tree": "Đặc biệt Huyết kế",
+      "tier": 5,
+      "requires_all": [
+        "FIRE_ROOT",
+        "WATER_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Huyết kế Phí Độn tương thích đặc biệt",
+      "combat_roles": [
+        "sát thương",
+        "bào mòn"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Hơi nóng áp suất cao, gây thiêu rụi"
+    },
+    {
+      "id": "RARE_DUST",
+      "name": "Trần Độn đặc thù",
+      "tree": "Đặc biệt Huyết kế",
+      "tier": 5,
+      "requires_all": [
+        "EARTH_ROOT",
+        "FIRE_ROOT",
+        "WIND_ROOT"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Huyết kế đào thải giới hạn cực hiếm + nhiệm vụ đặc biệt",
+      "combat_roles": [
+        "tối thượng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Khối phân giải có cảnh báo dài, không thể dùng liên tục"
+    },
+    {
+      "id": "RARE_SPACE",
+      "name": "Bí thuật Thời–Không",
+      "tree": "Đặc biệt Không gian",
+      "tier": 5,
+      "requires_all": [
+        "SEAL_ROOT",
+        "BASE_MOVE"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Cuộn Thuật Thức hiếm + hoàn thành thử thách",
+      "combat_roles": [
+        "cơ động"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Đánh dấu rồi dịch chuyển tới ấn; không tự động là Phi Lôi Thần chuẩn nguyên tác"
+    },
+    {
+      "id": "RARE_JINCHU",
+      "name": "Mảnh chakra Vĩ thú (sự kiện)",
+      "tree": "Đặc biệt Vĩ thú",
+      "tier": 5,
+      "requires_all": [
+        "BASE_CHAKRA"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Chế độ/sự kiện riêng; không phải kỹ năng mọi ninja tự học",
+      "combat_roles": [
+        "cường hóa",
+        "tối thượng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Cường hóa có thời hạn từ mục tiêu sự kiện, không sở hữu vĩnh viễn"
+    },
+    {
+      "id": "FUSE_FIRE_WIND",
+      "name": "Hỏa phong khuếch tán",
+      "tree": "Lai nhánh",
+      "tier": 3,
+      "requires_all": [
+        "FIRE_BALL",
+        "WIND_GUST"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "diện rộng"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Gió lan ngọn lửa, rộng hơn nhưng thời gian báo trước dài"
+    },
+    {
+      "id": "FUSE_WATER_LIGHT",
+      "name": "Lôi thủy dẫn điện",
+      "tree": "Lai nhánh",
+      "tier": 3,
+      "requires_all": [
+        "WATER_BULLET",
+        "LIGHT_SPARK"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Điện lan theo mặt nước đã tạo, không phải huyết kế"
+    },
+    {
+      "id": "FUSE_WATER_EARTH",
+      "name": "Thủy thổ bùn lầy",
+      "tree": "Lai nhánh",
+      "tier": 3,
+      "requires_all": [
+        "WATER_BULLET",
+        "EARTH_BOG"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "khống chế"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Bùn sâu làm giảm tốc, không phải Mộc Độn"
+    },
+    {
+      "id": "FUSE_WIND_TOOL",
+      "name": "Phong nhận phi tiêu",
+      "tree": "Lai nhánh",
+      "tier": 3,
+      "requires_all": [
+        "WIND_BLADE",
+        "BASE_WEAPON"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "tầm xa"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Vũ khí được bọc gió đâm xuyên"
+    },
+    {
+      "id": "FUSE_SHADOW_TRAP",
+      "name": "Ảnh ấn phục kích",
+      "tree": "Lai nhánh",
+      "tier": 3,
+      "requires_all": [
+        "NARA_BIND",
+        "SEAL_TRAP"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "bẫy",
+        "khống chế"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Gài phù neo bóng tại điểm bẫy"
+    },
+    {
+      "id": "FUSE_EYE_KEN",
+      "name": "Nhãn thuật phản đòn",
+      "tree": "Lai nhánh",
+      "tier": 4,
+      "requires_all": [
+        "UCH_EYE3",
+        "TAI_COMBO"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cận chiến",
+        "phản công"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Canh né đúng nhịp cho phản đòn mạnh"
+    },
+    {
+      "id": "FUSE_BYAKU_LIGHT",
+      "name": "Lôi Nhu Quyền",
+      "tree": "Lai nhánh",
+      "tier": 4,
+      "requires_all": [
+        "HYG_POINT",
+        "LIGHT_SPARK"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cận chiến",
+        "khống chế"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Đòn điểm huyệt gây giật nhẹ; hoàn toàn là biến thể game"
+    },
+    {
+      "id": "FUSE_ABU_MED",
+      "name": "Trùng y thuật hỗ trợ",
+      "tree": "Lai nhánh",
+      "tier": 4,
+      "requires_all": [
+        "ABU_SCOUT",
+        "MED_PALM"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "hỗ trợ"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Bầy trùng mang hiệu ứng hồi phục rất nhỏ, không chữa toàn bản đồ"
+    },
+    {
+      "id": "FUSE_PUP_POISON",
+      "name": "Khôi lỗi độc phong tỏa",
+      "tree": "Lai nhánh",
+      "tier": 4,
+      "requires_all": [
+        "PUP_POISON",
+        "SEAL_TRAP"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "bẫy",
+        "độc"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Khôi lỗi đặt bẫy hóa chất có cảnh báo"
+    },
+    {
+      "id": "FUSE_CLONE_SEAL",
+      "name": "Ảnh phân thân gài phù",
+      "tree": "Lai nhánh",
+      "tier": 4,
+      "requires_all": [
+        "BASE_SHADOWCLONE",
+        "SEAL_TRAP"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "bẫy",
+        "đánh lừa"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Phân thân mang phù, đánh vào mới kích hoạt"
+    },
+    {
+      "id": "FUSE_WATER_MIST_GEN",
+      "name": "Ảo ảnh trong sương",
+      "tree": "Lai nhánh",
+      "tier": 4,
+      "requires_all": [
+        "WATER_MIST",
+        "GEN_MIRAGE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "ẩn nấp",
+        "đánh lừa"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Tăng số phân ảnh giả trong vùng sương mù"
+    },
+    {
+      "id": "FUSE_WIND_FIRE_TOAD",
+      "name": "Dầu hỏa phong cóc",
+      "tree": "Lai nhánh",
+      "tier": 5,
+      "requires_all": [
+        "SUM_TOAD",
+        "FIRE_DRAGON",
+        "WIND_GUST"
+      ],
+      "requires_any": [],
+      "unlock_gate": "Cuộn phối hợp linh thú hiếm",
+      "combat_roles": [
+        "diện rộng"
+      ],
+      "source_label": "canon_adapted",
+      "canonical_rank": null,
+      "gameplay_effect": "Phối hợp cóc, gió và lửa để phủ vùng dầu cháy"
+    },
+    {
+      "id": "FUSE_SEAL_RASENGAN",
+      "name": "Rasengan gắn ấn",
+      "tree": "Lai nhánh",
+      "tier": 4,
+      "requires_all": [
+        "SHAPE_RASENGAN",
+        "SEAL_TRAP"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "dồn sát thương",
+        "bẫy"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Đòn xoáy kích hoạt phù trong tầm gần"
+    },
+    {
+      "id": "FUSE_EARTH_ABU",
+      "name": "Trùng ẩn thổ",
+      "tree": "Lai nhánh",
+      "tier": 4,
+      "requires_all": [
+        "ABU_DRAIN",
+        "EARTH_MOLE"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "ẩn nấp",
+        "bào mòn"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Đàn trùng phục kích từ mặt đất, có hiệu ứng mặt đất báo trước"
+    },
+    {
+      "id": "FUSE_INU_WIND",
+      "name": "Nha Thông Nha cuồng phong",
+      "tree": "Lai nhánh",
+      "tier": 4,
+      "requires_all": [
+        "INU_FANG",
+        "WIND_STEP"
+      ],
+      "requires_any": [],
+      "unlock_gate": null,
+      "combat_roles": [
+        "cơ động",
+        "cận chiến"
+      ],
+      "source_label": "game_design",
+      "canonical_rank": null,
+      "gameplay_effect": "Lướt dài hơn khi đang xoay, dễ bị bẫy đất khắc chế"
+    }
+  ],
+  "synergies": [
+    {
+      "id": "SY01",
+      "inputs": [
+        "FIRE",
+        "WIND"
+      ],
+      "outcome": "Gió khuếch đại vùng lửa",
+      "type": "world_reaction",
+      "note": "Không phải huyết kế"
+    },
+    {
+      "id": "SY02",
+      "inputs": [
+        "WATER",
+        "LIGHT"
+      ],
+      "outcome": "Nước thành vật dẫn điện",
+      "type": "world_reaction"
+    },
+    {
+      "id": "SY03",
+      "inputs": [
+        "EARTH",
+        "WATER"
+      ],
+      "outcome": "Mặt đất hóa bùn, làm chậm",
+      "type": "world_reaction",
+      "note": "Không tạo Mộc Độn"
+    },
+    {
+      "id": "SY04",
+      "inputs": [
+        "WIND",
+        "BASE_WEAPON"
+      ],
+      "outcome": "Nhẫn cụ mang lưỡi gió",
+      "type": "build_fusion"
+    },
+    {
+      "id": "SY05",
+      "inputs": [
+        "HYG_POINT",
+        "LIGHT_SPARK"
+      ],
+      "outcome": "Nhu Quyền điện",
+      "type": "build_fusion",
+      "note": "Kỹ năng sáng tạo cho game"
+    },
+    {
+      "id": "SY06",
+      "inputs": [
+        "UCH_EYE3",
+        "TAI_COMBO"
+      ],
+      "outcome": "Đọc đòn và phản kích",
+      "type": "build_fusion"
+    },
+    {
+      "id": "SY07",
+      "inputs": [
+        "WATER_MIST",
+        "GEN_MIRAGE"
+      ],
+      "outcome": "Ảo thuật trong sương",
+      "type": "build_fusion"
+    },
+    {
+      "id": "SY08",
+      "inputs": [
+        "NARA_BIND",
+        "SEAL_TRAP"
+      ],
+      "outcome": "Bẫy bóng + phù",
+      "type": "build_fusion"
+    },
+    {
+      "id": "SY09",
+      "inputs": [
+        "ABU_SCOUT",
+        "MED_PALM"
+      ],
+      "outcome": "Hỗ trợ bằng trùng",
+      "type": "build_fusion"
+    },
+    {
+      "id": "SY10",
+      "inputs": [
+        "SUM_TOAD",
+        "FIRE_DRAGON",
+        "WIND_GUST"
+      ],
+      "outcome": "Hợp kích dầu-gió-lửa",
+      "type": "team_fusion"
+    },
+    {
+      "id": "SY11",
+      "inputs": [
+        "WATER_ROOT",
+        "WIND_ROOT",
+        "YUKI_ICE"
+      ],
+      "outcome": "Biến thể Băng Độn",
+      "type": "bloodline",
+      "note": "YUKI_ICE mới là điều kiện bắt buộc; chỉ biết hai nguyên tố không đủ"
+    },
+    {
+      "id": "SY12",
+      "inputs": [
+        "WATER_ROOT",
+        "EARTH_ROOT",
+        "RARE_WOOD"
+      ],
+      "outcome": "Mộc Độn",
+      "type": "bloodline",
+      "note": "RARE_WOOD là huyết kế đặc biệt; không mở từ ghép nguyên tố thuần túy"
+    }
+  ],
+  "unlock_logic": {
+    "requires_all": "Tất cả id trong danh sách phải có",
+    "requires_any": "Danh sách các nhóm OR; mỗi nhóm phải có ít nhất một nút đã học",
+    "unlock_gate": "Mô tả khóa khác như gia tộc, cuộn, sự kiện; trong code sẽ cần boolean predicate riêng"
+  },
+  "drop_rules_proposal": {
+    "normal_mob": "chủ yếu Ryō, XP, vật tư nâng cấp",
+    "elite": "cuộn phổ thông theo thiên hướng lựa chọn, cơ chế tích mảnh",
+    "boss": "chọn 1 trong 2-3 mảnh nhánh nâng cao tương thích",
+    "world_event": "chìa khóa thức tỉnh giới hạn theo trận; báo động cho mọi đội",
+    "pity": "sau 4 mục tiêu cùng nhóm chưa nhận đủ mảnh thì cho chọn mảnh hợp build"
+  }
+}

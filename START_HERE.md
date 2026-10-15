@@ -1,29 +1,13 @@
-# Bắt đầu — Ninja Arena v0.1
+# Bắt đầu — kế hoạch ổn định v0.1
 
-Đọc [tầm nhìn](docs/00_VISION_SCOPE.md) để hiểu sản phẩm, [quyết định](docs/01_DECISIONS.md) để phân biệt điều đã khóa với thông số thử nghiệm, và [roadmap](docs/07_ROADMAP.md) để thấy các bước phát triển.
+Đã có prototype do Antigravity viết và [review phần khung](reports/REVIEW-FRAMEWORK-01/summary.md) phát hiện blocker. Mục tiêu bây giờ là sửa và chứng minh core đúng trước khi mở rộng gameplay/đồ họa.
 
-## Trạng thái hiện tại
+1. Đọc [kế hoạch](docs/13_STABILITY_PLAN.md): S0 build/evidence → S1 config → S2 simulation → S3 network → S4 skills → S5 presentation → S6 tests → S7 nghiệm thu lại.
+2. Đọc [hợp đồng simulation](docs/14_SIMULATION_CONTRACT.md), [config](docs/15_DATA_CONFIG_CONTRACT.md), [hitbox/timeline](docs/16_HITBOX_PRESENTATION_CONTRACT.md).
+3. Copy [prompt giao agent](AGENT_STABILITY_PROMPT.md) và giao đúng **[S0-01](tasks/S0.md#s0-01)**. Task này không cần dependency P đã done trên giấy.
+4. Agent đọc task card/acceptance/test IDs, kiểm source/Git thực, sửa phạm vi và ghi `reports/<ID>/summary.md` cùng raw evidence.
+5. Chỉ mở task kế tiếp khi dependency/gate trong stabilization đã đạt và quyền giao việc cho phép. `python scripts/render_tasks.py --next` giúp chọn đúng track.
 
-- Chỉ có tài liệu, chưa có game hay monorepo ứng dụng.
-- `P0-01 = done`: Q01–Q06 đã được chủ dự án chốt, không hỏi lại.
-- `P0-02 = todo`: chuẩn bị môi trường, xác minh Git/công cụ và lưu bằng chứng. Lần tái cấu trúc tài liệu không nghiệm thu thay task này.
-- PC demo kết thúc ở `P9-04`; mobile là bước tiếp theo P10. Spine là nhánh tùy chọn.
+Hai quyết định mới: hitbox hình học theo tick có overlay, không pixel alpha; giữ hai fighter/hai equipped slots, thư viện rộng hơn. Tất cả số seed của 12 skill mới là đề xuất, chưa nghiệm thu balance. Art tạm phải bám world geometry/foot/socket/timeline; thay art sau này không được tự đổi damage/hitbox.
 
-## Giao task đầu tiên cho agent
-
-```text
-Đọc AGENTS.md, spec/project.config.json, docs/01_DECISIONS.md,
-spec/backlog.json, docs/07_ROADMAP.md, tasks/README.md và tasks/P0.md.
-Chỉ thực hiện P0-02. Kiểm tra dependency và file hiện có trước khi sửa.
-Nêu mục tiêu, phạm vi file và test. Chạy lệnh thật, lưu output tại
-reports/P0-02/setup.md và reports/P0-02/summary.md.
-Không tự chuyển done, không làm tiếp P0-03 khi P0-02 chưa được duyệt.
-```
-
-Task card [P0-02](tasks/P0.md#p0-02) là checklist đầy đủ; không cần giải nén lại hay chuyển thư mục để bắt đầu. Agent chỉ khởi tạo Git sau khi xác nhận thư mục chưa thuộc repo Git; không tạo lại hoặc ghi đè repo có sẵn.
-
-## Một lượt làm việc
-
-Chọn một task đủ dependency → đọc tài liệu của task → triển khai trong phạm vi → chạy test phù hợp → nộp báo cáo `ready_for_review` → chủ dự án/reviewer chấp nhận → cập nhật `done` có evidence. Chạy lại trình sinh và validator sau mọi cập nhật backlog.
-
-Nếu thiếu thiết bị/quyền, ghi `NOT RUN` và lệnh/cách kiểm tra cần thực hiện. Nếu đó là acceptance bắt buộc thì giữ `blocked`; không dùng kết quả hai tab để thay bằng chứng hai PC khác mạng.
+Các P task giữ lịch sử nhưng đang có acceptance audit; không dùng done cũ để bỏ S tasks hoặc mở P10. Không tự khởi tạo lại Git, tạo project khác, mua asset/service hay deploy public. Thiếu quyền/thiết bị thì NOT RUN/blocked đúng gate, không copy report cũ làm bằng chứng.

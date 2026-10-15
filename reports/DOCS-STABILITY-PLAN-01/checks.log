@@ -1,0 +1,35 @@
+COMMAND: C:\Users\Admin\AppData\Local\Programs\Python\Python311\python.exe scripts/validate_docs.py
+EXIT_CODE: 0
+[OK] v0.1.0: 77 tasks / 19 phases; graph, decisions, gates, skill seed, generated views and 867 local links valid.
+[INFO] Documentation checks only; no gameplay/device/FPS/network acceptance is certified.
+
+COMMAND: C:\Users\Admin\AppData\Local\Programs\Python\Python311\python.exe scripts/render_tasks.py --check
+EXIT_CODE: 0
+[OK] 23 generated views match canonical JSON.
+
+COMMAND: C:\Users\Admin\AppData\Local\Programs\Python\Python311\python.exe scripts/validate_stability_plan.py --schemas
+EXIT_CODE: 0
+[OK] Planned stability contracts: 2 fighters, 12 skills, 33 test contracts; JSON Schema + semantic checks.
+[INFO] No gameplay repair or runtime acceptance is certified.
+
+COMMAND: C:\Users\Admin\AppData\Local\Programs\Python\Python311\python.exe scripts/render_tasks.py --next
+EXIT_CODE: 0
+[NEXT] S0-01
+
+COMMAND: git diff --check
+EXIT_CODE: 0
+warning: in the working copy of 'AGENTS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'START_HERE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'TASK_REPORT_TEMPLATE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/00_VISION_SCOPE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/01_DECISIONS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/02_TECH_ARCHITECTURE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/03_COMBAT_CHARACTERS.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/04_NETCODE_PROTOCOL.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/06_ASSET_PIPELINE.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/08_TEST_QA.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/10_AI_WORKFLOW.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'docs/11_RISKS_REFERENCES.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'scripts/render_tasks.py', LF will be replaced by CRLF the next time Git touches it
+

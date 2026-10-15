@@ -1,0 +1,2 @@
+# Optional full JSON Schema validation for planned data contracts.
+jsonschema==4.26.0

@@ -1,0 +1,99 @@
+{
+  "documentVersion": "0.1.0",
+  "status": "target_contract_not_implemented",
+  "tickHz": 30,
+  "fixedPointSubunitsPerWU": 1024,
+  "toiResolution": 65536,
+  "decisions": {
+    "D09": "geometric_tick_hitboxes_with_calibration_overlay",
+    "D10": "two_fighters_two_loadout_slots_larger_skill_library"
+  },
+  "plannedContent": [
+    "spec/stability/characters.v0.1.json",
+    "spec/stability/skills.v0.1.json",
+    "spec/stability/presentation.v0.1.json"
+  ],
+  "contentMigrationTask": "S1-02",
+  "activeTrack": "stabilization",
+  "presentation": {
+    "defaultMode": "accuracy",
+    "sharedCombatTimeline": true,
+    "authoritativeHpModelMayLeadDisplayedHp": true,
+    "damageFeedbackBeforeContactAllowed": false,
+    "responsivePredictionDefault": false,
+    "networkRewindDefault": false,
+    "socketToleranceSourcePx": 1,
+    "geometryToleranceSubunits": 1
+  },
+  "budgets": {
+    "maxPlayers": 2,
+    "maxProjectilesPerRoom": 32,
+    "maxZonesPerRoom": 4,
+    "maxTrapsPerRoom": 4,
+    "maxClonesPerRoom": 2,
+    "maxDynamicWallsPerRoom": 2,
+    "maxEventsPerTick": 64,
+    "maxPendingInputsPerPlayer": 64,
+    "maxReactionDepth": 1,
+    "maxCatchupTicksPerPump": 5,
+    "maxMovementSlideIterations": 4
+  },
+  "hitPolicy": {
+    "defaultScope": "perCastPerTarget",
+    "defaultMaxHitsPerTarget": 1,
+    "directAndAoeShareRegistry": true,
+    "counterCanCounterCounter": false
+  },
+  "release": {
+    "requiresTask": "S7-03",
+    "requiresRealBrowserAndTwoPcEvidence": true,
+    "requiresActualThirtyMinuteSoak": true,
+    "mobileHeld": true
+  },
+  "legacyReferenceSeed": "spec/skill_roster.v0.1.json",
+  "defenseProfiles": {
+    "universal_defense_v1": {
+      "guard": {
+        "frontArcDegrees": 120,
+        "receivedDamagePermille": 250,
+        "staminaPerHit": 18,
+        "breakHitstunTicks": 20
+      },
+      "parry": {
+        "windowTicks": 4,
+        "reentryCooldownTicks": 18,
+        "missRecoveryTicks": 8,
+        "chargesPerWindow": 1
+      },
+      "dodge": {
+        "staminaCost": 25,
+        "moveTicks": 10,
+        "iframeStartOffset": 0,
+        "iframeEndOffset": 4,
+        "recoveryTicks": 8,
+        "speedWUPerSecond": 650
+      },
+      "light": {
+        "damage": 40,
+        "rangeWU": 70,
+        "frontArcDegrees": 90,
+        "startupTicks": 5,
+        "activeTicks": 2,
+        "recoveryTicks": 10,
+        "hitstunTicks": 8
+      },
+      "regen": {
+        "resourceSubunits": 1024,
+        "remainderAccumulator": true,
+        "whileGuardingStaminaRegen": false,
+        "whileKoRegen": false
+      }
+    }
+  },
+  "statusLimits": {
+    "minMoveSpeedPermille": 0,
+    "maxMoveSpeedPermille": 1500,
+    "maxDurationTicks": 120,
+    "rootRefreshAllowed": false
+  }
+}

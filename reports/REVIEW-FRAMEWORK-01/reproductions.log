@@ -1,0 +1,34 @@
+ℹ️  optional .env file not found: .env.development, .env
+FAIL Room state has an active state serializer
+  expected=true
+  actual=false
+  serializer.id=none; fullState=null
+FAIL Light has 5 startup ticks before any damage
+  expected=1000
+  actual=880
+FAIL Wind projectile waits 10 startup ticks
+  expected=0
+  actual=1
+FAIL One fireball direct impact produces one 105-damage packet per target
+  expected=105
+  actual=168
+FAIL Disconnected fighter cannot freeze a 4-tick parry for 30 ticks
+  expected=905
+  actual=1000
+FAIL Reconnect preserves exactly two fighter entities
+  expected=2
+  actual=3
+FAIL Reconnect preserves existing 123 HP
+  expected=123
+  actual=1000
+FAIL Guest identity comes from validated ticket rather than client options
+  expected="server_bound_guest"
+  actual="client_chosen_identity"
+FAIL One rematch request cannot reset the finished round
+  expected="finished"
+  actual="waiting"
+FAIL Server running M0 rejects M1 client map revision
+  expected=false
+  actual=true
+
+Contract violations reproduced: 10

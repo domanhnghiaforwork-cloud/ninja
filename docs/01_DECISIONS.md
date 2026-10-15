@@ -19,6 +19,8 @@ Giữ nguyên xác nhận chủ dự án được ghi trong bộ tài liệu đ�
 |---|---|---|
 | D07 | LOCKED — chủ dự án trả lời trực tiếp 2026-10-15 | Disconnect: trận và timer tiếp tục; nhân vật mất kết nối không nhận input, đứng yên nhưng vẫn bị đánh. Hết grace thì forfeit nếu trận chưa kết thúc; reconnect không hồi sinh/đảo kết quả |
 | D08 | LOCKED — chủ dự án trả lời trực tiếp 2026-10-15 | Chỉ che vị trí trên minimap/indicator UI theo LOS. Client vẫn có state vị trí cả hai người; không có server fog-of-war và không bảo đảm chống đọc vị trí từ network |
+| D09 | LOCKED — chủ dự án trả lời trực tiếp trong lượt lập kế hoạch 2026-10-15 | Hitbox/hurtbox hình học theo world/tick, overlay để hiệu chỉnh với sprite; không va chạm theo pixel alpha |
+| D10 | LOCKED — chủ dự án trả lời trực tiếp trong lượt lập kế hoạch 2026-10-15 | Giữ hai fighter, mỗi fighter trang bị hai skill; mở rộng thư viện/loadout, chưa tăng số fighter |
 
 Grace 15 giây là seed, không nằm trong phần hành vi LOCKED của D07. Mặc định cho trường hợp biên: nếu người kia còn kết nối, một người hết grace thì forfeit một lần. Nếu cả hai offline, chờ cả hai grace; không nhận người mới thay slot, hết cả hai thì đóng trận không có winner. Người reconnect còn trong grace trở lại trận; nếu grace của đối thủ đã hết thì xử lý forfeit đối thủ, còn credential của chính mình đã hết thì không được trở lại. KO/timer đã kết thúc trận luôn được giữ nguyên. Các chi tiết này là mặc định triển khai có test.
 
@@ -31,7 +33,9 @@ Grace 15 giây là seed, không nằm trong phần hành vi LOCKED của D07. M�
 | PROPOSED | Seed có thể điều chỉnh trong task liên quan bằng test/playtest và ghi lý do; không biến thành quyết định đã duyệt |
 | DEFERRED / OPTIONAL | Chưa tự triển khai; chỉ chọn khi dependency và điều kiện kích hoạt được thỏa mãn |
 
-`spec/project.config.json` giữ thông số chung; `spec/skill_roster.v0.1.json` giữ combat seed. Không nhân bản con số vào nhiều config runtime. Task P0-03 phải xác minh package/API tương thích và pin exact; tên phiên bản trong tài liệu không chứng minh package đã được cài hay chạy.
+`spec/project.config.json` giữ thông số chung; `spec/skill_roster.v0.1.json` giữ combat seed legacy. `spec/stability/` chứa target seed/config/schema chưa runtime-integrated; S1-02 migration loader duy nhất. Không nhân bản con số vào nhiều config runtime. S0-01 xác minh package/API tương thích và pipeline; tên phiên bản trong tài liệu không chứng minh package đã chạy.
+
+Chủ dự án đã giao lập kế hoạch củng cố logic sau review. Nhánh active là stabilization S0–S7; holds trong config/backlog giữ P10/public release chưa được mở. Status P cũ không tự được coi là acceptance đã revalidate. Default accuracy presentation, 12 skill mẫu, fixed-point/budgets và tolerance là thiết kế đích PROPOSED cần kiểm trong S tasks; D09/D10 chỉ khóa lựa chọn hình học và phạm vi roster/loadout.
 
 ## Điều còn mở và thời điểm cần chốt
 

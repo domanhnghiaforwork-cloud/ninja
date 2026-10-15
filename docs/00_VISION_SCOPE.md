@@ -1,5 +1,7 @@
 # 00 — Sản phẩm và phạm vi v0.1
 
+Ưu tiên triển khai hiện tại là [ổn định khung S0–S7](13_STABILITY_PLAN.md), chưa mở mobile. D10 giữ hai fighter/hai skill trang bị mỗi người; bốn skill gốc là mốc regression đầu, thư viện target 12 skill phục vụ chọn loadout ở S4 sau khi core đạt. Nội dung demo nền dưới đây được revalidate, không phải xác nhận đã hoàn tất.
+
 ## Mục tiêu
 
 Hai người trên PC Windows vào phòng riêng bằng mã mời, chọn một trong hai fighter, đánh một trận chiến thuật có kết quả chung và chơi lại. Game 2D góc nhìn orthogonal 3/4, di chuyển tự do 8 hướng. Nhẫn thuật tầm xa, cover, đọc đòn và phản công tạo chiều sâu; không phát triển theo hướng combo cận chiến làm trọng tâm.

@@ -1,0 +1,780 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "documentVersion",
+    "runtimeSchemaVersion",
+    "status",
+    "skills"
+  ],
+  "properties": {
+    "documentVersion": {
+      "const": "0.1.0"
+    },
+    "runtimeSchemaVersion": {
+      "const": 1
+    },
+    "status": {
+      "enum": [
+        "planned_seed_not_runtime_integrated",
+        "runtime_integrated"
+      ]
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "ownerId",
+          "role",
+          "cost",
+          "cooldownTicks",
+          "timing",
+          "targeting",
+          "hitPolicy",
+          "effect",
+          "behavior",
+          "interrupt",
+          "presentationId",
+          "budgets"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "maxLength": 96
+          },
+          "ownerId": {
+            "enum": [
+              "fighter_a",
+              "fighter_b"
+            ]
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "cost": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "chakra",
+              "stamina"
+            ],
+            "properties": {
+              "chakra": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "stamina": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              }
+            }
+          },
+          "cooldownTicks": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 1800
+          },
+          "timing": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "startupTicks",
+              "activeTicks",
+              "recoveryTicks"
+            ],
+            "properties": {
+              "startupTicks": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 120
+              },
+              "activeTicks": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 300
+              },
+              "recoveryTicks": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 120
+              }
+            }
+          },
+          "targeting": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "mode",
+              "rangeWU",
+              "requiresLos",
+              "aimQuantization"
+            ],
+            "properties": {
+              "mode": {
+                "enum": [
+                  "directional",
+                  "ground",
+                  "self",
+                  "front_arc"
+                ]
+              },
+              "rangeWU": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 2048
+              },
+              "requiresLos": {
+                "type": "boolean"
+              },
+              "aimQuantization": {
+                "const": "direction8"
+              }
+            }
+          },
+          "hitPolicy": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "scope",
+              "maxHitsPerTarget",
+              "minIntervalTicks",
+              "sharedDirectAndAoe"
+            ],
+            "properties": {
+              "scope": {
+                "enum": [
+                  "perCastPerTarget",
+                  "perPulsePerTarget"
+                ]
+              },
+              "maxHitsPerTarget": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 20
+              },
+              "minIntervalTicks": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 120
+              },
+              "sharedDirectAndAoe": {
+                "const": true
+              }
+            }
+          },
+          "effect": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "damage",
+              "statuses"
+            ],
+            "properties": {
+              "damage": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 1000
+              },
+              "statuses": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "required": [
+                    "type",
+                    "magnitudePermille",
+                    "durationTicks",
+                    "stackPolicy"
+                  ],
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "slow",
+                        "root"
+                      ]
+                    },
+                    "magnitudePermille": {
+                      "type": "integer",
+                      "minimum": 0,
+                      "maximum": 1000
+                    },
+                    "durationTicks": {
+                      "type": "integer",
+                      "minimum": 1,
+                      "maximum": 120
+                    },
+                    "stackPolicy": {
+                      "enum": [
+                        "refresh",
+                        "replace_stronger",
+                        "ignore"
+                      ]
+                    }
+                  }
+                },
+                "minItems": 0,
+                "maxItems": 2
+              }
+            }
+          },
+          "behavior": {
+            "oneOf": [
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "params"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "projectile"
+                  },
+                  "params": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "speedWUPerSecond",
+                      "radiusWU",
+                      "rangeWU",
+                      "lifetimeTicks",
+                      "impactRadiusWU"
+                    ],
+                    "properties": {
+                      "speedWUPerSecond": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 3000
+                      },
+                      "radiusWU": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 128
+                      },
+                      "rangeWU": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 2048
+                      },
+                      "lifetimeTicks": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 900
+                      },
+                      "impactRadiusWU": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 256
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "params"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "fan"
+                  },
+                  "params": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "speedWUPerSecond",
+                      "radiusWU",
+                      "rangeWU",
+                      "lifetimeTicks",
+                      "impactRadiusWU",
+                      "count",
+                      "spreadStepDegrees"
+                    ],
+                    "properties": {
+                      "speedWUPerSecond": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 3000
+                      },
+                      "radiusWU": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 128
+                      },
+                      "rangeWU": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 2048
+                      },
+                      "lifetimeTicks": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 900
+                      },
+                      "impactRadiusWU": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 256
+                      },
+                      "count": {
+                        "type": "integer",
+                        "minimum": 2,
+                        "maximum": 5
+                      },
+                      "spreadStepDegrees": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 45
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "params"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "burst"
+                  },
+                  "params": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "speedWUPerSecond",
+                      "radiusWU",
+                      "rangeWU",
+                      "lifetimeTicks",
+                      "impactRadiusWU",
+                      "count",
+                      "intervalTicks"
+                    ],
+                    "properties": {
+                      "speedWUPerSecond": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 3000
+                      },
+                      "radiusWU": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 128
+                      },
+                      "rangeWU": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 2048
+                      },
+                      "lifetimeTicks": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 900
+                      },
+                      "impactRadiusWU": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 256
+                      },
+                      "count": {
+                        "type": "integer",
+                        "minimum": 2,
+                        "maximum": 5
+                      },
+                      "intervalTicks": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 30
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "params"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "decoy"
+                  },
+                  "params": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "spawnDistanceWU",
+                      "lifetimeTicks",
+                      "hitsToDestroy"
+                    ],
+                    "properties": {
+                      "spawnDistanceWU": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 128
+                      },
+                      "lifetimeTicks": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 300
+                      },
+                      "hitsToDestroy": {
+                        "const": 1
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "params"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "counter"
+                  },
+                  "params": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "frontArcDegrees",
+                      "rangeWU",
+                      "windowTicks",
+                      "blockOutsideRange",
+                      "maxTriggers"
+                    ],
+                    "properties": {
+                      "frontArcDegrees": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 180
+                      },
+                      "rangeWU": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 512
+                      },
+                      "windowTicks": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 15
+                      },
+                      "blockOutsideRange": {
+                        "type": "boolean"
+                      },
+                      "maxTriggers": {
+                        "const": 1
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "params"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "zone"
+                  },
+                  "params": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "radiusWU",
+                      "lifetimeTicks",
+                      "pulseIntervalTicks",
+                      "telegraphTicks"
+                    ],
+                    "properties": {
+                      "radiusWU": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 256
+                      },
+                      "lifetimeTicks": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 600
+                      },
+                      "pulseIntervalTicks": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 120
+                      },
+                      "telegraphTicks": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 60
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "params"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "trap"
+                  },
+                  "params": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "radiusWU",
+                      "lifetimeTicks",
+                      "armDelayTicks",
+                      "maxTriggers"
+                    ],
+                    "properties": {
+                      "radiusWU": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 128
+                      },
+                      "lifetimeTicks": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 600
+                      },
+                      "armDelayTicks": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 120
+                      },
+                      "maxTriggers": {
+                        "const": 1
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "params"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "wall"
+                  },
+                  "params": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "widthWU",
+                      "heightWU",
+                      "lifetimeTicks",
+                      "health",
+                      "minActorClearanceWU",
+                      "requiresEscapePath"
+                    ],
+                    "properties": {
+                      "widthWU": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 256
+                      },
+                      "heightWU": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 256
+                      },
+                      "lifetimeTicks": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 600
+                      },
+                      "health": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 1000
+                      },
+                      "minActorClearanceWU": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 128
+                      },
+                      "requiresEscapePath": {
+                        "const": true
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "params"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "beam"
+                  },
+                  "params": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "lengthWU",
+                      "widthWU",
+                      "chargeTicks",
+                      "maxTargets"
+                    ],
+                    "properties": {
+                      "lengthWU": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 1024
+                      },
+                      "widthWU": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 128
+                      },
+                      "chargeTicks": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 60
+                      },
+                      "maxTargets": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 2
+                      }
+                    }
+                  }
+                }
+              },
+              {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "params"
+                ],
+                "properties": {
+                  "kind": {
+                    "const": "dash"
+                  },
+                  "params": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "distanceWU",
+                      "travelTicks",
+                      "iframeStartOffset",
+                      "iframeEndOffset"
+                    ],
+                    "properties": {
+                      "distanceWU": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 256
+                      },
+                      "travelTicks": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 30
+                      },
+                      "iframeStartOffset": {
+                        "type": "integer",
+                        "minimum": 0,
+                        "maximum": 15
+                      },
+                      "iframeEndOffset": {
+                        "type": "integer",
+                        "minimum": 1,
+                        "maximum": 15
+                      }
+                    }
+                  }
+                }
+              }
+            ]
+          },
+          "interrupt": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "beforeActive",
+              "afterActive"
+            ],
+            "properties": {
+              "beforeActive": {
+                "const": "cancel_no_refund"
+              },
+              "afterActive": {
+                "enum": [
+                  "persist_spawned_entities",
+                  "cancel_remaining_spawns",
+                  "finish_committed_movement"
+                ]
+              }
+            }
+          },
+          "presentationId": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "maxLength": 96
+          },
+          "budgets": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "maxActivePerCaster",
+              "maxSpawnPerCast"
+            ],
+            "properties": {
+              "maxActivePerCaster": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 12
+              },
+              "maxSpawnPerCast": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 5
+              }
+            }
+          }
+        }
+      },
+      "minItems": 4,
+      "maxItems": 32
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ninja-arena.invalid/spec/stability/skills.schema.json",
+  "title": "Planned skill content v0.1"
+}

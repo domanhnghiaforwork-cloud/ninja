@@ -1,5 +1,7 @@
 # 08 — Kiểm thử và bằng chứng v0.1
 
+Đang thực hiện nhánh stabilization; [matrix ST-*](17_STABILITY_TEST_MATRIX.md) và acceptance từng S task là kiểm tra hiện hành. Các TC/P bên dưới giữ làm nền để revalidate, không chứng minh các report PASS cũ đúng. Planned ST matrix không chứa kết quả đã chạy; kết quả thực lưu trong reports theo SHA/content hash.
+
 ## Quy tắc
 
 Mỗi run ghi task, ngày, commit hoặc N/A, OS/máy/browser version, input/map/seed, network/region khi liên quan, lệnh, exit code, kết quả và file log. PASS/FAIL/NOT RUN là kết quả kiểm tra; trạng thái task là trường riêng. Không gộp test tài liệu thành bằng chứng game chạy.

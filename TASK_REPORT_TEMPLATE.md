@@ -9,6 +9,8 @@
 - COMMIT: SHA hoặc N/A (chưa có Git)
 - FILES_CHANGED: file + mục đích
 - IMPLEMENTATION: kết quả, lựa chọn kỹ thuật, giả định
+- TRACK / FINDING_IDS / TEST_CASE_IDS: active track, Fxx và ST-* được task xử lý
+- CONTENT_HASHES / SEED / ROUND: gameplay/map/presentation hashes, replay seed/round khi liên quan
 
 ## TESTS — lệnh và kết quả thực tế
 
@@ -23,6 +25,8 @@ Ghi nguyên output quan trọng trong file log, bỏ secret trước khi lưu. P
 | Tiêu chí từ backlog | Evidence: file/test case/kết quả | Đạt / chưa đạt |
 |---|---|---|
 | | | |
+
+Với bug fix: đính kèm before-fail/after-pass trên implementation thật và replay/fixture tái hiện. Không coi tests tự gán HP/phase rồi expect là test hệ thống. Planned seed/schema pass chỉ chứng minh dữ liệu, không chứng minh runtime đã load. Evidence cũ phải có audit/revalidation trước dùng lại; known-fail diagnostic không gọi là gameplay PASS.
 
 ## RISKS/NOT_RUN
 

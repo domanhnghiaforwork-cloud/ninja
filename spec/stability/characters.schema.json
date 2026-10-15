@@ -1,0 +1,256 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "documentVersion",
+    "runtimeSchemaVersion",
+    "status",
+    "characters"
+  ],
+  "properties": {
+    "documentVersion": {
+      "const": "0.1.0"
+    },
+    "runtimeSchemaVersion": {
+      "const": 1
+    },
+    "status": {
+      "enum": [
+        "planned_seed_not_runtime_integrated",
+        "runtime_integrated"
+      ]
+    },
+    "characters": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "role",
+          "stats",
+          "geometry",
+          "defenseProfileId",
+          "allowedSkillIds",
+          "defaultLoadout",
+          "presentationId"
+        ],
+        "properties": {
+          "id": {
+            "enum": [
+              "fighter_a",
+              "fighter_b"
+            ]
+          },
+          "role": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 100
+          },
+          "stats": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "maxHp",
+              "maxChakra",
+              "maxStamina",
+              "moveSpeedWUPerSecond",
+              "chakraRegenPerSecond",
+              "staminaRegenPerSecond"
+            ],
+            "properties": {
+              "maxHp": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 10000
+              },
+              "maxChakra": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 1000
+              },
+              "maxStamina": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 1000
+              },
+              "moveSpeedWUPerSecond": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 1200
+              },
+              "chakraRegenPerSecond": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              },
+              "staminaRegenPerSecond": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 100
+              }
+            }
+          },
+          "geometry": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "anchor",
+              "body",
+              "hurtbox",
+              "muzzleOffsetDistanceWU",
+              "muzzleBaseOffsetWU"
+            ],
+            "properties": {
+              "anchor": {
+                "const": "foot"
+              },
+              "body": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "offsetWU",
+                  "radiusWU"
+                ],
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "circle"
+                    ]
+                  },
+                  "offsetWU": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "x",
+                      "y"
+                    ],
+                    "properties": {
+                      "x": {
+                        "type": "integer",
+                        "minimum": -4096,
+                        "maximum": 4096
+                      },
+                      "y": {
+                        "type": "integer",
+                        "minimum": -4096,
+                        "maximum": 4096
+                      }
+                    }
+                  },
+                  "radiusWU": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 128
+                  }
+                }
+              },
+              "hurtbox": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "kind",
+                  "offsetWU",
+                  "radiusWU"
+                ],
+                "properties": {
+                  "kind": {
+                    "enum": [
+                      "circle"
+                    ]
+                  },
+                  "offsetWU": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                      "x",
+                      "y"
+                    ],
+                    "properties": {
+                      "x": {
+                        "type": "integer",
+                        "minimum": -4096,
+                        "maximum": 4096
+                      },
+                      "y": {
+                        "type": "integer",
+                        "minimum": -4096,
+                        "maximum": 4096
+                      }
+                    }
+                  },
+                  "radiusWU": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 128
+                  }
+                }
+              },
+              "muzzleOffsetDistanceWU": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 128
+              },
+              "muzzleBaseOffsetWU": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "minimum": -128,
+                    "maximum": 128
+                  },
+                  "y": {
+                    "type": "integer",
+                    "minimum": -128,
+                    "maximum": 128
+                  }
+                }
+              }
+            }
+          },
+          "defenseProfileId": {
+            "const": "universal_defense_v1"
+          },
+          "allowedSkillIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$",
+              "maxLength": 96
+            },
+            "minItems": 2,
+            "maxItems": 12,
+            "uniqueItems": true
+          },
+          "defaultLoadout": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[a-z][a-z0-9_]*$",
+              "maxLength": 96
+            },
+            "minItems": 2,
+            "maxItems": 2,
+            "uniqueItems": true
+          },
+          "presentationId": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "maxLength": 96
+          }
+        }
+      },
+      "minItems": 2,
+      "maxItems": 2
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ninja-arena.invalid/spec/stability/characters.schema.json",
+  "title": "Planned character content v0.1"
+}

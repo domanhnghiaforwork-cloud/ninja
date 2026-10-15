@@ -1,0 +1,44 @@
+test_animation_frame_cannot_become_damage_authority (test_docs_validation.DocumentationContracts.test_animation_frame_cannot_become_damage_authority) ... ok
+test_baseline_valid_and_checks_do_not_write (test_docs_validation.DocumentationContracts.test_baseline_valid_and_checks_do_not_write) ... ok
+test_beam_cannot_hit_before_charge (test_docs_validation.DocumentationContracts.test_beam_cannot_hit_before_charge) ... ok
+test_broken_anchor_rejected (test_docs_validation.DocumentationContracts.test_broken_anchor_rejected) ... ok
+test_broken_local_link_rejected (test_docs_validation.DocumentationContracts.test_broken_local_link_rejected) ... ok
+test_contract_forbids_early_damage_feedback (test_docs_validation.DocumentationContracts.test_contract_forbids_early_damage_feedback) ... ok
+test_cycle_rejected (test_docs_validation.DocumentationContracts.test_cycle_rejected) ... ok
+test_default_loadout_cannot_repeat_a_skill (test_docs_validation.DocumentationContracts.test_default_loadout_cannot_repeat_a_skill) ... ok
+test_defense_profile_cannot_allow_infinite_parry_charge (test_docs_validation.DocumentationContracts.test_defense_profile_cannot_allow_infinite_parry_charge) ... ok
+test_dependency_shortcut_cannot_skip_prior_phase_gate (test_docs_validation.DocumentationContracts.test_dependency_shortcut_cannot_skip_prior_phase_gate) ... ok
+test_direct_join_must_validate_admission (test_docs_validation.DocumentationContracts.test_direct_join_must_validate_admission) ... ok
+test_disconnect_policy_cannot_drift (test_docs_validation.DocumentationContracts.test_disconnect_policy_cannot_drift) ... ok
+test_done_requires_accepted_review (test_docs_validation.DocumentationContracts.test_done_requires_accepted_review) ... ok
+test_duplicate_task_id_rejected (test_docs_validation.DocumentationContracts.test_duplicate_task_id_rejected) ... ok
+test_early_start_rejected (test_docs_validation.DocumentationContracts.test_early_start_rejected) ... ok
+test_finding_cannot_lose_repair_coverage (test_docs_validation.DocumentationContracts.test_finding_cannot_lose_repair_coverage) ... ok
+test_full_case_completion_owner_is_required (test_docs_validation.DocumentationContracts.test_full_case_completion_owner_is_required) ... ok
+test_legacy_acceptance_does_not_unlock_next_stability_phase (test_docs_validation.DocumentationContracts.test_legacy_acceptance_does_not_unlock_next_stability_phase) ... ok
+test_locked_decision_cannot_drift (test_docs_validation.DocumentationContracts.test_locked_decision_cannot_drift) ... ok
+test_missing_dependency_rejected (test_docs_validation.DocumentationContracts.test_missing_dependency_rejected) ... ok
+test_missing_task_contract_rejected (test_docs_validation.DocumentationContracts.test_missing_task_contract_rejected) ... ok
+test_mobile_cannot_start_before_pc (test_docs_validation.DocumentationContracts.test_mobile_cannot_start_before_pc) ... ok
+test_mobile_hold_cannot_open_early (test_docs_validation.DocumentationContracts.test_mobile_hold_cannot_open_early) ... ok
+test_negative_skill_timing_rejected (test_docs_validation.DocumentationContracts.test_negative_skill_timing_rejected) ... ok
+test_only_stability_entry_is_currently_eligible (test_docs_validation.DocumentationContracts.test_only_stability_entry_is_currently_eligible) ... ok
+test_optional_spine_cannot_block_pc (test_docs_validation.DocumentationContracts.test_optional_spine_cannot_block_pc) ... ok
+test_phase_gate_cannot_omit_required_task (test_docs_validation.DocumentationContracts.test_phase_gate_cannot_omit_required_task) ... ok
+test_planned_matrix_cannot_claim_gameplay_pass (test_docs_validation.DocumentationContracts.test_planned_matrix_cannot_claim_gameplay_pass) ... ok
+test_planned_projectile_cannot_have_negative_radius (test_docs_validation.DocumentationContracts.test_planned_projectile_cannot_have_negative_radius) ... ok
+test_planned_seed_cannot_claim_runtime_integration (test_docs_validation.DocumentationContracts.test_planned_seed_cannot_claim_runtime_integration) ... ok
+test_renderer_deterministic_and_roundtrip (test_docs_validation.DocumentationContracts.test_renderer_deterministic_and_roundtrip) ... ok
+test_required_task_cannot_skip (test_docs_validation.DocumentationContracts.test_required_task_cannot_skip) ... ok
+test_skill_example_drift_rejected (test_docs_validation.DocumentationContracts.test_skill_example_drift_rejected) ... ok
+test_socket_drift_is_detected (test_docs_validation.DocumentationContracts.test_socket_drift_is_detected) ... ok
+test_stale_generated_card_rejected (test_docs_validation.DocumentationContracts.test_stale_generated_card_rejected) ... ok
+test_task_cannot_reference_unknown_test_contract (test_docs_validation.DocumentationContracts.test_task_cannot_reference_unknown_test_contract) ... ok
+test_version_mismatch_rejected (test_docs_validation.DocumentationContracts.test_version_mismatch_rejected) ... ok
+test_visibility_claim_cannot_drift (test_docs_validation.DocumentationContracts.test_visibility_claim_cannot_drift) ... ok
+test_visual_cannot_enlarge_hit_core (test_docs_validation.DocumentationContracts.test_visual_cannot_enlarge_hit_core) ... ok
+
+----------------------------------------------------------------------
+Ran 39 tests in 27.780s
+
+OK

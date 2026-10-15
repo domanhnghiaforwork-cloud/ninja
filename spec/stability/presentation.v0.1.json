@@ -1,0 +1,395 @@
+{
+  "documentVersion": "0.1.0",
+  "runtimeSchemaVersion": 1,
+  "status": "planned_seed_not_runtime_integrated",
+  "actors": [
+    {
+      "id": "fighter_a_placeholder_v1",
+      "characterId": "fighter_a",
+      "sourceKind": "procedural_placeholder",
+      "sourceFramePx": {
+        "width": 128,
+        "height": 128
+      },
+      "footPivotPx": {
+        "x": 64,
+        "y": 86
+      },
+      "pixelsPerWorldUnit": 1,
+      "muzzleSourcePxByDirection": {
+        "N": {
+          "x": 64,
+          "y": 46
+        },
+        "NE": {
+          "x": 85,
+          "y": 55
+        },
+        "E": {
+          "x": 94,
+          "y": 76
+        },
+        "SE": {
+          "x": 85,
+          "y": 97
+        },
+        "S": {
+          "x": 64,
+          "y": 106
+        },
+        "SW": {
+          "x": 43,
+          "y": 97
+        },
+        "W": {
+          "x": 34,
+          "y": 76
+        },
+        "NW": {
+          "x": 43,
+          "y": 55
+        }
+      },
+      "phasePolicy": "sample_authoritative_tick_progress",
+      "clipCoverage": [
+        "idle",
+        "move",
+        "startup",
+        "active",
+        "recovery",
+        "guard",
+        "parry",
+        "dodge",
+        "hitstun",
+        "ko"
+      ],
+      "clips": [
+        {
+          "state": "idle",
+          "frameCount": 4,
+          "frameRateVisualHz": 8,
+          "sampling": "loop_on_combat_tick",
+          "hitAuthority": false
+        },
+        {
+          "state": "move",
+          "frameCount": 6,
+          "frameRateVisualHz": 12,
+          "sampling": "loop_on_combat_tick",
+          "hitAuthority": false
+        },
+        {
+          "state": "startup",
+          "frameCount": 4,
+          "frameRateVisualHz": 12,
+          "sampling": "normalize_over_authoritative_phase",
+          "hitAuthority": false
+        },
+        {
+          "state": "active",
+          "frameCount": 2,
+          "frameRateVisualHz": 12,
+          "sampling": "normalize_over_authoritative_phase",
+          "hitAuthority": false
+        },
+        {
+          "state": "recovery",
+          "frameCount": 3,
+          "frameRateVisualHz": 12,
+          "sampling": "normalize_over_authoritative_phase",
+          "hitAuthority": false
+        },
+        {
+          "state": "guard",
+          "frameCount": 2,
+          "frameRateVisualHz": 8,
+          "sampling": "loop_on_combat_tick",
+          "hitAuthority": false
+        },
+        {
+          "state": "parry",
+          "frameCount": 3,
+          "frameRateVisualHz": 12,
+          "sampling": "normalize_over_authoritative_phase",
+          "hitAuthority": false
+        },
+        {
+          "state": "dodge",
+          "frameCount": 4,
+          "frameRateVisualHz": 12,
+          "sampling": "normalize_over_authoritative_phase",
+          "hitAuthority": false
+        },
+        {
+          "state": "hitstun",
+          "frameCount": 2,
+          "frameRateVisualHz": 12,
+          "sampling": "normalize_over_authoritative_phase",
+          "hitAuthority": false
+        },
+        {
+          "state": "ko",
+          "frameCount": 4,
+          "frameRateVisualHz": 12,
+          "sampling": "normalize_over_authoritative_phase",
+          "hitAuthority": false
+        }
+      ]
+    },
+    {
+      "id": "fighter_b_placeholder_v1",
+      "characterId": "fighter_b",
+      "sourceKind": "procedural_placeholder",
+      "sourceFramePx": {
+        "width": 128,
+        "height": 128
+      },
+      "footPivotPx": {
+        "x": 64,
+        "y": 86
+      },
+      "pixelsPerWorldUnit": 1,
+      "muzzleSourcePxByDirection": {
+        "N": {
+          "x": 64,
+          "y": 46
+        },
+        "NE": {
+          "x": 85,
+          "y": 55
+        },
+        "E": {
+          "x": 94,
+          "y": 76
+        },
+        "SE": {
+          "x": 85,
+          "y": 97
+        },
+        "S": {
+          "x": 64,
+          "y": 106
+        },
+        "SW": {
+          "x": 43,
+          "y": 97
+        },
+        "W": {
+          "x": 34,
+          "y": 76
+        },
+        "NW": {
+          "x": 43,
+          "y": 55
+        }
+      },
+      "phasePolicy": "sample_authoritative_tick_progress",
+      "clipCoverage": [
+        "idle",
+        "move",
+        "startup",
+        "active",
+        "recovery",
+        "guard",
+        "parry",
+        "dodge",
+        "hitstun",
+        "ko"
+      ],
+      "clips": [
+        {
+          "state": "idle",
+          "frameCount": 4,
+          "frameRateVisualHz": 8,
+          "sampling": "loop_on_combat_tick",
+          "hitAuthority": false
+        },
+        {
+          "state": "move",
+          "frameCount": 6,
+          "frameRateVisualHz": 12,
+          "sampling": "loop_on_combat_tick",
+          "hitAuthority": false
+        },
+        {
+          "state": "startup",
+          "frameCount": 4,
+          "frameRateVisualHz": 12,
+          "sampling": "normalize_over_authoritative_phase",
+          "hitAuthority": false
+        },
+        {
+          "state": "active",
+          "frameCount": 2,
+          "frameRateVisualHz": 12,
+          "sampling": "normalize_over_authoritative_phase",
+          "hitAuthority": false
+        },
+        {
+          "state": "recovery",
+          "frameCount": 3,
+          "frameRateVisualHz": 12,
+          "sampling": "normalize_over_authoritative_phase",
+          "hitAuthority": false
+        },
+        {
+          "state": "guard",
+          "frameCount": 2,
+          "frameRateVisualHz": 8,
+          "sampling": "loop_on_combat_tick",
+          "hitAuthority": false
+        },
+        {
+          "state": "parry",
+          "frameCount": 3,
+          "frameRateVisualHz": 12,
+          "sampling": "normalize_over_authoritative_phase",
+          "hitAuthority": false
+        },
+        {
+          "state": "dodge",
+          "frameCount": 4,
+          "frameRateVisualHz": 12,
+          "sampling": "normalize_over_authoritative_phase",
+          "hitAuthority": false
+        },
+        {
+          "state": "hitstun",
+          "frameCount": 2,
+          "frameRateVisualHz": 12,
+          "sampling": "normalize_over_authoritative_phase",
+          "hitAuthority": false
+        },
+        {
+          "state": "ko",
+          "frameCount": 4,
+          "frameRateVisualHz": 12,
+          "sampling": "normalize_over_authoritative_phase",
+          "hitAuthority": false
+        }
+      ]
+    }
+  ],
+  "skillVisuals": [
+    {
+      "id": "fighter_a_clone_feint_visual",
+      "skillId": "fighter_a_clone_feint",
+      "sourceKind": "procedural_placeholder",
+      "coreShapeFrom": "gameplay_config",
+      "coreScale": 1,
+      "cosmeticGlowWU": 6,
+      "contactAnchor": "authoritative_event_point",
+      "phasePolicy": "sample_authoritative_tick_progress"
+    },
+    {
+      "id": "fighter_a_wind_shuriken_visual",
+      "skillId": "fighter_a_wind_shuriken",
+      "sourceKind": "procedural_placeholder",
+      "coreShapeFrom": "gameplay_config",
+      "coreScale": 1,
+      "cosmeticGlowWU": 6,
+      "contactAnchor": "authoritative_event_point",
+      "phasePolicy": "sample_authoritative_tick_progress"
+    },
+    {
+      "id": "fighter_a_wind_fan_visual",
+      "skillId": "fighter_a_wind_fan",
+      "sourceKind": "procedural_placeholder",
+      "coreShapeFrom": "gameplay_config",
+      "coreScale": 1,
+      "cosmeticGlowWU": 6,
+      "contactAnchor": "authoritative_event_point",
+      "phasePolicy": "sample_authoritative_tick_progress"
+    },
+    {
+      "id": "fighter_a_gust_field_visual",
+      "skillId": "fighter_a_gust_field",
+      "sourceKind": "procedural_placeholder",
+      "coreShapeFrom": "gameplay_config",
+      "coreScale": 1,
+      "cosmeticGlowWU": 6,
+      "contactAnchor": "authoritative_event_point",
+      "phasePolicy": "sample_authoritative_tick_progress"
+    },
+    {
+      "id": "fighter_a_snare_seal_visual",
+      "skillId": "fighter_a_snare_seal",
+      "sourceKind": "procedural_placeholder",
+      "coreShapeFrom": "gameplay_config",
+      "coreScale": 1,
+      "cosmeticGlowWU": 6,
+      "contactAnchor": "authoritative_event_point",
+      "phasePolicy": "sample_authoritative_tick_progress"
+    },
+    {
+      "id": "fighter_a_wind_screen_visual",
+      "skillId": "fighter_a_wind_screen",
+      "sourceKind": "procedural_placeholder",
+      "coreShapeFrom": "gameplay_config",
+      "coreScale": 1,
+      "cosmeticGlowWU": 6,
+      "contactAnchor": "authoritative_event_point",
+      "phasePolicy": "sample_authoritative_tick_progress"
+    },
+    {
+      "id": "fighter_b_fireball_visual",
+      "skillId": "fighter_b_fireball",
+      "sourceKind": "procedural_placeholder",
+      "coreShapeFrom": "gameplay_config",
+      "coreScale": 1,
+      "cosmeticGlowWU": 6,
+      "contactAnchor": "authoritative_event_point",
+      "phasePolicy": "sample_authoritative_tick_progress"
+    },
+    {
+      "id": "fighter_b_lightning_counter_visual",
+      "skillId": "fighter_b_lightning_counter",
+      "sourceKind": "procedural_placeholder",
+      "coreShapeFrom": "gameplay_config",
+      "coreScale": 1,
+      "cosmeticGlowWU": 6,
+      "contactAnchor": "authoritative_event_point",
+      "phasePolicy": "sample_authoritative_tick_progress"
+    },
+    {
+      "id": "fighter_b_ember_burst_visual",
+      "skillId": "fighter_b_ember_burst",
+      "sourceKind": "procedural_placeholder",
+      "coreShapeFrom": "gameplay_config",
+      "coreScale": 1,
+      "cosmeticGlowWU": 6,
+      "contactAnchor": "authoritative_event_point",
+      "phasePolicy": "sample_authoritative_tick_progress"
+    },
+    {
+      "id": "fighter_b_fire_patch_visual",
+      "skillId": "fighter_b_fire_patch",
+      "sourceKind": "procedural_placeholder",
+      "coreShapeFrom": "gameplay_config",
+      "coreScale": 1,
+      "cosmeticGlowWU": 6,
+      "contactAnchor": "authoritative_event_point",
+      "phasePolicy": "sample_authoritative_tick_progress"
+    },
+    {
+      "id": "fighter_b_lightning_line_visual",
+      "skillId": "fighter_b_lightning_line",
+      "sourceKind": "procedural_placeholder",
+      "coreShapeFrom": "gameplay_config",
+      "coreScale": 1,
+      "cosmeticGlowWU": 6,
+      "contactAnchor": "authoritative_event_point",
+      "phasePolicy": "sample_authoritative_tick_progress"
+    },
+    {
+      "id": "fighter_b_thunder_step_visual",
+      "skillId": "fighter_b_thunder_step",
+      "sourceKind": "procedural_placeholder",
+      "coreShapeFrom": "gameplay_config",
+      "coreScale": 1,
+      "cosmeticGlowWU": 6,
+      "contactAnchor": "authoritative_event_point",
+      "phasePolicy": "sample_authoritative_tick_progress"
+    }
+  ]
+}

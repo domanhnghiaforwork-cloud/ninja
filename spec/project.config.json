@@ -225,6 +225,22 @@
       "status": "locked",
       "decided_at": "2026-10-15",
       "evidence": "Owner reply during documentation restructure: UI concealment only; document network-position exposure."
+    },
+    {
+      "id": "D09",
+      "title": "Hit geometry and visual calibration",
+      "value": "geometric_tick_hitboxes_with_calibration_overlay",
+      "status": "locked",
+      "decided_at": "2026-10-15",
+      "evidence": "Owner explicit reply during stability planning: geometric hitboxes with overlay; two fighters/two equipped slots and larger library."
+    },
+    {
+      "id": "D10",
+      "title": "Roster/loadout expansion scope",
+      "value": "two_fighters_two_loadout_slots_larger_skill_library",
+      "status": "locked",
+      "decided_at": "2026-10-15",
+      "evidence": "Owner explicit reply during stability planning: geometric hitboxes with overlay; two fighters/two equipped slots and larger library."
     }
   ],
   "licensing": {
@@ -252,9 +268,29 @@
       "tasks/P7.md",
       "tasks/P8.md",
       "tasks/P9.md",
-      "tasks/P10.md"
+      "tasks/P10.md",
+      "tasks/S0.md",
+      "tasks/S1.md",
+      "tasks/S2.md",
+      "tasks/S3.md",
+      "tasks/S4.md",
+      "tasks/S5.md",
+      "tasks/S6.md",
+      "tasks/S7.md"
     ],
-    "workflow": "AGENTS.md"
+    "workflow": "AGENTS.md",
+    "stabilityContracts": [
+      "docs/13_STABILITY_PLAN.md",
+      "docs/14_SIMULATION_CONTRACT.md",
+      "docs/15_DATA_CONFIG_CONTRACT.md",
+      "docs/16_HITBOX_PRESENTATION_CONTRACT.md",
+      "docs/17_STABILITY_TEST_MATRIX.md",
+      "spec/stability/simulation.contract.v0.1.json",
+      "spec/stability/characters.v0.1.json",
+      "spec/stability/skills.v0.1.json",
+      "spec/stability/presentation.v0.1.json",
+      "spec/stability/test-matrix.v0.1.json"
+    ]
   },
   "baselinePolicy": "Owner-requested document rebase; preserve locked decisions and implementation task IDs/statuses.",
   "controls": {
@@ -288,5 +324,15 @@
       "W",
       "NW"
     ]
+  },
+  "implementationPlan": {
+    "activeTrack": "stabilization",
+    "entryTask": "S0-01",
+    "exitTask": "S7-03",
+    "planDoc": "docs/13_STABILITY_PLAN.md",
+    "baselineReview": "reports/REVIEW-FRAMEWORK-01/summary.md",
+    "releaseHold": true,
+    "mobileHold": true,
+    "historicalDoneRequiresRevalidation": true
   }
 }

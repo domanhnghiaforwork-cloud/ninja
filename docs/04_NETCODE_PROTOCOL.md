@@ -1,5 +1,7 @@
 # 04 — Phòng riêng và netcode v0.1
 
+Kế hoạch S3 hiện sửa các vi phạm giao thức ở code theo [review](../reports/REVIEW-FRAMEWORK-01/summary.md). Ack phải là last processed input sequence, khác worldTick; room snapshot phải có serializer thật và đủ projectile/entities/event cursor. Hợp đồng kernel/input ở [14](14_SIMULATION_CONTRACT.md), render/HP timeline ở [16](16_HITBOX_PRESENTATION_CONTRACT.md) bổ sung chi tiết cho giao thức nền dưới đây. Đây là yêu cầu đích, chưa xác nhận runtime đạt.
+
 ## Mô hình tin cậy
 
 Client gửi input; server giữ vị trí, HP, chakra, stamina, cooldown, hit và kết quả. Shared movement dùng cùng fixed timestep/precision. Tick rate, patch rate, interpolation và timeout seed nằm trong [config](../spec/project.config.json). Giao thức dưới đây là contract ứng dụng; tên/cách gọi API SDK phải xác minh ở P0-03 và P3.

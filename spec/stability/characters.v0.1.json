@@ -1,0 +1,107 @@
+{
+  "documentVersion": "0.1.0",
+  "runtimeSchemaVersion": 1,
+  "status": "planned_seed_not_runtime_integrated",
+  "characters": [
+    {
+      "id": "fighter_a",
+      "role": "misdirection and map control",
+      "stats": {
+        "maxHp": 1000,
+        "maxChakra": 100,
+        "maxStamina": 100,
+        "moveSpeedWUPerSecond": 340,
+        "chakraRegenPerSecond": 5,
+        "staminaRegenPerSecond": 10
+      },
+      "geometry": {
+        "anchor": "foot",
+        "body": {
+          "kind": "circle",
+          "offsetWU": {
+            "x": 0,
+            "y": 0
+          },
+          "radiusWU": 22
+        },
+        "hurtbox": {
+          "kind": "circle",
+          "offsetWU": {
+            "x": 0,
+            "y": -10
+          },
+          "radiusWU": 22
+        },
+        "muzzleOffsetDistanceWU": 30,
+        "muzzleBaseOffsetWU": {
+          "x": 0,
+          "y": -10
+        }
+      },
+      "defenseProfileId": "universal_defense_v1",
+      "allowedSkillIds": [
+        "fighter_a_clone_feint",
+        "fighter_a_wind_shuriken",
+        "fighter_a_wind_fan",
+        "fighter_a_gust_field",
+        "fighter_a_snare_seal",
+        "fighter_a_wind_screen"
+      ],
+      "defaultLoadout": [
+        "fighter_a_clone_feint",
+        "fighter_a_wind_shuriken"
+      ],
+      "presentationId": "fighter_a_placeholder_v1"
+    },
+    {
+      "id": "fighter_b",
+      "role": "ranged pressure and committed counter",
+      "stats": {
+        "maxHp": 1000,
+        "maxChakra": 100,
+        "maxStamina": 100,
+        "moveSpeedWUPerSecond": 355,
+        "chakraRegenPerSecond": 5,
+        "staminaRegenPerSecond": 10
+      },
+      "geometry": {
+        "anchor": "foot",
+        "body": {
+          "kind": "circle",
+          "offsetWU": {
+            "x": 0,
+            "y": 0
+          },
+          "radiusWU": 22
+        },
+        "hurtbox": {
+          "kind": "circle",
+          "offsetWU": {
+            "x": 0,
+            "y": -10
+          },
+          "radiusWU": 22
+        },
+        "muzzleOffsetDistanceWU": 30,
+        "muzzleBaseOffsetWU": {
+          "x": 0,
+          "y": -10
+        }
+      },
+      "defenseProfileId": "universal_defense_v1",
+      "allowedSkillIds": [
+        "fighter_b_fireball",
+        "fighter_b_lightning_counter",
+        "fighter_b_ember_burst",
+        "fighter_b_fire_patch",
+        "fighter_b_lightning_line",
+        "fighter_b_thunder_step"
+      ],
+      "defaultLoadout": [
+        "fighter_b_fireball",
+        "fighter_b_lightning_counter"
+      ],
+      "presentationId": "fighter_b_placeholder_v1"
+    }
+  ]
+}

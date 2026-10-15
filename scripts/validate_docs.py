@@ -8,6 +8,7 @@ import sys
 from urllib.parse import unquote, urlsplit
 
 from render_tasks import check_outputs
+from validate_stability_plan import validate_stability
 
 ROOT = Path(__file__).resolve().parents[1]
 VERSION = "0.1.0"
@@ -98,13 +99,25 @@ def validate(root):
     require(len(lookup) == len(tasks), "Duplicate task IDs")
     phases = b["phases"]
     phase_ids = [p["id"] for p in phases]
-    require(phase_ids == [f"P{i}" for i in range(11)], "Expected ordered phases P0..P10")
+    require(phase_ids == [f"P{i}" for i in range(11)] + [f"S{i}" for i in range(8)], "Expected legacy P0..P10 and stability S0..S7 phases")
+    tracks = {track['id']:track for track in b['tracks']}
+    require(len(tracks)==len(b['tracks']) and set(tracks)=={'legacy','stabilization','mobile'}, 'Track definitions mismatch')
+    if lookup['S7-03']['status'] != 'done':
+        require(b['selectionPolicy']['activeTrack']=='stabilization' and tracks['stabilization']['status']=='active', 'Stabilization must be active')
+        require(tracks['legacy']['status']=='on_hold_pending_revalidation' and tracks['mobile']['status']=='deferred', 'Legacy/mobile hold drift')
+    else:
+        require(b['selectionPolicy']['activeTrack'] in tracks, 'Unknown active track')
+        if b['selectionPolicy']['activeTrack'] in {'legacy','mobile'}:
+            require(b['legacyAcceptance']['status']=='revalidated', 'Legacy acceptance not revalidated')
+    for key,track in tracks.items():
+        require(track['phaseIds']==[p['id'] for p in phases if p['track']==key], f'Track phase membership mismatch: {key}')
     statuses = {'todo', 'in_progress', 'ready_for_review', 'blocked', 'done', 'skipped'}
     require(set(b["statusDefinitions"]) == statuses, "Invalid status definitions")
     for t in tasks:
         tid = t["id"]
-        require(re.fullmatch(r"P\d+-\d{2}", tid) and tid.startswith(t["phase"] + "-"), f"Bad task ID/phase: {tid}")
+        require(re.fullmatch(r"[PS]\d+-\d{2}", tid) and tid.startswith(t["phase"] + "-"), f"Bad task ID/phase: {tid}")
         require(t["phase"] in phase_ids and t["status"] in statuses, f"Invalid phase/status: {tid}")
+        require(t['track'] in tracks and t['phase'] in tracks[t['track']]['phaseIds'], f'Task track mismatch: {tid}')
         for field in ['title', 'goal', 'ownerRole', 'reportPath', 'activation']:
             require(isinstance(t[field], str) and t[field].strip(), f"{tid}: missing {field}")
         for field in ['references', 'fileScope', 'steps', 'outputs', 'acceptanceCriteria', 'verification', 'nonGoals', 'evidenceRequired']:
@@ -165,7 +178,7 @@ def validate(root):
         require(len(p['optionalTasks']) == len(optional) and set(p['optionalTasks']) == optional, f"Phase optional tasks mismatch: {pid}")
     for t in tasks:
         if t['status'] in {'in_progress', 'ready_for_review', 'done'}:
-            prior = phases[:phase_ids.index(t['phase'])]
+            prior = [p for p in phases[:phase_ids.index(t['phase'])] if p['track']==t['track']]
             require(all(lookup[tid]['status'] == 'done' for p in prior for tid in p['requiredTasks']), f"Earlier phase required tasks incomplete: {t['id']}")
 
     decisions = {d['id']: d for d in c['decisions']}
@@ -179,6 +192,8 @@ def validate(root):
         'Q06': 'private_invite_code_guest_no_login',
         'D07': 'continue_round_neutralize_and_stop_disconnected_fighter_still_damageable_then_forfeit',
         'D08': 'ui_concealment_only_full_position_state_sent_to_both_clients',
+        'D09': 'geometric_tick_hitboxes_with_calibration_overlay',
+        'D10': 'two_fighters_two_loadout_slots_larger_skill_library',
     }
     for key, value in expected_q.items():
         require(key in decisions and decisions[key]['status'] == 'locked' and decisions[key]['value'] == value, f"Locked decision drift: {key}")
@@ -215,6 +230,10 @@ def validate(root):
     for key, rel in c['sourceOfTruth'].items():
         for path in rel if isinstance(rel, list) else [rel]:
             inside_file(root, path)
+    try:
+        validate_stability(root)
+    except ValueError as error:
+        raise ValidationError(str(error)) from error
 
     stale = check_outputs(root)
     require(not stale, 'Stale generated views: ' + ', '.join(stale))

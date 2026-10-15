@@ -1,0 +1,411 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "documentVersion",
+    "runtimeSchemaVersion",
+    "status",
+    "actors",
+    "skillVisuals"
+  ],
+  "properties": {
+    "documentVersion": {
+      "const": "0.1.0"
+    },
+    "runtimeSchemaVersion": {
+      "const": 1
+    },
+    "status": {
+      "enum": [
+        "planned_seed_not_runtime_integrated",
+        "runtime_integrated"
+      ]
+    },
+    "actors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "characterId",
+          "sourceKind",
+          "sourceFramePx",
+          "footPivotPx",
+          "pixelsPerWorldUnit",
+          "muzzleSourcePxByDirection",
+          "phasePolicy",
+          "clipCoverage",
+          "clips"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "maxLength": 96
+          },
+          "characterId": {
+            "enum": [
+              "fighter_a",
+              "fighter_b"
+            ]
+          },
+          "sourceKind": {
+            "const": "procedural_placeholder"
+          },
+          "sourceFramePx": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "width",
+              "height"
+            ],
+            "properties": {
+              "width": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2048
+              },
+              "height": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 2048
+              }
+            }
+          },
+          "footPivotPx": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "x",
+              "y"
+            ],
+            "properties": {
+              "x": {
+                "type": "integer",
+                "minimum": -4096,
+                "maximum": 4096
+              },
+              "y": {
+                "type": "integer",
+                "minimum": -4096,
+                "maximum": 4096
+              }
+            }
+          },
+          "pixelsPerWorldUnit": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 16
+          },
+          "muzzleSourcePxByDirection": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "N",
+              "NE",
+              "E",
+              "SE",
+              "S",
+              "SW",
+              "W",
+              "NW"
+            ],
+            "properties": {
+              "N": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  },
+                  "y": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  }
+                }
+              },
+              "NE": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  },
+                  "y": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  }
+                }
+              },
+              "E": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  },
+                  "y": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  }
+                }
+              },
+              "SE": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  },
+                  "y": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  }
+                }
+              },
+              "S": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  },
+                  "y": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  }
+                }
+              },
+              "SW": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  },
+                  "y": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  }
+                }
+              },
+              "W": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  },
+                  "y": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  }
+                }
+              },
+              "NW": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "x",
+                  "y"
+                ],
+                "properties": {
+                  "x": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  },
+                  "y": {
+                    "type": "integer",
+                    "minimum": -4096,
+                    "maximum": 4096
+                  }
+                }
+              }
+            }
+          },
+          "phasePolicy": {
+            "const": "sample_authoritative_tick_progress"
+          },
+          "clipCoverage": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "idle",
+                "move",
+                "startup",
+                "active",
+                "recovery",
+                "guard",
+                "parry",
+                "dodge",
+                "hitstun",
+                "ko"
+              ]
+            },
+            "minItems": 10,
+            "maxItems": 10,
+            "uniqueItems": true
+          },
+          "clips": {
+            "type": "array",
+            "minItems": 10,
+            "maxItems": 10,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "state",
+                "frameCount",
+                "frameRateVisualHz",
+                "sampling",
+                "hitAuthority"
+              ],
+              "properties": {
+                "state": {
+                  "enum": [
+                    "idle",
+                    "move",
+                    "startup",
+                    "active",
+                    "recovery",
+                    "guard",
+                    "parry",
+                    "dodge",
+                    "hitstun",
+                    "ko"
+                  ]
+                },
+                "frameCount": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 24
+                },
+                "frameRateVisualHz": {
+                  "type": "integer",
+                  "minimum": 1,
+                  "maximum": 30
+                },
+                "sampling": {
+                  "enum": [
+                    "loop_on_combat_tick",
+                    "normalize_over_authoritative_phase"
+                  ]
+                },
+                "hitAuthority": {
+                  "const": false
+                }
+              }
+            }
+          }
+        }
+      },
+      "minItems": 2,
+      "maxItems": 2
+    },
+    "skillVisuals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "skillId",
+          "sourceKind",
+          "coreShapeFrom",
+          "coreScale",
+          "cosmeticGlowWU",
+          "contactAnchor",
+          "phasePolicy"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "maxLength": 96
+          },
+          "skillId": {
+            "type": "string",
+            "pattern": "^[a-z][a-z0-9_]*$",
+            "maxLength": 96
+          },
+          "sourceKind": {
+            "const": "procedural_placeholder"
+          },
+          "coreShapeFrom": {
+            "const": "gameplay_config"
+          },
+          "coreScale": {
+            "const": 1
+          },
+          "cosmeticGlowWU": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 32
+          },
+          "contactAnchor": {
+            "const": "authoritative_event_point"
+          },
+          "phasePolicy": {
+            "const": "sample_authoritative_tick_progress"
+          }
+        }
+      },
+      "minItems": 4,
+      "maxItems": 32
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ninja-arena.invalid/spec/stability/presentation.schema.json",
+  "title": "Planned presentation calibration metadata v0.1"
+}

@@ -1,0 +1,498 @@
+{
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "documentVersion",
+    "status",
+    "tickHz",
+    "fixedPointSubunitsPerWU",
+    "toiResolution",
+    "decisions",
+    "plannedContent",
+    "contentMigrationTask",
+    "activeTrack",
+    "presentation",
+    "budgets",
+    "hitPolicy",
+    "release",
+    "legacyReferenceSeed",
+    "defenseProfiles",
+    "statusLimits"
+  ],
+  "properties": {
+    "documentVersion": {
+      "const": "0.1.0"
+    },
+    "status": {
+      "enum": [
+        "target_contract_not_implemented",
+        "implemented_pending_verification",
+        "verified"
+      ]
+    },
+    "tickHz": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "fixedPointSubunitsPerWU": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "toiResolution": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 1000000
+    },
+    "decisions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "D09",
+        "D10"
+      ],
+      "properties": {
+        "D09": {
+          "type": "string",
+          "minLength": 1
+        },
+        "D10": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "plannedContent": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1
+      },
+      "minItems": 3,
+      "uniqueItems": true
+    },
+    "contentMigrationTask": {
+      "type": "string",
+      "minLength": 1
+    },
+    "activeTrack": {
+      "type": "string",
+      "minLength": 1
+    },
+    "presentation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "defaultMode",
+        "sharedCombatTimeline",
+        "authoritativeHpModelMayLeadDisplayedHp",
+        "damageFeedbackBeforeContactAllowed",
+        "responsivePredictionDefault",
+        "networkRewindDefault",
+        "socketToleranceSourcePx",
+        "geometryToleranceSubunits"
+      ],
+      "properties": {
+        "defaultMode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sharedCombatTimeline": {
+          "type": "boolean"
+        },
+        "authoritativeHpModelMayLeadDisplayedHp": {
+          "type": "boolean"
+        },
+        "damageFeedbackBeforeContactAllowed": {
+          "type": "boolean"
+        },
+        "responsivePredictionDefault": {
+          "type": "boolean"
+        },
+        "networkRewindDefault": {
+          "type": "boolean"
+        },
+        "socketToleranceSourcePx": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "geometryToleranceSubunits": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        }
+      }
+    },
+    "budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "maxPlayers",
+        "maxProjectilesPerRoom",
+        "maxZonesPerRoom",
+        "maxTrapsPerRoom",
+        "maxClonesPerRoom",
+        "maxDynamicWallsPerRoom",
+        "maxEventsPerTick",
+        "maxPendingInputsPerPlayer",
+        "maxReactionDepth",
+        "maxCatchupTicksPerPump",
+        "maxMovementSlideIterations"
+      ],
+      "properties": {
+        "maxPlayers": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "maxProjectilesPerRoom": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "maxZonesPerRoom": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "maxTrapsPerRoom": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "maxClonesPerRoom": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "maxDynamicWallsPerRoom": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "maxEventsPerTick": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "maxPendingInputsPerPlayer": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "maxReactionDepth": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "maxCatchupTicksPerPump": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "maxMovementSlideIterations": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        }
+      }
+    },
+    "hitPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "defaultScope",
+        "defaultMaxHitsPerTarget",
+        "directAndAoeShareRegistry",
+        "counterCanCounterCounter"
+      ],
+      "properties": {
+        "defaultScope": {
+          "type": "string",
+          "minLength": 1
+        },
+        "defaultMaxHitsPerTarget": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "directAndAoeShareRegistry": {
+          "type": "boolean"
+        },
+        "counterCanCounterCounter": {
+          "type": "boolean"
+        }
+      }
+    },
+    "release": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "requiresTask",
+        "requiresRealBrowserAndTwoPcEvidence",
+        "requiresActualThirtyMinuteSoak",
+        "mobileHeld"
+      ],
+      "properties": {
+        "requiresTask": {
+          "type": "string",
+          "minLength": 1
+        },
+        "requiresRealBrowserAndTwoPcEvidence": {
+          "type": "boolean"
+        },
+        "requiresActualThirtyMinuteSoak": {
+          "type": "boolean"
+        },
+        "mobileHeld": {
+          "type": "boolean"
+        }
+      }
+    },
+    "legacyReferenceSeed": {
+      "type": "string",
+      "minLength": 1
+    },
+    "defenseProfiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "universal_defense_v1"
+      ],
+      "properties": {
+        "universal_defense_v1": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "guard",
+            "parry",
+            "dodge",
+            "light",
+            "regen"
+          ],
+          "properties": {
+            "guard": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "frontArcDegrees",
+                "receivedDamagePermille",
+                "staminaPerHit",
+                "breakHitstunTicks"
+              ],
+              "properties": {
+                "frontArcDegrees": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "receivedDamagePermille": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "staminaPerHit": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "breakHitstunTicks": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                }
+              }
+            },
+            "parry": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "windowTicks",
+                "reentryCooldownTicks",
+                "missRecoveryTicks",
+                "chargesPerWindow"
+              ],
+              "properties": {
+                "windowTicks": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "reentryCooldownTicks": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "missRecoveryTicks": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "chargesPerWindow": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                }
+              }
+            },
+            "dodge": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "staminaCost",
+                "moveTicks",
+                "iframeStartOffset",
+                "iframeEndOffset",
+                "recoveryTicks",
+                "speedWUPerSecond"
+              ],
+              "properties": {
+                "staminaCost": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "moveTicks": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "iframeStartOffset": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "iframeEndOffset": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "recoveryTicks": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "speedWUPerSecond": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                }
+              }
+            },
+            "light": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "damage",
+                "rangeWU",
+                "frontArcDegrees",
+                "startupTicks",
+                "activeTicks",
+                "recoveryTicks",
+                "hitstunTicks"
+              ],
+              "properties": {
+                "damage": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "rangeWU": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "frontArcDegrees": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "startupTicks": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "activeTicks": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "recoveryTicks": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "hitstunTicks": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                }
+              }
+            },
+            "regen": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "resourceSubunits",
+                "remainderAccumulator",
+                "whileGuardingStaminaRegen",
+                "whileKoRegen"
+              ],
+              "properties": {
+                "resourceSubunits": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "maximum": 1000000
+                },
+                "remainderAccumulator": {
+                  "type": "boolean"
+                },
+                "whileGuardingStaminaRegen": {
+                  "type": "boolean"
+                },
+                "whileKoRegen": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "statusLimits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minMoveSpeedPermille",
+        "maxMoveSpeedPermille",
+        "maxDurationTicks",
+        "rootRefreshAllowed"
+      ],
+      "properties": {
+        "minMoveSpeedPermille": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "maxMoveSpeedPermille": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "maxDurationTicks": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1000000
+        },
+        "rootRefreshAllowed": {
+          "type": "boolean"
+        }
+      }
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ninja-arena.invalid/spec/stability/simulation.schema.json",
+  "title": "Target simulation/defense/budget contract v0.1"
+}

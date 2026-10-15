@@ -1,5 +1,7 @@
 # 06 — Assets, animation và audio v0.1
 
+Trong nhánh stabilization, [hitbox/presentation contract](16_HITBOX_PRESENTATION_CONTRACT.md) quy định foot pivot/socket/trim/phase/timeline trước art thật. `spec/stability/presentation.v0.1.json` là metadata mẫu cho procedural placeholder, chưa tích hợp. S5-01 phải sửa manifest hiện tại kê khai file/evidence thiếu; không dùng reviewed=true thay review thực.
+
 ## Trình tự sản xuất
 
 P1–P5 dùng placeholder tự tạo có metadata. P6 tạo style bible hai fighter → concept bốn hướng để review → sprite atlas tám hướng → bindings → bốn skill VFX. Không vẽ đủ art trước khi combat/map được kiểm chứng. Spine optional P6-05, không chặn P7 hoặc PC demo.

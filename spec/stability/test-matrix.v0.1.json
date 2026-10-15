@@ -1,0 +1,204 @@
+{
+  "documentVersion": "0.1.0",
+  "status": "planned_acceptance_not_results",
+  "cases": [
+    {
+      "id": "ST-BLD-01",
+      "requirement": "Fresh checkout Windows/Linux: npm ci + lint/typecheck/test/build không phụ thuộc stale dist/buildinfo; sửa check phải fail khi có lỗi thật.",
+      "result": "NOT_RUN",
+      "completionTask": "S0-01"
+    },
+    {
+      "id": "ST-EVD-01",
+      "requirement": "Đối chiếu từng claim/status cũ với SHA/command/raw logs/device/duration; thiếu thì NOT RUN/needs_revalidation, không copy số đo.",
+      "result": "NOT_RUN",
+      "completionTask": "S7-03"
+    },
+    {
+      "id": "ST-CFG-01",
+      "requirement": "Schema reject unknown fields/types/IDs/owner/loadout/tick/radius/limits; semantic validation cross-reference và budgets.",
+      "result": "NOT_RUN",
+      "completionTask": "S4-05"
+    },
+    {
+      "id": "ST-CFG-02",
+      "requirement": "Thay damage/hurtbox/map đổi gameplay hash; đổi notes/texture cosmetic không đổi gameplay hash; replay mismatch bị reject.",
+      "result": "NOT_RUN",
+      "completionTask": "S3-03"
+    },
+    {
+      "id": "ST-SIM-01",
+      "requirement": "Fixed tick/replay/PRNG serialization: callback jitter và insertion order khác không đổi hashes; overflow/budget bị chặn.",
+      "result": "NOT_RUN",
+      "completionTask": "S6-01"
+    },
+    {
+      "id": "ST-INP-01",
+      "requirement": "Ack last processed seq, duplicate/stale/future/wrong-round/input flood/blur/resume; giữ nút một edge; không tăng tốc.",
+      "result": "NOT_RUN",
+      "completionTask": "S6-03"
+    },
+    {
+      "id": "ST-GEO-01",
+      "requirement": "Oracle shape contact: circle face/corner/tangent/zero path/start overlap; không expanded-square phantom collision.",
+      "result": "NOT_RUN",
+      "completionTask": "S2-03"
+    },
+    {
+      "id": "ST-GEO-02",
+      "requirement": "Relative-motion sweep target chạy ngang, fast projectile, exact TOI tie/stable IDs; low/high FPS không đổi hit.",
+      "result": "NOT_RUN",
+      "completionTask": "S4-04"
+    },
+    {
+      "id": "ST-GEO-03",
+      "requirement": "Muzzle sát tường, spawn overlap, movement slide/corner/map bounds và dynamic wall placement không teleport/nhốt người.",
+      "result": "NOT_RUN",
+      "completionTask": "S4-02"
+    },
+    {
+      "id": "ST-DMG-01",
+      "requirement": "Fireball direct+AoE một packet theo registry; AoE/status qua resolver, multi-hit explicit caps và no counter recursion.",
+      "result": "NOT_RUN",
+      "completionTask": "S4-03"
+    },
+    {
+      "id": "ST-FSM-01",
+      "requirement": "Startup/active/recovery tại t-1/t0/end-1/end; interrupt/cost/CD/hold input không bắn lại; light không damage mỗi tick.",
+      "result": "NOT_RUN",
+      "completionTask": "S4-01"
+    },
+    {
+      "id": "ST-FSM-02",
+      "requirement": "Parry one charge/window/cooldown/miss, guard front/back/break, dodge iframe/end, counter only committed active/range/LOS.",
+      "result": "NOT_RUN",
+      "completionTask": "S2-05"
+    },
+    {
+      "id": "ST-NET-01",
+      "requirement": "Hai SDK clients qua socket nhận initial state, patches và projectile/clone/event IDs; no NoneSerializer, đúng identity/fighter/winner.",
+      "result": "NOT_RUN",
+      "completionTask": "S6-02"
+    },
+    {
+      "id": "ST-SEC-01",
+      "requirement": "Ticket room/identity binding/one use/TTL/race slot cuối; forged guestId/wrong secret/replay/direct bypass reject.",
+      "result": "NOT_RUN",
+      "completionTask": "S6-02"
+    },
+    {
+      "id": "ST-SEC-02",
+      "requirement": "Private visibility, trusted proxy/IP, spoofed forwarding headers, Origin HTTP+WS, endpoint/admission/input real time rate limits.",
+      "result": "NOT_RUN",
+      "completionTask": "S7-02"
+    },
+    {
+      "id": "ST-NET-02",
+      "requirement": "Protocol/map/gameplay/presentation hashes được kiểm trước ready, client M1/server M0 reject; content không upload từ browser.",
+      "result": "NOT_RUN",
+      "completionTask": "S3-03"
+    },
+    {
+      "id": "ST-REC-01",
+      "requirement": "Reconnect cast/KO/waiting/countdown/playing: một entity, cùng HP/resources/loadout, seat và secret grace; expired/wrong reject.",
+      "result": "NOT_RUN",
+      "completionTask": "S3-04"
+    },
+    {
+      "id": "ST-REC-02",
+      "requirement": "Disconnected neutral input nhưng parry/iframe/FSM/status/CD vẫn tick và damageable; both disconnect staggered grace/terminal precedence.",
+      "result": "NOT_RUN",
+      "completionTask": "S3-04"
+    },
+    {
+      "id": "ST-RND-01",
+      "requirement": "Two-consent rematch, roundId tăng, clear queues/projectiles/zones/registry/edge/events/statuses; old-round packets reject, result exactly once.",
+      "result": "NOT_RUN",
+      "completionTask": "S6-02"
+    },
+    {
+      "id": "ST-SKL-01",
+      "requirement": "Bốn skill gốc dùng typed handlers/config duy nhất; clone one hit/lifetime, wind travel, fire LOS, counter cost/window.",
+      "result": "NOT_RUN",
+      "completionTask": "S4-01"
+    },
+    {
+      "id": "ST-SKL-02",
+      "requirement": "Fan/decoy/wall spawn/range/initial overlap/entity budgets/cleanup và no duplicate damage/blocked escape routes.",
+      "result": "NOT_RUN",
+      "completionTask": "S4-02"
+    },
+    {
+      "id": "ST-SKL-03",
+      "requirement": "Zone/trap warning/arming/pulse/expiry/status-stack/reentry/LOS/registry caps, không active trước tell.",
+      "result": "NOT_RUN",
+      "completionTask": "S4-03"
+    },
+    {
+      "id": "ST-SKL-04",
+      "requirement": "Burst spawn schedule/interrupt, charged beam instantaneous contact visual, swept dash/no tunnel; no uncontrolled secondary reaction.",
+      "result": "NOT_RUN",
+      "completionTask": "S4-04"
+    },
+    {
+      "id": "ST-SKL-05",
+      "requirement": "Hai fighter/hai slots; owned pool/distinct IDs/loadout ready lock, unknown/wrong fighter/mid-match mutation reject.",
+      "result": "NOT_RUN",
+      "completionTask": "S4-05"
+    },
+    {
+      "id": "ST-VIS-01",
+      "requirement": "Foot pivot/socket/trim/mirror/eight directions/scale/camera zoom; overlay/core/contact probes khớp geometry, manifest provenance đúng.",
+      "result": "NOT_RUN",
+      "completionTask": "S5-03"
+    },
+    {
+      "id": "ST-VIS-02",
+      "requirement": "Actor/projectile/HUD/event cùng combat timeline: HP không hiển thị trước contact; late/duplicate/missing event/reconnect resync có log.",
+      "result": "NOT_RUN",
+      "completionTask": "S6-03"
+    },
+    {
+      "id": "ST-VIS-03",
+      "requirement": "Offline/server/headless dùng cùng stepWorld/content/input, hash và result bằng nhau; không branch damage riêng trong BattleScene.",
+      "result": "NOT_RUN",
+      "completionTask": "S5-03"
+    },
+    {
+      "id": "ST-PRP-01",
+      "requirement": "Property/metamorphic/replay: translate/mirror/order, fuzz schema/config/actions; không NaN/negative resource/duplicate IDs/illegal hit.",
+      "result": "NOT_RUN",
+      "completionTask": "S6-01"
+    },
+    {
+      "id": "ST-E2E-01",
+      "requirement": "Playwright hai browser contexts qua actual HTTP+WS: create/join/select/loadout/ready/combat/result/rematch/reconnect, logs hai phía.",
+      "result": "NOT_RUN",
+      "completionTask": "S6-02"
+    },
+    {
+      "id": "ST-NET-03",
+      "requirement": "RTT 0/100/150/250ms, jitter/duplicate/app loss/actual network loss nếu có tool; FPS30/60/144; queue bound/correction/event timing.",
+      "result": "NOT_RUN",
+      "completionTask": "S6-03"
+    },
+    {
+      "id": "ST-OPS-01",
+      "requirement": "Hardware/browser raw samples: 10 actual rooms/matches, ≥1800 wall-clock seconds soak; tick drift/memory/queues cleanup, no fatal crash.",
+      "result": "NOT_RUN",
+      "completionTask": "S7-01"
+    },
+    {
+      "id": "ST-OPS-02",
+      "requirement": "Asset/source/license path validation và secret audit; protected HTML/assets/HTTP/WSS, origin/rate/rollback trên host được phép.",
+      "result": "NOT_RUN",
+      "completionTask": "S7-02"
+    },
+    {
+      "id": "ST-REL-01",
+      "requirement": "Trace F01–F12 đều có regression pass, hai PC khác mạng full round+rematch, evidence matrix được reviewer chấp nhận trước mobile.",
+      "result": "NOT_RUN",
+      "completionTask": "S7-03"
+    }
+  ]
+}

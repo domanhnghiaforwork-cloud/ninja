@@ -2,7 +2,7 @@
 
 ## Nguồn và cách chọn việc
 
-Đọc theo [AGENTS](../AGENTS.md), rồi task card trong [tasks](../tasks/README.md). Backlog là nguồn duy nhất về status/dependency/gate. Chọn một `todo` không optional có mọi dependency `done`, thuộc phase có gate trước đã đạt; nếu nhiều task đủ điều kiện thì lấy theo thứ tự phase/ID. Không tự chọn Spine. P10 chỉ mở sau PC demo.
+Đọc theo [AGENTS](../AGENTS.md), [kế hoạch ổn định](13_STABILITY_PLAN.md), rồi task card trong [tasks](../tasks/README.md). Backlog là nguồn duy nhất về status/dependency/gate/track. Chỉ chọn task nhánh active stabilization có dependency done và gate phase trước **cùng track** đạt. Dùng `python scripts/render_tasks.py --next` để gợi ý. Legacy P status đang cần audit, không chặn S0 bắt đầu và không cấp quyền mở P10. Mobile cần S7-03 cùng nghiệm thu P9-04 hiện hành; không tự chọn Spine.
 
 Mỗi card có goal, tài liệu phải đọc, phạm vi file, đầu vào/phụ thuộc, steps, outputs, acceptance, verification, non-goals và nơi lưu evidence. Đọc card không thay việc kiểm code thực. Nếu path đề xuất khác code hiện tại, giải thích điều chỉnh; không tạo framework mới chỉ để khớp cây ví dụ.
 
@@ -17,7 +17,7 @@ Mỗi card có goal, tài liệu phải đọc, phạm vi file, đầu vào/ph�
 
 `todo → in_progress → ready_for_review → done`; `blocked` giữ nguyên dependency, ghi nguyên nhân/cách gỡ; sửa xong quay lại in_progress. `skipped` chỉ cho task optional, có lý do và người chấp nhận. `P6-05` có thể giữ todo mãi mà P7 vẫn mở; không cần làm nó chỉ để sạch backlog.
 
-Gate phase gồm tất cả `requiredTasks = done` và evidence tổng hợp của các task đó thỏa gateChecks. Checklist cần người/CI kiểm evidence, doc validator không đánh giá game chạy. Phase có criteria chưa pass thì không mở phase kế tiếp dù ID task sau có vẻ đủ dependency; ghi thiếu gate và sửa task/evidence liên quan theo chủ dự án giao.
+Gate phase gồm tất cả `requiredTasks = done` và evidence tổng hợp thỏa gateChecks trong cùng track. Doc validator không đánh giá game chạy. Phase chưa pass không mở phase sau. S0-03 được giao tạo diagnostic baseline: known-fail output là bằng chứng còn lỗi, không phải acceptance PASS gameplay; tới task sửa và S7-03 không được giữ quarantine/xfail cho lỗi đã đóng. Mỗi fix map finding/test IDs sang before-fail/after-pass và raw logs implementation thật.
 
 ## Prompt giao việc
 

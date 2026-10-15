@@ -1,0 +1,35 @@
+COMMAND: node node_modules/typescript/bin/tsc -b packages/shared --force
+EXIT: 0
+
+COMMAND: npm.cmd run build
+EXIT: 0
+
+> ninja-arena@0.1.0 build
+> npm run --workspaces --if-present build
+
+
+> @ninja/shared@0.1.0 build
+> tsc
+
+
+> @ninja/server@0.1.0 build
+> tsc
+
+
+> @ninja/client@0.1.0 build
+> tsc && vite build
+
+vite v6.2.0 building for production...
+transforming...
+✓ 66 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                    0.96 kB │ gzip:   0.53 kB
+dist/assets/index-VarrqZzS.js  1,862.95 kB │ gzip: 435.98 kB
+✓ built in 6.87s
+
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+

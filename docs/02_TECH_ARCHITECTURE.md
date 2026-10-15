@@ -1,5 +1,7 @@
 # 02 — Kiến trúc v0.1
 
+Lượt ổn định hiện tại dùng [stepWorld contract](14_SIMULATION_CONTRACT.md), [data contract](15_DATA_CONFIG_CONTRACT.md) và [presentation contract](16_HITBOX_PRESENTATION_CONTRACT.md) cho chi tiết kernel/precision/timeline; các P task trong nội dung nền dưới đây là lịch sử để đối chiếu. S0-01 sửa build/SDK compatibility, S1-02 chốt một content loader.
+
 ## Stack và lúc xác minh
 
 Client dự kiến Phaser + TypeScript strict + Vite; server Colyseus + Node.js LTS; npm workspaces với một lockfile. Phaser 4.2.1 và Colyseus 0.18.x là ứng viên từ tài liệu đầu vào, chưa phải dependency đã nghiệm thu. P0-03 đọc nguồn chính thức, xác minh package/engine/peer dependencies và pin exact toàn bộ bộ SDK tương thích; ghi lựa chọn trong báo cáo. Nếu ứng viên không dùng được, ghi blocker/đề xuất trước khi đổi major.

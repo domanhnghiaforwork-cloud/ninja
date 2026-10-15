@@ -2,7 +2,7 @@
 
 ## Nguồn chuẩn
 
-[Skill roster](../spec/skill_roster.v0.1.json) là seed duy nhất cho chỉ số fighter, tài nguyên, guard/parry/dodge và bốn skill. Các con số là `PROPOSED`, chưa nghiệm thu cân bằng. P4-03 tạo runtime schema/loader từ dữ liệu này; không dùng JSON data làm JSON Schema. [Example skill](../spec/example_skill.json) là bản ví dụ được sinh từ roster, không phải nguồn config thứ hai.
+[Skill roster](../spec/skill_roster.v0.1.json) là seed legacy bốn skill để đối chiếu migration. Kế hoạch hiện tại có [12 skill target](../spec/stability/skills.v0.1.json), [character config](../spec/stability/characters.v0.1.json) và schema; chưa được runtime hiện tại load. S1-02 phải tạo một nguồn loader duy nhất, không để hai bộ rules chạy song song. Mọi seed vẫn `PROPOSED`; hai fighter/hai equipped slots theo D10. Chi tiết schema/behavior/loadout ở [data contract](15_DATA_CONFIG_CONTRACT.md), timing/CCD/damage ở [simulation contract](14_SIMULATION_CONTRACT.md). [Example skill](../spec/example_skill.json) vẫn là view legacy được sinh, không phải runtime source thứ hai.
 
 `fighter_a`: clone đánh lạc hướng + wind shuriken. `fighter_b`: fireball khống chế đường + lightning counter. Hai đòn projectile tạo nền tảng tầm xa; light attack chỉ là công cụ cắt nhịp, không thêm combo chain trong demo.
 

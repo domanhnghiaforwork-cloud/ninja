@@ -1,0 +1,22 @@
+
+> ninja-arena@0.1.0 test
+> vitest run
+
+
+ RUN  v3.0.7 D:/nghia/linh_tinh/ninja
+
+ ✓ tests/full_match_flow.test.ts (1 test) 5ms
+ ✓ tests/map_m1.test.ts (4 tests) 8ms
+ ✓ tests/movement_authoritative.test.ts (8 tests) 14ms
+ ✓ tests/shared_simulation.test.ts (8 tests) 16ms
+ ✓ tests/combat_system.test.ts (15 tests) 21ms
+ ✓ tests/abuse_protection.test.ts (5 tests) 5ms
+ ✓ tests/admission_network.test.ts (6 tests) 7ms
+ ✓ tests/reconnect_grace.test.ts (4 tests) 4ms
+ ✓ tests/soak_simulation.test.ts (2 tests) 4ms
+
+ Test Files  9 passed (9)
+      Tests  53 passed (53)
+   Start at  23:42:44
+   Duration  1.33s (transform 524ms, setup 0ms, collect 1.23s, tests 85ms, environment 3ms, prepare 1.90s)
+
