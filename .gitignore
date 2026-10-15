@@ -1,0 +1,9 @@
+# Local secrets and generated Python caches
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
+
+# Export bundles (source of truth remains the working files)
+artifacts/

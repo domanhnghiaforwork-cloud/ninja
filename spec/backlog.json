@@ -1,0 +1,2776 @@
+{
+  "schemaVersion": "1.0.0",
+  "version": "0.1.0",
+  "statusDefinitions": [
+    "todo",
+    "in_progress",
+    "ready_for_review",
+    "blocked",
+    "done",
+    "skipped"
+  ],
+  "tasks": [
+    {
+      "id": "P0-01",
+      "phase": "P0",
+      "title": "Chốt hướng sản phẩm, quyền nội dung và giả định",
+      "status": "done",
+      "priority": "P0",
+      "ownerRole": "owner+AI",
+      "depends_on": [],
+      "outputs": [
+        "Bảng Q01–Q06 và IP usage note"
+      ],
+      "acceptanceCriteria": [
+        "Kiểm đủ sáu ID, status locked và giá trị nhất quán; không coi đây là test phần mềm."
+      ],
+      "evidence": [
+        "Owner explicitly locked Q01..Q06 on 2026-10-15; see docs/01_DECISIONS.md and spec/project.config.json"
+      ],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Giữ hồ sơ sáu lựa chọn sản phẩm đã được chủ dự án chấp nhận; không thực thi lại task quyết định.",
+      "fileScope": [
+        "spec/project.config.json",
+        "docs/01_DECISIONS.md"
+      ],
+      "steps": [
+        "Đối chiếu Q01–Q06 và nguồn xác nhận có sẵn.",
+        "Giữ giá trị LOCKED và ghi rõ seed không phải quyết định khóa.",
+        "Chỉ sửa khi chủ dự án giao thay đổi quyết định."
+      ],
+      "verification": [
+        "Kiểm đủ sáu ID, status locked và giá trị nhất quán; không coi đây là test phần mềm."
+      ],
+      "nonGoals": [
+        "Không mở lại sáu câu hỏi đã chốt.",
+        "Không xác nhận môi trường/game đã chạy."
+      ],
+      "references": [
+        "docs/02_TECH_ARCHITECTURE.md",
+        "docs/10_AI_WORKFLOW.md",
+        "docs/11_RISKS_REFERENCES.md"
+      ],
+      "taskDoc": "tasks/P0.md#p0-01",
+      "reportPath": "reports/P0-01/summary.md",
+      "evidenceRequired": [
+        "docs/01_DECISIONS.md",
+        "spec/project.config.json: decisions Q01–Q06"
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": {
+        "reviewer": "project_owner",
+        "decision": "accepted",
+        "date": "2026-10-15",
+        "evidence": "Owner Q01–Q06 confirmation recorded in docs/01_DECISIONS.md and spec/project.config.json."
+      }
+    },
+    {
+      "id": "P0-02",
+      "phase": "P0",
+      "title": "Xác minh công cụ và Git, ghi setup evidence",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "owner+AI",
+      "depends_on": [
+        "P0-01"
+      ],
+      "outputs": [
+        "reports/P0-02/setup.md với tool versions/Git/doc-check output",
+        "Git repo đúng thư mục và ignore rules rõ; không yêu cầu commit chỉ để sạch",
+        "reports/P0-02/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "node --version; npm --version; git --version; python --version: ghi từng output và exit code.",
+        "git status và git rev-parse --show-toplevel: repo đúng thư mục, không secrets/unexpected tracked changes; repo mới chưa commit là hợp lệ.",
+        "python scripts/validate_docs.py và python scripts/render_tasks.py --check phải pass."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Máy phát triển có công cụ dùng được, trạng thái Git rõ và setup evidence có output thực.",
+      "fileScope": [
+        "reports/P0-02/setup.md",
+        "reports/P0-02/summary.md",
+        ".gitignore (nếu cần)"
+      ],
+      "steps": [
+        "Kiểm đường dẫn, OS và git rev-parse --show-toplevel/git status; chưa thuộc repo nào mới git init, không ghi đè repo có sẵn.",
+        "Chạy node --version, npm --version, git --version, python --version; đối chiếu Node LTS được support từ nguồn chính thức. Kiểm editor nếu dùng, không bắt VS Code làm gate CLI.",
+        "Chạy python scripts/validate_docs.py, lưu command/output và Git state ở setup.md; thêm ignore secrets/build khi cần, không stage/commit file chưa kiểm."
+      ],
+      "verification": [
+        "node --version; npm --version; git --version; python --version: ghi từng output và exit code.",
+        "git status và git rev-parse --show-toplevel: repo đúng thư mục, không secrets/unexpected tracked changes; repo mới chưa commit là hợp lệ.",
+        "python scripts/validate_docs.py và python scripts/render_tasks.py --check phải pass."
+      ],
+      "nonGoals": [
+        "Chưa cài Phaser/Colyseus hoặc viết gameplay.",
+        "Không mua license/tạo tài khoản/deploy hoặc tự commit để ép Git sạch."
+      ],
+      "references": [
+        "docs/02_TECH_ARCHITECTURE.md",
+        "docs/10_AI_WORKFLOW.md",
+        "docs/11_RISKS_REFERENCES.md"
+      ],
+      "taskDoc": "tasks/P0.md#p0-02",
+      "reportPath": "reports/P0-02/summary.md",
+      "evidenceRequired": [
+        "reports/P0-02/summary.md",
+        "reports/P0-02/setup.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P0-03",
+      "phase": "P0",
+      "title": "Bootstrap npm workspaces và pin dependencies đã kiểm",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "owner+AI",
+      "depends_on": [
+        "P0-02"
+      ],
+      "outputs": [
+        "workspaces client/server/shared, package-lock",
+        "reports/P0-03/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "npm ci, npm run typecheck, npm run build pass từ clean dependency install; ghi lệnh/version/log thực.",
+        "Client/server đều dùng được shared module, shared không import Phaser/DOM/server runtime."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Tạo nền monorepo tối thiểu, dependencies tương thích được pin và fresh install/typecheck/build dùng được.",
+      "fileScope": [
+        "package.json",
+        "package-lock.json",
+        "apps/client/",
+        "apps/server/",
+        "packages/shared/",
+        "tsconfig*.json",
+        ".gitignore"
+      ],
+      "steps": [
+        "Đọc docs/11 và kiểm versions/engines/peer dependencies của Phaser, Colyseus server/client/schema, Vite/TS; ghi exact versions và URL/ngày. Nếu major ứng viên không dùng được, đề xuất thay đổi trước.",
+        "Tạo npm workspaces với TS strict, client/server entry tối thiểu và shared export thuần; không tạo gameplay. Chỉ một package-lock, runtime data ngoài browser APIs.",
+        "Thêm scripts npm run typecheck và npm run build, hướng dẫn chạy local tại README; chạy npm ci từ lockfile và kiểm shared import từ cả hai workspace."
+      ],
+      "verification": [
+        "npm ci, npm run typecheck, npm run build pass từ clean dependency install; ghi lệnh/version/log thực.",
+        "Client/server đều dùng được shared module, shared không import Phaser/DOM/server runtime."
+      ],
+      "nonGoals": [
+        "Chưa movement/room/combat/CI cloud.",
+        "Không nâng major âm thầm hoặc dùng latest không pin."
+      ],
+      "references": [
+        "docs/02_TECH_ARCHITECTURE.md",
+        "docs/10_AI_WORKFLOW.md",
+        "docs/11_RISKS_REFERENCES.md"
+      ],
+      "taskDoc": "tasks/P0.md#p0-03",
+      "reportPath": "reports/P0-03/summary.md",
+      "evidenceRequired": [
+        "reports/P0-03/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P0-04",
+      "phase": "P0",
+      "title": "Tạo lint, unit-test và CI",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "owner+AI",
+      "depends_on": [
+        "P0-03"
+      ],
+      "outputs": [
+        "CI workflow + kiểm tra mẫu",
+        "reports/P0-04/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "npm run lint, npm run typecheck, npm test, npm run build pass.",
+        "Ghi thử lỗi có chủ đích và exit code fail trước khi khôi phục; remote CI có evidence hoặc NOT RUN với lý do."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Có lint/unit-test/CI thực sự phát hiện regression và bộ lệnh chuẩn cho các task sau.",
+      "fileScope": [
+        "eslint config",
+        "vitest config",
+        "package.json",
+        ".github/workflows/",
+        "tests/"
+      ],
+      "steps": [
+        "Chọn cấu hình lint TS strict và Vitest tương thích lockfile, thêm npm run lint và npm test.",
+        "Viết test có ý nghĩa cho shared boundary/validation đã tồn tại; kiểm một assertion sai có thể làm command fail, rồi khôi phục trước nộp.",
+        "Tạo CI npm ci → docs checks → lint/typecheck/test/build; chạy local. Nếu không có remote CI thì ghi NOT RUN, không tạo tài khoản mới."
+      ],
+      "verification": [
+        "npm run lint, npm run typecheck, npm test, npm run build pass.",
+        "Ghi thử lỗi có chủ đích và exit code fail trước khi khôi phục; remote CI có evidence hoặc NOT RUN với lý do."
+      ],
+      "nonGoals": [
+        "Không thêm test rỗng để đủ script.",
+        "Không bắt buộc mua dịch vụ/kết nối GitHub nếu chưa có quyền."
+      ],
+      "references": [
+        "docs/02_TECH_ARCHITECTURE.md",
+        "docs/10_AI_WORKFLOW.md",
+        "docs/11_RISKS_REFERENCES.md"
+      ],
+      "taskDoc": "tasks/P0.md#p0-04",
+      "reportPath": "reports/P0-04/summary.md",
+      "evidenceRequired": [
+        "reports/P0-04/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P1-01",
+      "phase": "P1",
+      "title": "Boot Phaser với placeholder",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "client+AI",
+      "depends_on": [
+        "P0-04"
+      ],
+      "outputs": [
+        "BattleScene + canvas 960x540",
+        "reports/P1-01/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "Mở browser thực: canvas/map/hai actor thấy được, console không lỗi; không dùng build pass thay browser check."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Render BattleScene placeholder để có điểm quan sát trước khi thêm simulation.",
+      "fileScope": [
+        "apps/client/src/scenes/",
+        "apps/client/src/entities/",
+        "assets-export/manifest.json"
+      ],
+      "steps": [
+        "Boot canvas tham chiếu 960×540, render M0 dạng hình học và hai fighter placeholder.",
+        "Đặt foot anchor/facing arrow/debug collider độc lập hình ảnh; ghi provenance placeholder tự tạo.",
+        "Thêm cách mở scene local và ghi browser/console evidence."
+      ],
+      "verification": [
+        "Mở browser thực: canvas/map/hai actor thấy được, console không lỗi; không dùng build pass thay browser check."
+      ],
+      "nonGoals": [
+        "Chưa art production/animation tám hướng/network."
+      ],
+      "references": [
+        "docs/02_TECH_ARCHITECTURE.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/05_MAP_WORLD.md",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P1.md#p1-01",
+      "reportPath": "reports/P1-01/summary.md",
+      "evidenceRequired": [
+        "reports/P1-01/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P1-02",
+      "phase": "P1",
+      "title": "Điều khiển 8 hướng",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "client+AI",
+      "depends_on": [
+        "P1-01"
+      ],
+      "outputs": [
+        "InputController + direction resolver",
+        "reports/P1-02/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-01: 8 hướng/aim8, diagonal không tăng speed, giữ skill một edge, keyup/blur neutral.",
+        "Browser thử WASD/arrows/mouse/Shift/Space không kẹt nút."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Chuẩn hóa input PC tám hướng, aim và edge/level trước khi nối movement shared.",
+      "fileScope": [
+        "apps/client/src/input/",
+        "packages/shared/src/protocol/",
+        "tests/simulation/input*"
+      ],
+      "steps": [
+        "Áp mapping seed trong config, thứ tự aim8 thống nhất với N âm Y.",
+        "Tạo normalized input vector/bitmask và edge detector; release/blur phải trả neutral.",
+        "Cho placeholder phản hồi input/debug, không đưa physics render thành nguồn movement lâu dài."
+      ],
+      "verification": [
+        "TC-01: 8 hướng/aim8, diagonal không tăng speed, giữ skill một edge, keyup/blur neutral.",
+        "Browser thử WASD/arrows/mouse/Shift/Space không kẹt nút."
+      ],
+      "nonGoals": [
+        "Chưa cast/guard/dodge gameplay hoặc touch input."
+      ],
+      "references": [
+        "docs/02_TECH_ARCHITECTURE.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/05_MAP_WORLD.md",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P1.md#p1-02",
+      "reportPath": "reports/P1-02/summary.md",
+      "evidenceRequired": [
+        "reports/P1-02/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P1-03",
+      "phase": "P1",
+      "title": "Shared movement và collision cơ bản",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "client+AI",
+      "depends_on": [
+        "P1-02"
+      ],
+      "outputs": [
+        "shared movement + obstacles + tests",
+        "reports/P1-03/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-01: tường/corner/bounds/diagonal/sweep pass; cùng seed/input/tick có cùng state và không phụ thuộc render dt.",
+        "Browser movement không xuyên bốn vật cản; log test và map revision."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Một shared movement/geometry function dùng được cho client và server, collision M0 deterministic.",
+      "fileScope": [
+        "packages/shared/src/simulation/",
+        "packages/shared/src/data/maps/",
+        "apps/client/src/",
+        "tests/simulation/movement*"
+      ],
+      "steps": [
+        "Định nghĩa M0 collision manifest với metadata chuẩn, biên map và bốn vật cản.",
+        "Viết stepMovement thuần theo fixed tick, chọn precision/rounding và sweep hoặc xử lý chống xuyên tường; client dùng trực tiếp.",
+        "Replay cùng input/tick/map hai lần, serialize state rồi replay tiếp; test corners/dash-speed geometry để combat dùng lại."
+      ],
+      "verification": [
+        "TC-01: tường/corner/bounds/diagonal/sweep pass; cùng seed/input/tick có cùng state và không phụ thuộc render dt.",
+        "Browser movement không xuyên bốn vật cản; log test và map revision."
+      ],
+      "nonGoals": [
+        "Không Phaser physics làm authoritative simulation.",
+        "Chưa server sync hoặc Tiled exporter đầy đủ."
+      ],
+      "references": [
+        "docs/02_TECH_ARCHITECTURE.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/05_MAP_WORLD.md",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P1.md#p1-03",
+      "reportPath": "reports/P1-03/summary.md",
+      "evidenceRequired": [
+        "reports/P1-03/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P1-04",
+      "phase": "P1",
+      "title": "Camera/HUD debug",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "client+AI",
+      "depends_on": [
+        "P1-03"
+      ],
+      "outputs": [
+        "camera follow + x/y/FPS overlay",
+        "reports/P1-04/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-02: tới bốn cạnh map, camera không vượt bounds, foot/collider khớp; chạy 5 phút không console error.",
+        "Bộ checks từ P0-04 pass; browser evidence có thời lượng/máy thực."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Prototype offline có camera và debug đủ dùng để kiểm tra netcode/combat kế tiếp.",
+      "fileScope": [
+        "apps/client/src/scenes/",
+        "apps/client/src/ui/",
+        "apps/client/src/map/"
+      ],
+      "steps": [
+        "Camera follow foot anchor, bounds M0 và viewport scaling.",
+        "Overlay tick/position/facing/collider/FPS; FPS debug chưa là benchmark nghiệm thu.",
+        "Đi quanh toàn map ít nhất năm phút, kiểm key blur/resize và lưu manual QA thật."
+      ],
+      "verification": [
+        "TC-02: tới bốn cạnh map, camera không vượt bounds, foot/collider khớp; chạy 5 phút không console error.",
+        "Bộ checks từ P0-04 pass; browser evidence có thời lượng/máy thực."
+      ],
+      "nonGoals": [
+        "Chưa benchmark PC release hoặc mở M1."
+      ],
+      "references": [
+        "docs/02_TECH_ARCHITECTURE.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/05_MAP_WORLD.md",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P1.md#p1-04",
+      "reportPath": "reports/P1-04/summary.md",
+      "evidenceRequired": [
+        "reports/P1-04/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P2-01",
+      "phase": "P2",
+      "title": "DuelRoom private hai slots và admission credential",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "netcode+AI",
+      "depends_on": [
+        "P1-04"
+      ],
+      "outputs": [
+        "DuelRoom private/maxClients=2 + admission credential/seat reservation hook",
+        "Room admission/replay/race/cleanup tests",
+        "reports/P2-01/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-04: direct roomId thiếu credential bị reject, ticket hợp lệ chỉ dùng một lần, race không vượt hai slots.",
+        "Room không xuất hiện listing/auto matching; close dọn state/tickets."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "DuelRoom private có tối đa hai guest và admission bắt buộc, không có public matchmaking.",
+      "fileScope": [
+        "apps/server/src/rooms/",
+        "apps/server/src/admission/",
+        "tests/network/room*"
+      ],
+      "steps": [
+        "Tạo DuelRoom private/maxClients=2, lifecycle waiting/countdown và cleanup skeleton; không broadcast secrets.",
+        "Định nghĩa ticket/seat reservation có room binding, expiry, consume một lần và admission hook; dùng test-issued ticket cho giai đoạn này.",
+        "Test direct join không ticket, sai room/expired/replay và hai join tranh slot cuối trước khi nối endpoint mã mời."
+      ],
+      "verification": [
+        "TC-04: direct roomId thiếu credential bị reject, ticket hợp lệ chỉ dùng một lần, race không vượt hai slots.",
+        "Room không xuất hiện listing/auto matching; close dọn state/tickets."
+      ],
+      "nonGoals": [
+        "Chưa endpoint code production/ready UI/reconnect đầy đủ.",
+        "Không dùng private flag như authentication."
+      ],
+      "references": [
+        "docs/04_NETCODE_PROTOCOL.md",
+        "docs/08_TEST_QA.md",
+        "docs/09_DEPLOY_RELEASE.md"
+      ],
+      "taskDoc": "tasks/P2.md#p2-01",
+      "reportPath": "reports/P2-01/summary.md",
+      "evidenceRequired": [
+        "reports/P2-01/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P2-02",
+      "phase": "P2",
+      "title": "Kết nối client qua admission, hiển thị lobby",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "netcode+AI",
+      "depends_on": [
+        "P2-01"
+      ],
+      "outputs": [
+        "RoomConnection + lobby connection/full/invalid UI",
+        "Dev/test admission issuer tách khỏi production, không bypass",
+        "reports/P2-02/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "Hai browser contexts nối cùng room/two slots; third join và leave trả kết quả đúng.",
+        "Client build không chứa reconnect/ticket secret cố định hoặc dev bypass bật trên staging."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Hai client local nối đúng DuelRoom bằng ticket/admission để xây lobby code ở task sau.",
+      "fileScope": [
+        "apps/client/src/network/",
+        "apps/client/src/scenes/Lobby*",
+        "apps/server/src/"
+      ],
+      "steps": [
+        "Nối SDK đúng version vào client; dùng dev/test issuer nội bộ rõ ràng, không mở admission bypass production.",
+        "Hiện connection state, guest IDs, slot count và lỗi full/invalid; close connection khi leave.",
+        "Kiểm hai browser contexts có session khác nhau, người thứ ba bị từ chối."
+      ],
+      "verification": [
+        "Hai browser contexts nối cùng room/two slots; third join và leave trả kết quả đúng.",
+        "Client build không chứa reconnect/ticket secret cố định hoặc dev bypass bật trên staging."
+      ],
+      "nonGoals": [
+        "Chưa prediction/combat, không hardcode secret vào bundle."
+      ],
+      "references": [
+        "docs/04_NETCODE_PROTOCOL.md",
+        "docs/08_TEST_QA.md",
+        "docs/09_DEPLOY_RELEASE.md"
+      ],
+      "taskDoc": "tasks/P2.md#p2-02",
+      "reportPath": "reports/P2-02/summary.md",
+      "evidenceRequired": [
+        "reports/P2-02/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P2-03",
+      "phase": "P2",
+      "title": "Mã mời crypto, TTL/rate limits, ready/countdown",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "netcode+AI",
+      "depends_on": [
+        "P2-02"
+      ],
+      "outputs": [
+        "secure invite-code generation/mapping + join via private roomId + ready flow",
+        "reports/P2-03/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-03/04: format/crypto source/collision retry/TTL boundary/rate-limit boundary/ticket replay/direct bypass/last-slot race pass.",
+        "Hai client create→code→join→ready→countdown; sai/expired/full thông báo đúng, secrets không lộ logs/snapshot."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Luồng create/copy-code/join/ready/countdown hoạt động với code crypto, TTL và rate limits ngay từ đầu.",
+      "fileScope": [
+        "apps/server/src/lobby/",
+        "apps/server/src/admission/",
+        "apps/client/src/scenes/",
+        "tests/network/invite*"
+      ],
+      "steps": [
+        "Registry CSPRNG code theo alphabet/length config, collision retry, TTL và room cleanup; rate-limit create/resolve/admission với clock testable.",
+        "Tạo resolve trả ticket/seat reservation đã kiểm ở P2-01, joinById có admission; không tạo room từ code sai. Reconnect credential là loại khác, không log/state.",
+        "Nối UI create/copy/join/fighter/ready và countdown chỉ khi hai guest hợp lệ; cancel ready khi disconnect. Handshake protocol/map/config hash hoàn chỉnh được tích hợp và kiểm ở P3-03 trước combat."
+      ],
+      "verification": [
+        "TC-03/04: format/crypto source/collision retry/TTL boundary/rate-limit boundary/ticket replay/direct bypass/last-slot race pass.",
+        "Hai client create→code→join→ready→countdown; sai/expired/full thông báo đúng, secrets không lộ logs/snapshot."
+      ],
+      "nonGoals": [
+        "Không login/public lobby/matchmaking/DB.",
+        "Chưa recovery reconnect hoàn chỉnh, nhưng không dùng code làm reconnect credential."
+      ],
+      "references": [
+        "docs/04_NETCODE_PROTOCOL.md",
+        "docs/08_TEST_QA.md",
+        "docs/09_DEPLOY_RELEASE.md"
+      ],
+      "taskDoc": "tasks/P2.md#p2-03",
+      "reportPath": "reports/P2-03/summary.md",
+      "evidenceRequired": [
+        "reports/P2-03/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P2-04",
+      "phase": "P2",
+      "title": "Kiểm room flow hai browser contexts và negative cases",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "netcode+AI",
+      "depends_on": [
+        "P2-03"
+      ],
+      "outputs": [
+        "smoke report logs & evidence",
+        "reports/P2-04/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-05: hai clients cùng room, không guest thứ ba, code hết hạn/room close không reuse được.",
+        "Báo rõ two-context PASS và two-PC PASS/FAIL/NOT RUN riêng, không lẫn loại evidence."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Chứng minh room flow hai client và negative cases trước authoritative movement.",
+      "fileScope": [
+        "tests/network/",
+        "reports/P2-04/",
+        "apps/client/src/network/ (fix trong phạm vi)"
+      ],
+      "steps": [
+        "Chạy flow hai browser contexts, invalid/expired/third guest và concurrent join.",
+        "Kiểm leave/countdown cancel/cleanup/rate limiter, log room IDs đã redact credential.",
+        "Nếu có hai PC thì chạy bổ sung; local hai contexts là gate P2, hai PC khác mạng vẫn bắt buộc ở P9."
+      ],
+      "verification": [
+        "TC-05: hai clients cùng room, không guest thứ ba, code hết hạn/room close không reuse được.",
+        "Báo rõ two-context PASS và two-PC PASS/FAIL/NOT RUN riêng, không lẫn loại evidence."
+      ],
+      "nonGoals": [
+        "Chưa bắt buộc hai PC ở P2, không tuyên bố online Internet từ localhost."
+      ],
+      "references": [
+        "docs/04_NETCODE_PROTOCOL.md",
+        "docs/08_TEST_QA.md",
+        "docs/09_DEPLOY_RELEASE.md"
+      ],
+      "taskDoc": "tasks/P2.md#p2-04",
+      "reportPath": "reports/P2-04/summary.md",
+      "evidenceRequired": [
+        "reports/P2-04/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P3-01",
+      "phase": "P3",
+      "title": "Input schema + fixed-tick authoritative movement",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "netcode+AI",
+      "depends_on": [
+        "P2-04"
+      ],
+      "outputs": [
+        "input validation + server movement",
+        "reports/P3-01/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-06: x/HP/damage injection, NaN/Infinity/range/bitmask, high-rate/future/stale không tăng speed hoặc crash.",
+        "Replay cùng shared input/ticks ra cùng movement, hai clients nhìn cùng authoritative state."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Server chạy shared movement theo fixed ticks và chỉ nhận input được validate/rate-limit.",
+      "fileScope": [
+        "packages/shared/src/protocol/",
+        "apps/server/src/systems/",
+        "apps/client/src/network/",
+        "tests/network/input*"
+      ],
+      "steps": [
+        "Kiểm SDK fixed-step/input API đúng version, quyết định sequence/ack dùng cơ chế SDK, không tự tăng dt theo client.",
+        "Validate type/range/integer/allowed bits/finite, bounded queue/input cap; thiếu input về neutral theo timeout.",
+        "Server gọi shared stepMovement và sync authoritative position; client chưa prediction vẫn render snapshot để chứng minh authority."
+      ],
+      "verification": [
+        "TC-06: x/HP/damage injection, NaN/Infinity/range/bitmask, high-rate/future/stale không tăng speed hoặc crash.",
+        "Replay cùng shared input/ticks ra cùng movement, hai clients nhìn cùng authoritative state."
+      ],
+      "nonGoals": [
+        "Chưa client-authoritative movement hoặc rewind."
+      ],
+      "references": [
+        "docs/02_TECH_ARCHITECTURE.md",
+        "docs/04_NETCODE_PROTOCOL.md",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P3.md#p3-01",
+      "reportPath": "reports/P3-01/summary.md",
+      "evidenceRequired": [
+        "reports/P3-01/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P3-02",
+      "phase": "P3",
+      "title": "Prediction / reconciliation local",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "netcode+AI",
+      "depends_on": [
+        "P3-01"
+      ],
+      "outputs": [
+        "client prediction adapter + shared step",
+        "reports/P3-02/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-07: intentional correction hội tụ state server, replay không double action; pending queue bounded.",
+        "Browser local input phản hồi trước RTT, log correction behavior thực."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Local movement phản hồi tức thời bằng shared prediction và reconcile đúng input chưa ack.",
+      "fileScope": [
+        "apps/client/src/network/Prediction*",
+        "packages/shared/src/simulation/",
+        "tests/network/prediction*"
+      ],
+      "steps": [
+        "Dùng built-in prediction khi phù hợp exact SDK; local và server gọi cùng step/precision/map.",
+        "Ack snapshot, rollback/replay đúng bounded pending input; correction không sửa HP hoặc emit lại gameplay events.",
+        "Test correction, render FPS khác simulation Hz, blur/background/resume bỏ input quá cũ."
+      ],
+      "verification": [
+        "TC-07: intentional correction hội tụ state server, replay không double action; pending queue bounded.",
+        "Browser local input phản hồi trước RTT, log correction behavior thực."
+      ],
+      "nonGoals": [
+        "Không prediction damage/HP hoặc hai hệ ack cạnh tranh."
+      ],
+      "references": [
+        "docs/02_TECH_ARCHITECTURE.md",
+        "docs/04_NETCODE_PROTOCOL.md",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P3.md#p3-02",
+      "reportPath": "reports/P3-02/summary.md",
+      "evidenceRequired": [
+        "reports/P3-02/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P3-03",
+      "phase": "P3",
+      "title": "Interpolation remote + map collision revision",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "netcode+AI",
+      "depends_on": [
+        "P3-02"
+      ],
+      "outputs": [
+        "remote interpolation, map hash check",
+        "reports/P3-03/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-07: client sửa map/config/protocol hash bị từ chối; server không load map do client upload.",
+        "Remote buffer bounded, resume về snapshot hiện tại; hai client cùng map revision."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Remote interpolation mượt theo snapshot, version/hash mismatch bị chặn trước trận.",
+      "fileScope": [
+        "apps/client/src/network/",
+        "apps/server/src/rooms/",
+        "packages/shared/src/protocol/",
+        "tests/network/handshake*"
+      ],
+      "steps": [
+        "Handshake protocol/map/gameplay-config hash, server load trusted manifest; reject mismatch trước ready.",
+        "Thêm remote snapshot buffer/interpolation bounded với seed delay config; không extrapolate vô hạn.",
+        "Debug overlay RTT/tick/correction/remote buffer; resync khi background hoặc buffer thiếu."
+      ],
+      "verification": [
+        "TC-07: client sửa map/config/protocol hash bị từ chối; server không load map do client upload.",
+        "Remote buffer bounded, resume về snapshot hiện tại; hai client cùng map revision."
+      ],
+      "nonGoals": [
+        "Không server fog-of-war hoặc lag compensation."
+      ],
+      "references": [
+        "docs/02_TECH_ARCHITECTURE.md",
+        "docs/04_NETCODE_PROTOCOL.md",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P3.md#p3-03",
+      "reportPath": "reports/P3-03/summary.md",
+      "evidenceRequired": [
+        "reports/P3-03/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P3-04",
+      "phase": "P3",
+      "title": "Test mạng xấu",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "netcode+AI",
+      "depends_on": [
+        "P3-03"
+      ],
+      "outputs": [
+        "RTT/loss test report",
+        "reports/P3-04/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-08: RTT 100 và 150ms có log, không drift/queue tăng vô hạn và authoritative collision vẫn đúng.",
+        "Packet-loss actual PASS/FAIL/NOT RUN ghi riêng; không có số đo giả từ config."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Có số đo netcode khi trễ/jitter/mất kết nối, biết giới hạn trước khi thêm combat.",
+      "fileScope": [
+        "tests/network/impairment*",
+        "reports/P3-04/",
+        "apps/client/src/network/ (fix)"
+      ],
+      "steps": [
+        "Tạo kịch bản repeatable RTT 100/150ms và jitter, ghi công cụ/cấu hình; phân biệt app-message drop với TCP packet loss.",
+        "Chạy movement/collision/reconcile hai client, background rồi resume; đo drift/correction và queue.",
+        "Nếu thử packet loss 2–5% tầng network thì lưu cấu hình thật; nếu không có công cụ thì NOT RUN phần đó, vẫn báo rõ coverage."
+      ],
+      "verification": [
+        "TC-08: RTT 100 và 150ms có log, không drift/queue tăng vô hạn và authoritative collision vẫn đúng.",
+        "Packet-loss actual PASS/FAIL/NOT RUN ghi riêng; không có số đo giả từ config."
+      ],
+      "nonGoals": [
+        "Không hứa latency toàn Internet hoặc bật rewind để che lỗi movement."
+      ],
+      "references": [
+        "docs/02_TECH_ARCHITECTURE.md",
+        "docs/04_NETCODE_PROTOCOL.md",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P3.md#p3-04",
+      "reportPath": "reports/P3-04/summary.md",
+      "evidenceRequired": [
+        "reports/P3-04/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P4-01",
+      "phase": "P4",
+      "title": "FSM + HP/chakra/stamina + nhắm mục tiêu chiến thuật",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "gameplay+AI",
+      "depends_on": [
+        "P3-04"
+      ],
+      "outputs": [
+        "server FSM + state sync",
+        "reports/P4-01/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "FSM transitions, hitstun/KO priority, resource clamp/regen deterministic, aim8 tests pass.",
+        "Client không quyết định state/tài nguyên chính thức."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "FSM combat/tài nguyên/aim theo server ticks làm nền cho defense và skills.",
+      "fileScope": [
+        "packages/shared/src/simulation/combat*",
+        "packages/shared/src/data/",
+        "apps/server/src/systems/",
+        "tests/simulation/fsm*"
+      ],
+      "steps": [
+        "Áp FSM tối thiểu trong docs/03, priority KO/hitstun/action/guard/move và edge tiêu thụ một lần.",
+        "Loader seed fighter/resources/regen có validation/rounding; clamp và KO không hồi.",
+        "Sync FSM/timing/resources và hướng aim8; lock-on chỉ hướng có LOS, không auto-hit."
+      ],
+      "verification": [
+        "FSM transitions, hitstun/KO priority, resource clamp/regen deterministic, aim8 tests pass.",
+        "Client không quyết định state/tài nguyên chính thức."
+      ],
+      "nonGoals": [
+        "Không combo chain/substitute/cancel gameplay mới."
+      ],
+      "references": [
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/04_NETCODE_PROTOCOL.md",
+        "spec/skill_roster.v0.1.json",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P4.md#p4-01",
+      "reportPath": "reports/P4-01/summary.md",
+      "evidenceRequired": [
+        "reports/P4-01/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P4-02",
+      "phase": "P4",
+      "title": "Light, guard/perfect parry và một hành động dash/dodge",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "gameplay+AI",
+      "depends_on": [
+        "P4-01"
+      ],
+      "outputs": [
+        "guard/parry/dodge timeline + hit registry",
+        "reports/P4-02/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-09: test tick trước/start/end/sau parry/iframe, front/back, stamina thiếu/cạn, hold/spam và miss recovery.",
+        "Light một cast không double hit; dodge-speed không tunnel qua hard cover."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Light/guard/parry/dodge có timing và counterplay đúng, không spam hoặc xuyên tường.",
+      "fileScope": [
+        "packages/shared/src/simulation/combat*",
+        "apps/server/src/systems/",
+        "tests/simulation/defense*"
+      ],
+      "steps": [
+        "Light hit hình học/cung trước mặt, timeline half-open và hit registry một hit/target.",
+        "Guard front arc/stamina/break; guard-edge mở parry theo seed, re-entry cooldown/miss penalty; không phản projectile mặc định.",
+        "Dodge duy nhất với cost/iframe/recovery, movement sweep theo shared geometry; emit authoritative feedback."
+      ],
+      "verification": [
+        "TC-09: test tick trước/start/end/sau parry/iframe, front/back, stamina thiếu/cạn, hold/spam và miss recovery.",
+        "Light một cast không double hit; dodge-speed không tunnel qua hard cover."
+      ],
+      "nonGoals": [
+        "Không damage gắn animation frame; chưa bốn skill."
+      ],
+      "references": [
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/04_NETCODE_PROTOCOL.md",
+        "spec/skill_roster.v0.1.json",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P4.md#p4-02",
+      "reportPath": "reports/P4-02/summary.md",
+      "evidenceRequired": [
+        "reports/P4-02/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P4-03",
+      "phase": "P4",
+      "title": "4 nhẫn thuật chiến thuật: projectile, clone, fire, lightning counter",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "gameplay+AI",
+      "depends_on": [
+        "P4-02"
+      ],
+      "outputs": [
+        "fighter_a_clone_feint + fighter_a_wind_shuriken + fighter_b_fireball + fighter_b_lightning_counter configs, validation",
+        "reports/P4-03/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-10: đủ bốn skill/two slots/fighter; thiếu chakra/CD/giữ nút/hitstun reject không trừ cost sai.",
+        "Clone timeout/one-hit; counter ngoài range chỉ chặn, không phản xuyên map; schema sai bị từ chối."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Runtime skill data và bốn behavior có server validation, cost/CD/lifetime rõ.",
+      "fileScope": [
+        "spec/skill_roster.v0.1.json (chỉ seed thay có lý do)",
+        "packages/shared/src/data/",
+        "apps/server/src/systems/Skills*",
+        "tests/simulation/skills*"
+      ],
+      "steps": [
+        "Định nghĩa runtime schema/loader cho roster, fail startup nếu dữ liệu sai owner/tick/cost/shape; không dùng example làm nguồn riêng.",
+        "Implement clone/wind/fire/counter theo seed: commit cost/CD, interrupt không refund, clone một hit/lifetime, counter cone/range/LOS và miss recovery.",
+        "Tạo cast/round IDs, spawn lifecycle và server events; projectile có logic sweep tích hợp hoàn chỉnh ở P4-04."
+      ],
+      "verification": [
+        "TC-10: đủ bốn skill/two slots/fighter; thiếu chakra/CD/giữ nút/hitstun reject không trừ cost sai.",
+        "Clone timeout/one-hit; counter ngoài range chỉ chặn, không phản xuyên map; schema sai bị từ chối."
+      ],
+      "nonGoals": [
+        "Không Rasengan/Chidori/ultimate mới, không coi spawn projectile là đủ kiểm collision."
+      ],
+      "references": [
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/04_NETCODE_PROTOCOL.md",
+        "spec/skill_roster.v0.1.json",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P4.md#p4-03",
+      "reportPath": "reports/P4-03/summary.md",
+      "evidenceRequired": [
+        "reports/P4-03/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P4-04",
+      "phase": "P4",
+      "title": "Projectile sweep/TOI, LOS/AoE và defense integration",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "gameplay+AI",
+      "depends_on": [
+        "P4-03"
+      ],
+      "outputs": [
+        "projectile sweep + wall collision + parry/counter tests",
+        "reports/P4-04/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-11: actor trước wall bị hit, wall trước actor chặn, equal-TOI deterministic, high-speed không tunnel, direct+AoE không double hit.",
+        "20 lượt wall và tick-boundary parry có kết quả thật; counter/AoE không damage xuyên cover."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Đạn/LOS/AoE/defense được phán định deterministic theo TOI, không xuyên tường/người hoặc double damage.",
+      "fileScope": [
+        "packages/shared/src/simulation/geometry*",
+        "apps/server/src/systems/Combat*",
+        "tests/simulation/projectile*",
+        "reports/P4-04/combat-tests.md"
+      ],
+      "steps": [
+        "Sweep projectile từ vị trí cũ tới mới, chọn earliest TOI; equal TOI ưu tiên wall rồi stable ID.",
+        "Tích hợp iframe→counter→parry→guard→hit, consume/hit registry, wall impact và LOS từng target fireball AoE.",
+        "Lưu trace tick/cast/event đủ tái hiện; test cùng input/seed ở server và shared harness."
+      ],
+      "verification": [
+        "TC-11: actor trước wall bị hit, wall trước actor chặn, equal-TOI deterministic, high-speed không tunnel, direct+AoE không double hit.",
+        "20 lượt wall và tick-boundary parry có kết quả thật; counter/AoE không damage xuyên cover."
+      ],
+      "nonGoals": [
+        "Không quét mọi wall trước mọi actor bỏ qua khoảng cách.",
+        "Không rewrite physics engine/rewind khi chưa có task."
+      ],
+      "references": [
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/04_NETCODE_PROTOCOL.md",
+        "spec/skill_roster.v0.1.json",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P4.md#p4-04",
+      "reportPath": "reports/P4-04/summary.md",
+      "evidenceRequired": [
+        "reports/P4-04/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P4-05",
+      "phase": "P4",
+      "title": "Round end, timer, rematch",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "gameplay+AI",
+      "depends_on": [
+        "P4-04"
+      ],
+      "outputs": [
+        "match result logic + reset",
+        "reports/P4-05/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-12: KO/double KO/timer tie, một round_end, winner khớp hai client.",
+        "Hai round liên tiếp không còn projectile/input/event/clone hoặc cooldown từ round trước."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Trận kết thúc duy nhất bằng KO/timer/forfeit và rematch reset sạch.",
+      "fileScope": [
+        "apps/server/src/systems/Match*",
+        "apps/client/src/scenes/",
+        "tests/simulation/match*"
+      ],
+      "steps": [
+        "Áp terminal outcome sau damage trong tick: double KO hòa, timer so HP, tie hòa; outcome không bị reconnect/forfeit ghi đè.",
+        "Kết quả/round_end chung, rematch chỉ khi hai người ready.",
+        "Reset roundId/HP/resources/CD/FSM/positions/projectiles/clones/input/hit registry, giữ guest identity hợp lệ trong room."
+      ],
+      "verification": [
+        "TC-12: KO/double KO/timer tie, một round_end, winner khớp hai client.",
+        "Hai round liên tiếp không còn projectile/input/event/clone hoặc cooldown từ round trước."
+      ],
+      "nonGoals": [
+        "Không rating/persistent history hoặc auto rematch một phía."
+      ],
+      "references": [
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/04_NETCODE_PROTOCOL.md",
+        "spec/skill_roster.v0.1.json",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P4.md#p4-05",
+      "reportPath": "reports/P4-05/summary.md",
+      "evidenceRequired": [
+        "reports/P4-05/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P4-06",
+      "phase": "P4",
+      "title": "Debug trace và security tests",
+      "status": "todo",
+      "priority": "P0",
+      "ownerRole": "gameplay+AI",
+      "depends_on": [
+        "P4-05"
+      ],
+      "outputs": [
+        "combat event traces + malformed inputs",
+        "reports/P4-06/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-06/09/10/11/12 pass cùng bộ lint/typecheck/test/build.",
+        "Không crash/double hit/HP âm hoặc state drift trong kịch bản trace lưu được."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Prototype combat có trace và regression chống malformed/spam trước khi đổi map/art.",
+      "fileScope": [
+        "tests/simulation/",
+        "tests/network/combat*",
+        "reports/P4-06/"
+      ],
+      "steps": [
+        "Chạy flow đầy đủ hai clients bằng placeholder, kiểm cast/hit/result/rematch.",
+        "Fuzz hợp lệ/không hợp lệ type/range/bitmask và spam edge; kiểm memory bounded/event dedupe.",
+        "Ghi bug/fix/test và combat limitations, không tự khẳng định balance từ vài trận."
+      ],
+      "verification": [
+        "TC-06/09/10/11/12 pass cùng bộ lint/typecheck/test/build.",
+        "Không crash/double hit/HP âm hoặc state drift trong kịch bản trace lưu được."
+      ],
+      "nonGoals": [
+        "Không mở rộng roster/map/art trước gate combat."
+      ],
+      "references": [
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/04_NETCODE_PROTOCOL.md",
+        "spec/skill_roster.v0.1.json",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P4.md#p4-06",
+      "reportPath": "reports/P4-06/summary.md",
+      "evidenceRequired": [
+        "reports/P4-06/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P5-01",
+      "phase": "P5",
+      "title": "Tiled map M1 + collision export",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "level+AI",
+      "depends_on": [
+        "P4-06"
+      ],
+      "outputs": [
+        "map JSON + collision manifest",
+        "reports/P5-01/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "Map hash bằng nhau, spawn không overlap collider, có đường hợp lệ giữa vùng không kẹt.",
+        "TC-11 geometry regression pass trên M1, client không tự định collider khác server."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Tiled M1 dùng chung metadata/hash cho server và render, spawn/path hợp lệ.",
+      "fileScope": [
+        "maps/",
+        "scripts/export_map*",
+        "packages/shared/src/data/maps/",
+        "apps/client/src/map/",
+        "tests/simulation/map*"
+      ],
+      "steps": [
+        "Tạo M1 kích thước seed với ba tuyến nối/đường flank/cover, spawn không LOS-hit tức thì.",
+        "Export metadata chuẩn blocks_movement/blocks_projectile/blocks_los/occludes_visual/soft_cover; stable IDs/hash.",
+        "Load cùng manifest server/client; reject hash mismatch, test reachability/corner/spawn."
+      ],
+      "verification": [
+        "Map hash bằng nhau, spawn không overlap collider, có đường hợp lệ giữa vùng không kẹt.",
+        "TC-11 geometry regression pass trên M1, client không tự định collider khác server."
+      ],
+      "nonGoals": [
+        "Chưa M2/biome đầy đủ/water slow/parkour/phá hủy map."
+      ],
+      "references": [
+        "docs/05_MAP_WORLD.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P5.md#p5-01",
+      "reportPath": "reports/P5-01/summary.md",
+      "evidenceRequired": [
+        "reports/P5-01/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P5-02",
+      "phase": "P5",
+      "title": "3/4 occlusion, depth sort",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "level+AI",
+      "depends_on": [
+        "P5-01"
+      ],
+      "outputs": [
+        "foreground/background trees + shadows",
+        "reports/P5-02/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-02: bốn biên và giao cắt tán/thân che đúng, không depth flicker hoặc lệch chân/collision.",
+        "Không tác động server hit/movement tests."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Foot-based depth/occlusion đọc đúng mà không đổi geometry gameplay.",
+      "fileScope": [
+        "apps/client/src/map/",
+        "apps/client/src/entities/",
+        "assets-export/map/"
+      ],
+      "steps": [
+        "Tách thân/tán/foreground theo layer, stable Y-sort theo foot Y.",
+        "Camera/zoom/bounds theo M1 và viewport resize, collider không phụ thuộc sprite.",
+        "Kiểm đi/dodge quanh cây/tường phía trước/sau và debug overlay."
+      ],
+      "verification": [
+        "TC-02: bốn biên và giao cắt tán/thân che đúng, không depth flicker hoặc lệch chân/collision.",
+        "Không tác động server hit/movement tests."
+      ],
+      "nonGoals": [
+        "Không shader/lighting đắt hoặc thay projection isometric."
+      ],
+      "references": [
+        "docs/05_MAP_WORLD.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P5.md#p5-02",
+      "reportPath": "reports/P5-02/summary.md",
+      "evidenceRequired": [
+        "reports/P5-02/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P5-03",
+      "phase": "P5",
+      "title": "Minimap PC, offscreen opponent + target telegraph",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "level+AI",
+      "depends_on": [
+        "P5-02"
+      ],
+      "outputs": [
+        "PC minimap/target direction/LOS indicator",
+        "reports/P5-03/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-13: hard/soft cover và offscreen toggle cho đúng UI, minimap scale đúng.",
+        "Known limitation D08 có trong controls/demo notes; không claim anti-wallhack."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Minimap/offscreen cue/target indicator đủ định hướng và tuân theo giới hạn UI concealment D08.",
+      "fileScope": [
+        "apps/client/src/ui/",
+        "packages/shared/src/simulation/los*",
+        "tests/simulation/visibility-ui*"
+      ],
+      "steps": [
+        "Map self/world coordinates lên minimap; icon đối thủ chỉ khi rule LOS/soft cover cho phép.",
+        "Offscreen cue chỉ hướng lượng tử hóa, không điểm tọa độ/distance chính xác khi bị che; lock-on không xuyên hard cover.",
+        "Ghi rõ client vẫn nhận vị trí đối thủ, test hiển thị và không thêm network filtering."
+      ],
+      "verification": [
+        "TC-13: hard/soft cover và offscreen toggle cho đúng UI, minimap scale đúng.",
+        "Known limitation D08 có trong controls/demo notes; không claim anti-wallhack."
+      ],
+      "nonGoals": [
+        "Không server fog-of-war hoặc giao thức giấu state."
+      ],
+      "references": [
+        "docs/05_MAP_WORLD.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P5.md#p5-03",
+      "reportPath": "reports/P5-03/summary.md",
+      "evidenceRequired": [
+        "reports/P5-03/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P5-04",
+      "phase": "P5",
+      "title": "Playtest 5 trận: góc đánh, cover và counter",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "level+AI",
+      "depends_on": [
+        "P5-03"
+      ],
+      "outputs": [
+        "5 match logs: encounter times, projectile-cover effectiveness, parry frequency",
+        "reports/P5-04/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-14: đủ năm match logs và kết luận dựa dữ liệu; blocker map/collision được fix hoặc giữ gate chưa pass.",
+        "Seed chỉnh có before/after/rationale, không tự tuyên bố 50/50."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Có dữ liệu năm trận M1 để quyết định đường/cover và tránh mở map quá rộng.",
+      "fileScope": [
+        "reports/P5-04/map-playtest.md",
+        "maps/ (chỉ fix từ evidence)",
+        "spec/skill_roster.v0.1.json (nếu chỉnh seed có lý do)"
+      ],
+      "steps": [
+        "Chạy năm trận thực với người test, ghi thiết bị/network và hai fighter.",
+        "Ghi encounter time/khoảng không gặp nhau, cover/camping, skill hit và parry/counter; không suy từ screenshot.",
+        "Tổng hợp vấn đề/điều chỉnh nhỏ, chạy lại cases bị ảnh hưởng; chưa có dữ liệu thì không mở M2 hoặc thêm ring."
+      ],
+      "verification": [
+        "TC-14: đủ năm match logs và kết luận dựa dữ liệu; blocker map/collision được fix hoặc giữ gate chưa pass.",
+        "Seed chỉnh có before/after/rationale, không tự tuyên bố 50/50."
+      ],
+      "nonGoals": [
+        "Không M2/vòng bo/mode mới, không fabricate playtest bằng simulation chưa công bố."
+      ],
+      "references": [
+        "docs/05_MAP_WORLD.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/08_TEST_QA.md"
+      ],
+      "taskDoc": "tasks/P5.md#p5-04",
+      "reportPath": "reports/P5-04/summary.md",
+      "evidenceRequired": [
+        "reports/P5-04/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P6-01",
+      "phase": "P6",
+      "title": "Art bible tối giản + sổ quyền asset AI",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "artist+AI",
+      "depends_on": [
+        "P5-04"
+      ],
+      "outputs": [
+        "2-character style sheet + licensed asset registry + AI consistency checklist",
+        "reports/P6-01/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "Hai fighter dễ phân biệt, concept angle/scale/pivot có review thực.",
+        "Mỗi export có provenance và allowed usage; không ripped official asset hoặc license mua chưa được duyệt."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Style bible nhỏ và asset ledger đủ review quyền/consistency trước khi sản xuất sprite.",
+      "fileScope": [
+        "docs/art/",
+        "assets-source/",
+        "assets-export/manifest.json",
+        "reports/P6-01/"
+      ],
+      "steps": [
+        "Chốt silhouette/palette/foot pivot/scale hai fighter và concept bốn hướng để review.",
+        "Chuẩn hóa ledger placeholder và asset mới: author/tool/source/export/license/evidence/allowed usage/review.",
+        "Chủ dự án/reviewer xem art direction và quyền; tài nguyên thiếu quyền không vào network build."
+      ],
+      "verification": [
+        "Hai fighter dễ phân biệt, concept angle/scale/pivot có review thực.",
+        "Mỗi export có provenance và allowed usage; không ripped official asset hoặc license mua chưa được duyệt."
+      ],
+      "nonGoals": [
+        "Không tạo art đầy đủ trước review, không Spine mặc định."
+      ],
+      "references": [
+        "docs/06_ASSET_PIPELINE.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/11_RISKS_REFERENCES.md"
+      ],
+      "taskDoc": "tasks/P6.md#p6-01",
+      "reportPath": "reports/P6-01/summary.md",
+      "evidenceRequired": [
+        "reports/P6-01/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P6-02",
+      "phase": "P6",
+      "title": "8 hướng bằng sprite atlas tối thiểu",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "artist+AI",
+      "depends_on": [
+        "P6-01"
+      ],
+      "outputs": [
+        "sprite atlas idle/run/attack/hit và pivot foot theo 8 hướng cho 2 fighter",
+        "reports/P6-02/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-15: đủ hai fighter×tám hướng×bộ clip tối thiểu, pivot/atlas keys hợp lệ.",
+        "Reviewer kiểm visual thực; ảnh/file xuất không tự chứng minh quyền hoặc animation đúng."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Hai fighter có atlas idle/run/light/hit tám hướng với foot pivot ổn định.",
+      "fileScope": [
+        "assets-source/fighter_a/",
+        "assets-source/fighter_b/",
+        "assets-export/",
+        "assets-export/manifest.json"
+      ],
+      "steps": [
+        "Sản xuất pose/clip theo art bible và hướng chuẩn N/NE/E/SE/S/SW/W/NW.",
+        "Export atlas/metadata; giữ pivot chân và source/runtime separation, kiểm alpha bleeding/texture budget.",
+        "Review anatomy/angle continuity/silhouette và cập nhật ledger trước bind vào game."
+      ],
+      "verification": [
+        "TC-15: đủ hai fighter×tám hướng×bộ clip tối thiểu, pivot/atlas keys hợp lệ.",
+        "Reviewer kiểm visual thực; ảnh/file xuất không tự chứng minh quyền hoặc animation đúng."
+      ],
+      "nonGoals": [
+        "Không rig Spine hoặc cinematic/ultimate."
+      ],
+      "references": [
+        "docs/06_ASSET_PIPELINE.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/11_RISKS_REFERENCES.md"
+      ],
+      "taskDoc": "tasks/P6.md#p6-02",
+      "reportPath": "reports/P6-02/summary.md",
+      "evidenceRequired": [
+        "reports/P6-02/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P6-03",
+      "phase": "P6",
+      "title": "Loader và animation map đủ state/fallback",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "artist+AI",
+      "depends_on": [
+        "P6-02"
+      ],
+      "outputs": [
+        "Atlas loader + animation map đủ FSM/skill phase và fallback không thiếu key",
+        "reports/P6-03/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-15: không missing clip/key, fallback được liệt kê, cast/guard/KO không quay lại idle sai thời điểm.",
+        "Thay render FPS/animation speed không đổi server hit hoặc cooldown."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Loader/animation binding đầy đủ mọi state, fallback rõ, không key thiếu hoặc timing quyết định hit.",
+      "fileScope": [
+        "apps/client/src/animation/",
+        "apps/client/src/entities/",
+        "assets-export/animation-map*"
+      ],
+      "steps": [
+        "Load atlas qua manifest và fail/fallback dễ hiểu khi thiếu file.",
+        "Map FSM/skill phase sang clip, bổ sung pose/fallback cho dodge/guard/parry/cast/recovery/KO/victory.",
+        "Giữ foot anchor và authoritative phase duration; test tám hướng qua toàn flow combat."
+      ],
+      "verification": [
+        "TC-15: không missing clip/key, fallback được liệt kê, cast/guard/KO không quay lại idle sai thời điểm.",
+        "Thay render FPS/animation speed không đổi server hit hoặc cooldown."
+      ],
+      "nonGoals": [
+        "Không client animation event gây damage/HP."
+      ],
+      "references": [
+        "docs/06_ASSET_PIPELINE.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/11_RISKS_REFERENCES.md"
+      ],
+      "taskDoc": "tasks/P6.md#p6-03",
+      "reportPath": "reports/P6-03/summary.md",
+      "evidenceRequired": [
+        "reports/P6-03/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P6-04",
+      "phase": "P6",
+      "title": "VFX phân thân/đạn gió/hỏa cầu/phản điện",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "artist+AI",
+      "depends_on": [
+        "P6-03"
+      ],
+      "outputs": [
+        "4 readable skill VFX: spawn/tell/flight/impact",
+        "reports/P6-04/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-15: Low FX vẫn rõ tell/flight/impact/front arc, VFX không double khi confirm/reconnect.",
+        "Không sửa HP client hoặc gửi particle/frame qua server."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Bốn skill/guard/parry có VFX dễ đọc, pooled và event-deduped trên PC.",
+      "fileScope": [
+        "assets-export/vfx/",
+        "apps/client/src/entities/",
+        "apps/client/src/animation/",
+        "assets-export/manifest.json"
+      ],
+      "steps": [
+        "Tạo tell/flight/impact clone/wind/fire/counter và feedback block/parry/wall.",
+        "Render từ eventId/tick/castId, pooling cleanup khi rematch/disconnect.",
+        "So sánh Low/High, không che projectile lane/cover; ledger và visual review."
+      ],
+      "verification": [
+        "TC-15: Low FX vẫn rõ tell/flight/impact/front arc, VFX không double khi confirm/reconnect.",
+        "Không sửa HP client hoặc gửi particle/frame qua server."
+      ],
+      "nonGoals": [
+        "Không production Spine, bloom/shader đắt hoặc quyền asset chưa kiểm."
+      ],
+      "references": [
+        "docs/06_ASSET_PIPELINE.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/11_RISKS_REFERENCES.md"
+      ],
+      "taskDoc": "tasks/P6.md#p6-04",
+      "reportPath": "reports/P6-04/summary.md",
+      "evidenceRequired": [
+        "reports/P6-04/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P6-05",
+      "phase": "P6",
+      "title": "Spine optional proof of concept",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "artist+AI",
+      "depends_on": [
+        "P6-04"
+      ],
+      "outputs": [
+        "Spine POC report or SKIPPED with reason",
+        "reports/P6-05/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "Nếu enabled: license/source/runtime/export evidence và browser POC thật.",
+        "Nếu skipped: optional=true, reason + accepted review; không cần giả test POC."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Nhánh nghiên cứu Spine chỉ khi chủ dự án yêu cầu; quyết định dùng/skip có evidence, không chặn demo.",
+      "fileScope": [
+        "reports/P6-05/",
+        "apps/client/src/animation/ (POC nếu được giao)",
+        "assets-source/ (nếu có quyền)"
+      ],
+      "steps": [
+        "Chỉ kích hoạt khi chủ dự án yêu cầu; kiểm editor/runtime license, không mua thay chủ dự án.",
+        "Nếu làm POC, dùng một rig có quyền và exact export/runtime compatible; đo cost/perf và so sprite fallback.",
+        "Báo go/no-go hoặc skipped có lý do/người chấp nhận; P7 vẫn phụ thuộc P6-04."
+      ],
+      "verification": [
+        "Nếu enabled: license/source/runtime/export evidence và browser POC thật.",
+        "Nếu skipped: optional=true, reason + accepted review; không cần giả test POC."
+      ],
+      "nonGoals": [
+        "Không mua license/tích hợp runtime thiếu quyền hoặc ép P7 chờ."
+      ],
+      "references": [
+        "docs/06_ASSET_PIPELINE.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/11_RISKS_REFERENCES.md"
+      ],
+      "taskDoc": "tasks/P6.md#p6-05",
+      "reportPath": "reports/P6-05/summary.md",
+      "evidenceRequired": [
+        "reports/P6-05/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": true,
+      "activation": "Chỉ khi chủ dự án yêu cầu và quyền/license đã kiểm.",
+      "review": null
+    },
+    {
+      "id": "P7-01",
+      "phase": "P7",
+      "title": "Audio buses + browser unlock",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "UX+QA",
+      "depends_on": [
+        "P6-04"
+      ],
+      "outputs": [
+        "sound manager + legal SFX",
+        "reports/P7-01/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "Browser fresh load chưa tương tác không lỗi autoplay; Start cho audio hoạt động, mute/volume persistent.",
+        "TC-15: reconnect/confirm không double sound, nguồn audio có ledger."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Âm thanh PC phát sau tương tác, volume/mute đúng và không double-play event.",
+      "fileScope": [
+        "apps/client/src/audio/",
+        "assets-export/audio/",
+        "assets-export/manifest.json",
+        "apps/client/src/ui/"
+      ],
+      "steps": [
+        "Chọn SFX có quyền cho gameplay/UI, master/export codec đã test.",
+        "Audio unlock sau Start, buses/master/music/sfx/ui và local volume/mute.",
+        "EventId dedupe, cap concurrent sounds và cleanup/rematch; music/ambient tùy nguồn hợp lệ."
+      ],
+      "verification": [
+        "Browser fresh load chưa tương tác không lỗi autoplay; Start cho audio hoạt động, mute/volume persistent.",
+        "TC-15: reconnect/confirm không double sound, nguồn audio có ledger."
+      ],
+      "nonGoals": [
+        "Không OST/voice rip, không cần Spine hoặc mobile test."
+      ],
+      "references": [
+        "docs/06_ASSET_PIPELINE.md",
+        "docs/08_TEST_QA.md",
+        "docs/03_COMBAT_CHARACTERS.md"
+      ],
+      "taskDoc": "tasks/P7.md#p7-01",
+      "reportPath": "reports/P7-01/summary.md",
+      "evidenceRequired": [
+        "reports/P7-01/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P7-02",
+      "phase": "P7",
+      "title": "HUD và keyboard/mouse controls PC",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "UX+QA",
+      "depends_on": [
+        "P7-01"
+      ],
+      "outputs": [
+        "HUD HP/chakra/stamina/CD/timer và keyboard/mouse controls guide",
+        "Network/errors/accessibility settings + known limitation D08",
+        "reports/P7-02/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "Người test thực hiện create→join→ready→combat→result→rematch bằng PC; không thao tác bị xung đột.",
+        "Cooldown/resources hiển thị khớp snapshot, UI không chỉ dựa màu và text đọc được."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "HUD và keyboard/mouse PC đủ chơi toàn trận, binding thống nhất và lỗi room/network dễ hiểu.",
+      "fileScope": [
+        "apps/client/src/ui/",
+        "apps/client/src/input/",
+        "docs/controls/"
+      ],
+      "steps": [
+        "HUD HP/chakra/stamina/CD/timer/result/network state từ server, hướng dẫn binding seed.",
+        "Kiểm conflict focus/text entry/Tab/Space/browser shortcuts; neutral khi blur và không cast lúc gõ code.",
+        "Thêm mute/Low FX/reduce flash/shake controls và D08 limitation trong demo notes."
+      ],
+      "verification": [
+        "Người test thực hiện create→join→ready→combat→result→rematch bằng PC; không thao tác bị xung đột.",
+        "Cooldown/resources hiển thị khớp snapshot, UI không chỉ dựa màu và text đọc được."
+      ],
+      "nonGoals": [
+        "Không ability wheel/gamepad/mobile/cancel action bắt buộc."
+      ],
+      "references": [
+        "docs/06_ASSET_PIPELINE.md",
+        "docs/08_TEST_QA.md",
+        "docs/03_COMBAT_CHARACTERS.md"
+      ],
+      "taskDoc": "tasks/P7.md#p7-02",
+      "reportPath": "reports/P7-02/summary.md",
+      "evidenceRequired": [
+        "reports/P7-02/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P7-03",
+      "phase": "P7",
+      "title": "PC performance presets + profiler",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "UX+QA",
+      "depends_on": [
+        "P7-02"
+      ],
+      "outputs": [
+        "PC Low/High FX toggle, frame-time overlay",
+        "reports/P7-03/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "Profiler có raw sample hoặc trace reproducible; Low FX vẫn đủ gameplay cues.",
+        "Không tăng memory/object count qua rematch lặp; ghi số đo thực nếu đã đo."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Có profiler và presets để đo/tối ưu PC mà không làm mất telegraph.",
+      "fileScope": [
+        "apps/client/src/ui/",
+        "apps/client/src/animation/",
+        "apps/server/src/metrics/",
+        "reports/P7-03/"
+      ],
+      "steps": [
+        "Overlay/frame trace FPS/frame-time/network/tick drift; ghi phương pháp tính P95.",
+        "Low/High FX cap particles/audio/atlas usage, pooling và cleanup; không đổi simulation.",
+        "Đo baseline trước/sau nếu tối ưu; giữ startup tell/projectile/impact và cover trên Low."
+      ],
+      "verification": [
+        "Profiler có raw sample hoặc trace reproducible; Low FX vẫn đủ gameplay cues.",
+        "Không tăng memory/object count qua rematch lặp; ghi số đo thực nếu đã đo."
+      ],
+      "nonGoals": [
+        "Không hứa FPS mọi máy hoặc dành task này làm mobile optimization."
+      ],
+      "references": [
+        "docs/06_ASSET_PIPELINE.md",
+        "docs/08_TEST_QA.md",
+        "docs/03_COMBAT_CHARACTERS.md"
+      ],
+      "taskDoc": "tasks/P7.md#p7-03",
+      "reportPath": "reports/P7-03/summary.md",
+      "evidenceRequired": [
+        "reports/P7-03/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P7-04",
+      "phase": "P7",
+      "title": "Benchmark Desktop Chrome/Edge",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "UX+QA",
+      "depends_on": [
+        "P7-03"
+      ],
+      "outputs": [
+        "PC perf report including browser, FPS, p95 frame time",
+        "reports/P7-04/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-16: Windows Chrome có raw samples/method/duration/result; target 60 FPS median/P95 ≤20ms được đánh giá từ số đo.",
+        "Edge PASS/FAIL/NOT RUN có lý do; missing benchmark bắt buộc thì blocked."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "PC benchmark thật với máy/browser/version/duration và đối chiếu mục tiêu FPS/frame-time.",
+      "fileScope": [
+        "reports/P7-04/desktop-perf.md",
+        "apps/client/ (fix perf theo evidence)"
+      ],
+      "steps": [
+        "Khai báo máy Windows CPU/GPU/RAM/OS/browser, viewport/preset/network và kịch bản combat lặp.",
+        "Đo Chrome desktop median FPS/P95 frame-time và server tick drift; Edge nếu có ghi riêng.",
+        "So target trong docs/08, nếu thiếu/không đạt ghi failure/limitation và cần review; không tự ghi PASS."
+      ],
+      "verification": [
+        "TC-16: Windows Chrome có raw samples/method/duration/result; target 60 FPS median/P95 ≤20ms được đánh giá từ số đo.",
+        "Edge PASS/FAIL/NOT RUN có lý do; missing benchmark bắt buộc thì blocked."
+      ],
+      "nonGoals": [
+        "Không iOS/Android gate hoặc coi build-time là frame-time."
+      ],
+      "references": [
+        "docs/06_ASSET_PIPELINE.md",
+        "docs/08_TEST_QA.md",
+        "docs/03_COMBAT_CHARACTERS.md"
+      ],
+      "taskDoc": "tasks/P7.md#p7-04",
+      "reportPath": "reports/P7-04/summary.md",
+      "evidenceRequired": [
+        "reports/P7-04/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P8-01",
+      "phase": "P8",
+      "title": "Reconnect/timeout/forfeit",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "netcode+QA",
+      "depends_on": [
+        "P7-04"
+      ],
+      "outputs": [
+        "grace period/rejoin logic",
+        "reports/P8-01/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-17: disconnect trong cast/parry/KO, trong/ngoài grace, wrong secret/room, cả hai rớt có test.",
+        "Một entity/guest, một terminal outcome, không double damage/event; secret không log/state."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Reconnect đúng D07, giữ entity và terminal result, không clone/hit/input replay.",
+      "fileScope": [
+        "apps/server/src/rooms/",
+        "apps/server/src/admission/",
+        "apps/client/src/network/",
+        "tests/network/reconnect*"
+      ],
+      "steps": [
+        "Giữ seat/secret riêng, neutral input và stop disconnected fighter; trận/timer/projectile tiếp tục, fighter damageable.",
+        "Reconnect trong grace gắn cùng guest/entity và sync current snapshot; expired secret hoặc room khác reject, không replay backlog.",
+        "Hết grace forfeit nếu chưa terminal; cả hai rớt/pre-countdown/KO/reconnect sau finished có quy tắc rõ và cleanup."
+      ],
+      "verification": [
+        "TC-17: disconnect trong cast/parry/KO, trong/ngoài grace, wrong secret/room, cả hai rớt có test.",
+        "Một entity/guest, một terminal outcome, không double damage/event; secret không log/state."
+      ],
+      "nonGoals": [
+        "Không pause toàn trận, không dùng invite code thay reconnect token."
+      ],
+      "references": [
+        "docs/04_NETCODE_PROTOCOL.md",
+        "docs/08_TEST_QA.md",
+        "docs/11_RISKS_REFERENCES.md"
+      ],
+      "taskDoc": "tasks/P8.md#p8-01",
+      "reportPath": "reports/P8-01/summary.md",
+      "evidenceRequired": [
+        "reports/P8-01/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P8-02",
+      "phase": "P8",
+      "title": "Input/join abuse protection",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "netcode+QA",
+      "depends_on": [
+        "P8-01"
+      ],
+      "outputs": [
+        "rate limits, anti cheat validation",
+        "reports/P8-02/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-03/04/06: abuse bị reject/throttle không crash, bypass join không thành công.",
+        "Không log reconnect/ticket secret hoặc chấp nhận x/HP/damage client."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Audit và kiểm abuse toàn bộ input/admission thay vì đợi P8 mới thêm rate limits.",
+      "fileScope": [
+        "tests/network/abuse*",
+        "apps/server/src/admission/",
+        "apps/server/src/lobby/",
+        "apps/server/src/systems/"
+      ],
+      "steps": [
+        "Attack create/resolve/direct join/ticket replay/third guest/concurrent joins với quota/TTL boundary.",
+        "Fuzz input/bitmask/frequency/action eligibility, speed/cost/CD/hit validation.",
+        "Kiểm Origin upgrade, nickname escape, logs/secret redaction và limiter cleanup; fix trong phạm vi."
+      ],
+      "verification": [
+        "TC-03/04/06: abuse bị reject/throttle không crash, bypass join không thành công.",
+        "Không log reconnect/ticket secret hoặc chấp nhận x/HP/damage client."
+      ],
+      "nonGoals": [
+        "Không hứa anti-wallhack D08 hoặc security tuyệt đối."
+      ],
+      "references": [
+        "docs/04_NETCODE_PROTOCOL.md",
+        "docs/08_TEST_QA.md",
+        "docs/11_RISKS_REFERENCES.md"
+      ],
+      "taskDoc": "tasks/P8.md#p8-02",
+      "reportPath": "reports/P8-02/summary.md",
+      "evidenceRequired": [
+        "reports/P8-02/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P8-03",
+      "phase": "P8",
+      "title": "Full match flow",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "netcode+QA",
+      "depends_on": [
+        "P8-02"
+      ],
+      "outputs": [
+        "menu->lobby->battle->result->rematch",
+        "reports/P8-03/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-18: hai client kết thúc cùng kết quả, rematch reset và error recovery không kẹt UI.",
+        "Regression combat/admission/reconnect pass với evidence liên kết."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Toàn flow trận hai clients ổn định với lỗi/reconnect/rematch trước automated E2E/soak.",
+      "fileScope": [
+        "tests/e2e/scenarios/",
+        "reports/P8-03/",
+        "apps/client/src/scenes/ (fix)"
+      ],
+      "steps": [
+        "Chạy menu→lobby→countdown→battle→result→rematch với cả hai fighter.",
+        "Đối chiếu authoritative HP/resources/winner/round IDs hai client và server; chèn reconnect/full/expired/error cases.",
+        "Ghi steps/logs và known limitations; sửa blocker, không dùng video đẹp thay state evidence."
+      ],
+      "verification": [
+        "TC-18: hai client kết thúc cùng kết quả, rematch reset và error recovery không kẹt UI.",
+        "Regression combat/admission/reconnect pass với evidence liên kết."
+      ],
+      "nonGoals": [
+        "Chưa tuyên bố hai PC khác mạng từ local hai contexts."
+      ],
+      "references": [
+        "docs/04_NETCODE_PROTOCOL.md",
+        "docs/08_TEST_QA.md",
+        "docs/11_RISKS_REFERENCES.md"
+      ],
+      "taskDoc": "tasks/P8.md#p8-03",
+      "reportPath": "reports/P8-03/summary.md",
+      "evidenceRequired": [
+        "reports/P8-03/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P8-04",
+      "phase": "P8",
+      "title": "Browser E2E, 10 matches/rooms và soak 30 phút",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "netcode+QA",
+      "depends_on": [
+        "P8-03"
+      ],
+      "outputs": [
+        "npm run test:e2e + Playwright two-context traces",
+        "10-match/10-simultaneous-room load logs + 30-minute soak report",
+        "reports/P8-04/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-18: E2E pass, có logs 10 matches/10 simultaneous rooms và đủ 30 phút soak, không fatal crash/leak vô hạn.",
+        "Không đủ duration/hardware thì blocked/NOT RUN phần thiếu; giữ logs thật."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Có browser E2E và load/soak đủ phát hiện leak/crash qua nhiều trận.",
+      "fileScope": [
+        "tests/e2e/",
+        "tests/network/load*",
+        "package.json",
+        "reports/P8-04/"
+      ],
+      "steps": [
+        "Thêm Playwright và npm run test:e2e, dùng hai contexts riêng cho flow trận/rematch; kiểm assertion state/result.",
+        "Chạy ít nhất 10 trận hoặc equivalent automated matches, thêm 10 room đồng thời theo output dự kiến và ghi server hardware.",
+        "Soak 30 phút thật, ghi room cleanup/memory/tick drift/errors; không suy thời gian soak từ config, không load host bên ngoài chưa được giao."
+      ],
+      "verification": [
+        "TC-18: E2E pass, có logs 10 matches/10 simultaneous rooms và đủ 30 phút soak, không fatal crash/leak vô hạn.",
+        "Không đủ duration/hardware thì blocked/NOT RUN phần thiếu; giữ logs thật."
+      ],
+      "nonGoals": [
+        "Không benchmark Internet hoặc load production/service bên thứ ba."
+      ],
+      "references": [
+        "docs/04_NETCODE_PROTOCOL.md",
+        "docs/08_TEST_QA.md",
+        "docs/11_RISKS_REFERENCES.md"
+      ],
+      "taskDoc": "tasks/P8.md#p8-04",
+      "reportPath": "reports/P8-04/summary.md",
+      "evidenceRequired": [
+        "reports/P8-04/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P9-01",
+      "phase": "P9",
+      "title": "Audit trước upload, staging kín HTTPS/WSS và hai PC",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "ops+owner",
+      "depends_on": [
+        "P8-04"
+      ],
+      "outputs": [
+        "password/access-controlled staging + server healthcheck",
+        "reports/P9-01/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-19/20: HTTPS/WSS/access/healthcheck pass; hai PC khác mạng có log/máy/browser/version/result.",
+        "Không asset thiếu quyền/secret runtime, URL phòng không thay access gateway."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Private staging có access/rights gate trước upload, HTTPS/WSS và một trận hai PC khác mạng.",
+      "fileScope": [
+        "deploy config theo host đã chọn",
+        "docs/runbook/",
+        "reports/P9-01/"
+      ],
+      "steps": [
+        "Chốt provider/region/chi phí với chủ dự án trước tài nguyên trả phí; audit assets/secrets/build và cấu hình access trước upload.",
+        "Deploy trong phạm vi được giao, persistent WSS/HTTPS, origin/admission/version handshake/healthcheck; secrets từ môi trường, không URL/log.",
+        "Kiểm truy cập sai quyền trên HTML/assets/HTTP/WSS, rồi hai PC hai mạng tạo phòng/join/đánh hết trận."
+      ],
+      "verification": [
+        "TC-19/20: HTTPS/WSS/access/healthcheck pass; hai PC khác mạng có log/máy/browser/version/result.",
+        "Không asset thiếu quyền/secret runtime, URL phòng không thay access gateway."
+      ],
+      "nonGoals": [
+        "Không public release hoặc tự mua server/domain."
+      ],
+      "references": [
+        "docs/09_DEPLOY_RELEASE.md",
+        "docs/08_TEST_QA.md",
+        "docs/06_ASSET_PIPELINE.md"
+      ],
+      "taskDoc": "tasks/P9.md#p9-01",
+      "reportPath": "reports/P9-01/summary.md",
+      "evidenceRequired": [
+        "reports/P9-01/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P9-02",
+      "phase": "P9",
+      "title": "Desktop smoke test + rollback",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "ops+owner",
+      "depends_on": [
+        "P9-01"
+      ],
+      "outputs": [
+        "Windows browser matrix + recovery/rollback guide",
+        "reports/P9-02/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "Chrome desktop PASS, Edge PASS/FAIL/NOT RUN có lý do.",
+        "Rollback có lệnh/observed result; nếu không chạy phải ghi rủi ro để chủ dự án quyết định, không tự đánh đã test."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Desktop staging smoke và rollback có evidence, biết ảnh hưởng restart lên room RAM.",
+      "fileScope": [
+        "docs/runbook/",
+        "reports/P9-02/",
+        "deploy config (nếu cần)"
+      ],
+      "steps": [
+        "Smoke Chrome Windows flow full match/rematch/reconnect; Edge ghi kết quả thực.",
+        "Lưu build/config trước và hướng dẫn rollback/drain; thực hiện rollback an toàn local/staging và ghi active-room behavior.",
+        "Kiểm health/access/origin/version sau restore, ghi room mất do restart và phần chưa chạy."
+      ],
+      "verification": [
+        "Chrome desktop PASS, Edge PASS/FAIL/NOT RUN có lý do.",
+        "Rollback có lệnh/observed result; nếu không chạy phải ghi rủi ro để chủ dự án quyết định, không tự đánh đã test."
+      ],
+      "nonGoals": [
+        "Không ngắt demo đang chơi hoặc public promote ngoài phạm vi."
+      ],
+      "references": [
+        "docs/09_DEPLOY_RELEASE.md",
+        "docs/08_TEST_QA.md",
+        "docs/06_ASSET_PIPELINE.md"
+      ],
+      "taskDoc": "tasks/P9.md#p9-02",
+      "reportPath": "reports/P9-02/summary.md",
+      "evidenceRequired": [
+        "reports/P9-02/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P9-03",
+      "phase": "P9",
+      "title": "Rights/security gate cho demo có mời bạn",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "ops+owner",
+      "depends_on": [
+        "P9-02"
+      ],
+      "outputs": [
+        "asset inventory + rights and secret scan + access review",
+        "reports/P9-03/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-20: staging access áp dụng đủ assets/WS, secrets không lộ, admission bypass bị chặn.",
+        "Asset inventory có review; không official/ripped Naruto OST/voice/sprite trên host."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Audit lại quyền/security trên staging thật trước khi mời bạn test.",
+      "fileScope": [
+        "reports/P9-03/",
+        "assets-export/manifest.json",
+        "docs/runbook/"
+      ],
+      "steps": [
+        "Kiểm mọi hosted export có license/allowed usage/review, source art không bị expose.",
+        "Scan repo/bundle/logs cho secrets, test wrong-origin/access/expired ticket/direct join/rate limits và WSS.",
+        "Ghi issue/go-no-go có evidence; asset/secret/access blocker phải sửa trước mời người test."
+      ],
+      "verification": [
+        "TC-20: staging access áp dụng đủ assets/WS, secrets không lộ, admission bypass bị chặn.",
+        "Asset inventory có review; không official/ripped Naruto OST/voice/sprite trên host."
+      ],
+      "nonGoals": [
+        "Không coi staging private là tự có quyền IP."
+      ],
+      "references": [
+        "docs/09_DEPLOY_RELEASE.md",
+        "docs/08_TEST_QA.md",
+        "docs/06_ASSET_PIPELINE.md"
+      ],
+      "taskDoc": "tasks/P9.md#p9-03",
+      "reportPath": "reports/P9-03/summary.md",
+      "evidenceRequired": [
+        "reports/P9-03/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P9-04",
+      "phase": "P9",
+      "title": "Demo PC giới hạn bạn bè + go/no-go",
+      "status": "todo",
+      "priority": "P1",
+      "ownerRole": "ops+owner",
+      "depends_on": [
+        "P9-03"
+      ],
+      "outputs": [
+        "limited PC playtest log + release tag + known limitations",
+        "reports/P9-04/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "Hai PC khác mạng hoàn thành trận + rematch cùng result, quyền/access đã pass.",
+        "Go/no-go có người chấp nhận/evidence; mobile không chặn PC acceptance."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Chủ dự án nghiệm thu demo PC kín sau full playtest hai PC khác mạng và rematch.",
+      "fileScope": [
+        "reports/P9-04/private-pc-demo.md",
+        "docs/runbook/",
+        "release notes/tag khi được giao"
+      ],
+      "steps": [
+        "Mời nhóm test giới hạn theo quyền đã cấp; ghi hai PC/hai mạng/Windows Chrome và toàn flow.",
+        "Tổng hợp combat/room/reconnect/perf/rights/access/rollback evidence, known limitations gồm D08 và restart mất room.",
+        "Chủ dự án quyết định go/no-go; blocker chưa đóng thì hoãn, không tạo public release. Ghi review acceptance trước mở P10."
+      ],
+      "verification": [
+        "Hai PC khác mạng hoàn thành trận + rematch cùng result, quyền/access đã pass.",
+        "Go/no-go có người chấp nhận/evidence; mobile không chặn PC acceptance."
+      ],
+      "nonGoals": [
+        "Không public distribution/login/matchmaking hoặc tự chuyển done."
+      ],
+      "references": [
+        "docs/09_DEPLOY_RELEASE.md",
+        "docs/08_TEST_QA.md",
+        "docs/06_ASSET_PIPELINE.md"
+      ],
+      "taskDoc": "tasks/P9.md#p9-04",
+      "reportPath": "reports/P9-04/summary.md",
+      "evidenceRequired": [
+        "reports/P9-04/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Mọi dependency done và gate phase trước đạt.",
+      "review": null
+    },
+    {
+      "id": "P10-01",
+      "phase": "P10",
+      "title": "Điều khiển mobile ngang: joystick + buttons",
+      "status": "todo",
+      "priority": "P2",
+      "ownerRole": "mobile+QA",
+      "depends_on": [
+        "P9-04"
+      ],
+      "outputs": [
+        "Mobile touch input + responsive HUD",
+        "reports/P10-01/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-21: Android thật chơi hết trận bằng touch, không input kẹt/multi-touch mất nút.",
+        "PC flow vẫn pass; thiếu máy thật thì blocked và lệnh/manual steps."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Sau PC demo, thêm input touch ngang và HUD responsive mà giữ shared protocol/simulation.",
+      "fileScope": [
+        "apps/client/src/input/Touch*",
+        "apps/client/src/ui/",
+        "tests/e2e/mobile*"
+      ],
+      "steps": [
+        "Xác nhận P9-04 done, chủ dự án giao mobile; joystick/buttons map vào InputFrame hiện có.",
+        "Safe area/landscape/focus/multi-touch, không che tell/cooldown; giữ PC regression.",
+        "Test Android Chrome trên thiết bị thật qua một trận; browser emulation chỉ bổ sung."
+      ],
+      "verification": [
+        "TC-21: Android thật chơi hết trận bằng touch, không input kẹt/multi-touch mất nút.",
+        "PC flow vẫn pass; thiếu máy thật thì blocked và lệnh/manual steps."
+      ],
+      "nonGoals": [
+        "Không mở trước PC demo hoặc đổi authoritative protocol vì UI."
+      ],
+      "references": [
+        "docs/08_TEST_QA.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/06_ASSET_PIPELINE.md"
+      ],
+      "taskDoc": "tasks/P10.md#p10-01",
+      "reportPath": "reports/P10-01/summary.md",
+      "evidenceRequired": [
+        "reports/P10-01/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Chỉ sau P9-04 done và chủ dự án giao mobile.",
+      "review": null
+    },
+    {
+      "id": "P10-02",
+      "phase": "P10",
+      "title": "Preset render mobile + tải tài nguyên",
+      "status": "todo",
+      "priority": "P2",
+      "ownerRole": "mobile+QA",
+      "depends_on": [
+        "P10-01"
+      ],
+      "outputs": [
+        "Mobile texture/performance preset + loading fallback",
+        "reports/P10-02/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-21: số đo mobile thật, Low giữ combat readability, asset load fail có fallback.",
+        "Không overflow/missing texture trên thiết bị báo cáo."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Preset/tải asset mobile đo trên máy thật, giữ đủ telegraph.",
+      "fileScope": [
+        "apps/client/src/animation/",
+        "apps/client/src/ui/",
+        "assets-export/mobile/",
+        "reports/P10-02/"
+      ],
+      "steps": [
+        "Đo texture/memory/loading/frame time trên Android thật, chọn preset/atlas từ dữ liệu.",
+        "Giảm VFX phụ, giữ tells/projectile/cover, loading error/retry fallback.",
+        "Ghi trước/sau và kiểm PC không regression; không upload source art."
+      ],
+      "verification": [
+        "TC-21: số đo mobile thật, Low giữ combat readability, asset load fail có fallback.",
+        "Không overflow/missing texture trên thiết bị báo cáo."
+      ],
+      "nonGoals": [
+        "Không hứa FPS mọi điện thoại hoặc tăng độ đẹp bỏ telegraph."
+      ],
+      "references": [
+        "docs/08_TEST_QA.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/06_ASSET_PIPELINE.md"
+      ],
+      "taskDoc": "tasks/P10.md#p10-02",
+      "reportPath": "reports/P10-02/summary.md",
+      "evidenceRequired": [
+        "reports/P10-02/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Chỉ sau P9-04 done và chủ dự án giao mobile.",
+      "review": null
+    },
+    {
+      "id": "P10-03",
+      "phase": "P10",
+      "title": "Cross-browser Android/iPhone QA",
+      "status": "todo",
+      "priority": "P2",
+      "ownerRole": "mobile+QA",
+      "depends_on": [
+        "P10-02"
+      ],
+      "outputs": [
+        "Android Chrome + iOS Safari matrix",
+        "reports/P10-03/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "TC-21: cả Android và iOS thật có evidence; emulation không thay iPhone.",
+        "PC regression pass; case chưa chạy có nguyên nhân/cách chạy."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Có QA Android Chrome và iOS Safari thật, nhận diện giới hạn browser/touch/audio.",
+      "fileScope": [
+        "reports/P10-03/",
+        "tests/e2e/mobile*",
+        "apps/client/ (fix theo QA)"
+      ],
+      "steps": [
+        "Khai báo thiết bị/OS/browser thật và network, full match trên Android Chrome/iOS Safari.",
+        "Kiểm orientation/safe area/multi-touch/background/audio/loading/reconnect.",
+        "Ghi PASS/FAIL/NOT RUN từng case, fix blocker hoặc giữ blocked nếu thiếu thiết bị bắt buộc."
+      ],
+      "verification": [
+        "TC-21: cả Android và iOS thật có evidence; emulation không thay iPhone.",
+        "PC regression pass; case chưa chạy có nguyên nhân/cách chạy."
+      ],
+      "nonGoals": [
+        "Không tuyên bố crossplay fair trước P10-04."
+      ],
+      "references": [
+        "docs/08_TEST_QA.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/06_ASSET_PIPELINE.md"
+      ],
+      "taskDoc": "tasks/P10.md#p10-03",
+      "reportPath": "reports/P10-03/summary.md",
+      "evidenceRequired": [
+        "reports/P10-03/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Chỉ sau P9-04 done và chủ dự án giao mobile.",
+      "review": null
+    },
+    {
+      "id": "P10-04",
+      "phase": "P10",
+      "title": "Đấu chéo PC–mobile + quyết định beta mobile",
+      "status": "todo",
+      "priority": "P2",
+      "ownerRole": "mobile+QA",
+      "depends_on": [
+        "P10-03"
+      ],
+      "outputs": [
+        "Cross-platform report + opt-in mobile milestone decision",
+        "reports/P10-04/summary.md"
+      ],
+      "acceptanceCriteria": [
+        "PC/mobile hoàn tất trận + rematch, authoritative state/result khớp.",
+        "Báo fairness dựa quan sát/số đo và quyết định mobile beta có review."
+      ],
+      "evidence": [],
+      "notes": "Không tự nghiệm thu; xem acceptance/verification và report template. Các path là phạm vi đề xuất, đối chiếu code thực tế trước sửa.",
+      "goal": "Đánh giá PC–mobile crossplay và chủ dự án quyết định có làm mobile beta hay không.",
+      "fileScope": [
+        "reports/P10-04/",
+        "docs/mobile-notes/"
+      ],
+      "steps": [
+        "Chạy duel PC–mobile trên hai thiết bị thật, lưu kết quả/RTT/FPS/input/control differences.",
+        "Đánh giá bất lợi aim/vision/latency, chỉ đề xuất aim-assist nếu cần; không tự thêm logic lợi thế.",
+        "Tổng hợp known limitations và quyết định opt-in beta của chủ dự án, giữ public release ngoài scope nếu chưa đổi Q01."
+      ],
+      "verification": [
+        "PC/mobile hoàn tất trận + rematch, authoritative state/result khớp.",
+        "Báo fairness dựa quan sát/số đo và quyết định mobile beta có review."
+      ],
+      "nonGoals": [
+        "Không tự public beta/shop/login hoặc đảo PC acceptance."
+      ],
+      "references": [
+        "docs/08_TEST_QA.md",
+        "docs/03_COMBAT_CHARACTERS.md",
+        "docs/06_ASSET_PIPELINE.md"
+      ],
+      "taskDoc": "tasks/P10.md#p10-04",
+      "reportPath": "reports/P10-04/summary.md",
+      "evidenceRequired": [
+        "reports/P10-04/summary.md",
+        "Command/output/exit code + môi trường thực tế; map từng acceptance sang test/log hoặc manual evidence."
+      ],
+      "optional": false,
+      "activation": "Chỉ sau P9-04 done và chủ dự án giao mobile.",
+      "review": null
+    }
+  ],
+  "selectionPolicy": {
+    "oneTaskPerDevelopmentTurn": true,
+    "allDependenciesMustBeDone": true,
+    "previousPhaseGateRequired": true,
+    "optionalRequiresOwnerRequest": true,
+    "currentFirstTask": "P0-02",
+    "doneRequiresAcceptedReview": true,
+    "skipOnlyOptionalWithAcceptedReview": true
+  },
+  "phases": [
+    {
+      "id": "P0",
+      "title": "Nền tảng dự án",
+      "goal": "Công cụ, repo, monorepo và checks dùng được.",
+      "deliverable": "Setup log + npm workspaces/lockfile + local/CI checks",
+      "requiredTasks": [
+        "P0-01",
+        "P0-02",
+        "P0-03",
+        "P0-04"
+      ],
+      "optionalTasks": [],
+      "gateChecks": [
+        "P0-01 owner accepted; P0-02 công cụ/Git có evidence.",
+        "P0-03 fresh npm ci/typecheck/build pass với exact versions đã kiểm.",
+        "P0-04 lint/test/build/typecheck/docs pass; negative assertion từng làm test fail; remote CI NOT RUN phải được nêu rõ."
+      ],
+      "activation": "Theo dependency và gate phase trước."
+    },
+    {
+      "id": "P1",
+      "title": "Prototype offline",
+      "goal": "Chứng minh input/movement/collision trước online.",
+      "deliverable": "Hai placeholder, M0, camera/debug",
+      "requiredTasks": [
+        "P1-01",
+        "P1-02",
+        "P1-03",
+        "P1-04"
+      ],
+      "optionalTasks": [],
+      "gateChecks": [
+        "Shared movement/precision/replay/collision tests pass.",
+        "Browser M0 đi tám hướng, không nhanh chéo/xuyên tường; camera/foot đúng.",
+        "Manual run 5 phút có log/máy/browser, không console error."
+      ],
+      "activation": "Theo dependency và gate phase trước."
+    },
+    {
+      "id": "P2",
+      "title": "Phòng riêng và guest",
+      "goal": "Hai guest vào đúng phòng bằng code, không login.",
+      "deliverable": "Create/copy/join/fighter/ready/countdown",
+      "requiredTasks": [
+        "P2-01",
+        "P2-02",
+        "P2-03",
+        "P2-04"
+      ],
+      "optionalTasks": [],
+      "gateChecks": [
+        "Private room/two slots; direct-join credential và slot race có test.",
+        "CSPRNG code/TTL/rate limits/ticket/reconnect-secret separation pass.",
+        "Hai contexts full lobby flow và cleanup pass; hai PC nếu chưa có thì NOT RUN, không chặn P2."
+      ],
+      "activation": "Theo dependency và gate phase trước."
+    },
+    {
+      "id": "P3",
+      "title": "Movement online authoritative",
+      "goal": "Server authority với prediction/reconcile/interpolation có evidence.",
+      "deliverable": "Hai avatar online + network traces",
+      "requiredTasks": [
+        "P3-01",
+        "P3-02",
+        "P3-03",
+        "P3-04"
+      ],
+      "optionalTasks": [],
+      "gateChecks": [
+        "Input injection/range/rate validation và deterministic movement pass.",
+        "Map/config/protocol handshake, bounded replay/buffer và background resume đúng.",
+        "RTT 100/150ms có log không drift vô hạn; packet-loss tool/coverage được khai báo đúng."
+      ],
+      "activation": "Theo dependency và gate phase trước."
+    },
+    {
+      "id": "P4",
+      "title": "Combat chơi được",
+      "goal": "Một trận tầm xa/counter hoàn chỉnh bằng placeholder.",
+      "deliverable": "Bốn skill + defense + result/rematch",
+      "requiredTasks": [
+        "P4-01",
+        "P4-02",
+        "P4-03",
+        "P4-04",
+        "P4-05",
+        "P4-06"
+      ],
+      "optionalTasks": [],
+      "gateChecks": [
+        "FSM/resources/guard/parry/dodge/cost/CD/edge tests pass.",
+        "Sweep earliest TOI/AoE LOS/high-speed/one-hit/counter range tests pass.",
+        "Hai client cùng result; double KO/timer tie/rematch reset đúng; malformed/spam không crash."
+      ],
+      "activation": "Theo dependency và gate phase trước."
+    },
+    {
+      "id": "P5",
+      "title": "Map chiến thuật",
+      "goal": "M1 tạo góc đánh/cover có dữ liệu playtest.",
+      "deliverable": "Tiled/export hash + minimap UI + 5 trận",
+      "requiredTasks": [
+        "P5-01",
+        "P5-02",
+        "P5-03",
+        "P5-04"
+      ],
+      "optionalTasks": [],
+      "gateChecks": [
+        "M1 spawn/reachability/hash/LOS/collision tests pass.",
+        "Foot-depth/occlusion và D08 minimap UI đúng; limitation network exposure công khai.",
+        "Đủ năm match logs encounter/cover/camping/skill/parry và quyết định giữ/điều chỉnh map."
+      ],
+      "activation": "Theo dependency và gate phase trước."
+    },
+    {
+      "id": "P6",
+      "title": "Sprite và VFX",
+      "goal": "Visual dễ đọc có quyền, không chặn bởi Spine.",
+      "deliverable": "Hai fighter atlas tám hướng + bindings + bốn VFX",
+      "requiredTasks": [
+        "P6-01",
+        "P6-02",
+        "P6-03",
+        "P6-04"
+      ],
+      "optionalTasks": [
+        "P6-05"
+      ],
+      "gateChecks": [
+        "Ledger/style/visual review hợp lệ trước export.",
+        "Hai fighter có clip tối thiểu tám hướng, pivot đúng; mọi state có clip/fallback không missing key.",
+        "Low FX vẫn giữ tells/flight/impact, events dedupe; P6-05 optional không thuộc gate."
+      ],
+      "activation": "Theo dependency và gate phase trước."
+    },
+    {
+      "id": "P7",
+      "title": "Trải nghiệm và hiệu năng PC",
+      "goal": "Input/UI/audio đủ chơi và performance đo trên PC.",
+      "deliverable": "HUD/audio/presets/profiler + desktop benchmark",
+      "requiredTasks": [
+        "P7-01",
+        "P7-02",
+        "P7-03",
+        "P7-04"
+      ],
+      "optionalTasks": [],
+      "gateChecks": [
+        "Audio unlock/mute/volume/event dedupe pass.",
+        "PC full flow keyboard/mouse không conflict, UI tài nguyên đúng server.",
+        "Windows Chrome có benchmark thật và đánh giá target; Edge ghi trạng thái, không cần mobile."
+      ],
+      "activation": "Theo dependency và gate phase trước."
+    },
+    {
+      "id": "P8",
+      "title": "QA và độ ổn định",
+      "goal": "Abuse/reconnect/E2E và soak không phá trận.",
+      "deliverable": "Regression/security logs + E2E/load/soak evidence",
+      "requiredTasks": [
+        "P8-01",
+        "P8-02",
+        "P8-03",
+        "P8-04"
+      ],
+      "optionalTasks": [],
+      "gateChecks": [
+        "D07 reconnect/forfeit/KO/cả hai rớt không nhân bản entity/hit/result.",
+        "Admission/input abuse/direct join/Origin/secret redaction pass.",
+        "Full flow E2E pass; 10 matches, 10 simultaneous rooms, 30 phút soak thực không fatal crash/leak vô hạn."
+      ],
+      "activation": "Theo dependency và gate phase trước."
+    },
+    {
+      "id": "P9",
+      "title": "Demo PC kín",
+      "goal": "Hai PC khác mạng chơi hết trận và chủ dự án nghiệm thu.",
+      "deliverable": "Restricted HTTPS/WSS + rollback + go/no-go",
+      "requiredTasks": [
+        "P9-01",
+        "P9-02",
+        "P9-03",
+        "P9-04"
+      ],
+      "optionalTasks": [],
+      "gateChecks": [
+        "Pre-upload rights/secrets/access audit pass, staging endpoints/assets/WSS được bảo vệ.",
+        "Hai PC khác mạng hoàn thành trận + rematch, Chrome evidence; Edge và rollback coverage khai báo thực.",
+        "Không blocker quyền/security/gameplay; chủ dự án chấp nhận P9-04 và known limitations, mobile không chặn."
+      ],
+      "activation": "Theo dependency và gate phase trước."
+    },
+    {
+      "id": "P10",
+      "title": "Mobile sau PC",
+      "goal": "Kiểm touch/performance/browser/crossplay trên thiết bị thật.",
+      "deliverable": "Android/iOS reports + quyết định mobile beta",
+      "requiredTasks": [
+        "P10-01",
+        "P10-02",
+        "P10-03",
+        "P10-04"
+      ],
+      "optionalTasks": [],
+      "gateChecks": [
+        "Chỉ mở sau P9-04 done và chủ dự án giao.",
+        "Android Chrome và iOS Safari thật đủ input/audio/background/perf cases; thiếu máy thì blocked.",
+        "PC–mobile hoàn thành trận/rematch, có fairness report và quyết định mobile beta; không tự public."
+      ],
+      "activation": "Sau PC demo, chỉ khi chủ dự án giao."
+    }
+  ]
+}

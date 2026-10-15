@@ -1,0 +1,40 @@
+{
+  "documentVersion": "0.1.0",
+  "description": "Generated data example from spec/skill_roster.v0.1.json; not JSON Schema or a second runtime source.",
+  "id": "fighter_a_wind_shuriken",
+  "intent": "ranged skillshot",
+  "cooldownTicks": 150,
+  "damage": 95,
+  "counterplay": "projectile intercepted by hard cover, parry window",
+  "ownerId": "fighter_a",
+  "cost": {
+    "chakra": 25,
+    "stamina": 0
+  },
+  "timelineTicks": {
+    "startup": 10,
+    "active": 1,
+    "recovery": 12
+  },
+  "behavior": {
+    "maxHitsPerTarget": 1,
+    "canHitThroughWall": false,
+    "canCastDuringHitstun": false,
+    "canInterruptCommittedAction": false,
+    "speedWorldUnitsPerSecond": 620,
+    "lifetimeTicks": 30,
+    "stopOnFirstImpact": true
+  },
+  "hitbox": {
+    "shape": "swept_circle",
+    "radiusWorldUnits": 22,
+    "maxDistanceWorldUnits": 540
+  },
+  "type": "projectile",
+  "presentation": {
+    "animationKey": "fighter_a_wind_shuriken",
+    "castVfxKey": "vfx_fighter_a_wind_shuriken_cast",
+    "impactVfxKey": "vfx_fighter_a_wind_shuriken_impact",
+    "sfxKey": "sfx_fighter_a_wind_shuriken"
+  }
+}

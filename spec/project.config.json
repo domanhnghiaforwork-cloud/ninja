@@ -1,0 +1,292 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectName": "Ninja Arena (working title)",
+  "documentVersion": "0.1.0",
+  "lastReviewed": "2026-10-15",
+  "game": {
+    "genre": "1v1 online tactical ranged/counterplay anime 2D arena (private personal prototype)",
+    "perspective": {
+      "value": "orthogonal_three_quarter",
+      "status": "locked",
+      "decisionId": "Q04"
+    },
+    "targets": [
+      "desktop_windows_chrome_priority",
+      "desktop_windows_edge_priority",
+      "mobile_android_iphone_post_pc_demo"
+    ],
+    "orientation": {
+      "value": "landscape",
+      "status": "proposed"
+    },
+    "maxPlayersPerRoom": 2,
+    "battleDurationSeconds": {
+      "value": 180,
+      "status": "proposed"
+    },
+    "publicLicensedIP": false,
+    "releaseAudience": "private_personal_demo_only",
+    "playMode": "private_invite_code_guest_no_account",
+    "mobileMilestone": "P10_post_pc_demo"
+  },
+  "stack": {
+    "client": {
+      "engine": "phaser",
+      "version": "4.2.1",
+      "language": "typescript",
+      "bundler": "vite"
+    },
+    "server": {
+      "framework": "colyseus",
+      "versionRange": "0.18.x",
+      "runtime": "Node.js LTS"
+    },
+    "build": "npm workspaces",
+    "maps": "Tiled JSON orthogonal",
+    "animation": "sprite-atlas first; Spine optional only with verified commercial/licensing terms",
+    "status": "proposed_verify_and_pin_at_P0-03",
+    "verificationTask": "P0-03"
+  },
+  "network": {
+    "serverAuthoritative": true,
+    "simulationTickHz": {
+      "value": 30,
+      "status": "proposed"
+    },
+    "patchHz": {
+      "value": 20,
+      "status": "proposed"
+    },
+    "remoteInterpolationMs": {
+      "value": 100,
+      "status": "proposed"
+    },
+    "reconnectGraceSeconds": {
+      "value": 15,
+      "status": "proposed"
+    },
+    "inviteCode": {
+      "format": "8 upper-case alphanumeric chars, omit ambiguous chars",
+      "creation": "cryptographic_random",
+      "serverMapping": "in-memory short-lived code -> private Colyseus roomId",
+      "ttlMinutes": {
+        "value": 30,
+        "status": "proposed"
+      },
+      "joinRateLimit": "mandatory_configurable_enforced_before_lookup_and_at_admission",
+      "guestReconnect": "ephemeral server-issued secret; do not log",
+      "alphabet": "ABCDEFGHJKLMNPQRSTUVWXYZ23456789",
+      "length": 8
+    },
+    "protocolVersion": 1,
+    "joinAdmission": {
+      "required": true,
+      "method": "single_use_room_bound_join_ticket_or_equivalent_server_seat_reservation",
+      "validateAtDirectJoin": true,
+      "ticketTtlSeconds": {
+        "value": 30,
+        "status": "proposed"
+      },
+      "reconnectCredentialDistinct": true
+    },
+    "rateLimits": {
+      "status": "proposed",
+      "createPerIpPerMinute": 5,
+      "resolvePerIpPerMinute": 20,
+      "admissionPerGuestPerMinute": 10,
+      "maxInputFramesPerSecond": 60,
+      "note": "Server-side sliding window/token bucket; test boundaries, cleanup, WS input and direct join. Trust proxy headers only from configured proxy."
+    },
+    "disconnectPolicy": {
+      "value": "continue_round_neutralize_and_stop_disconnected_fighter_still_damageable_then_forfeit",
+      "status": "locked",
+      "decisionId": "D07",
+      "beforePlaying": "cancel_ready_and_countdown_reserve_seat_during_grace",
+      "bothExpired": "close_without_winner_if_neither_connected_and_both_graces_expired",
+      "terminalRoundCannotBeOverwritten": true,
+      "whenBothOffline": "defer_forfeit_until_one_valid_guest_reconnects_or_both_graces_expire"
+    },
+    "enemyVisibility": {
+      "value": "ui_concealment_only_full_position_state_sent_to_both_clients",
+      "status": "locked",
+      "decisionId": "D08",
+      "antiWallhackGuarantee": false
+    }
+  },
+  "world": {
+    "tileUnits": {
+      "value": 64,
+      "status": "proposed"
+    },
+    "prototypeMapUnits": [
+      1024,
+      1024
+    ],
+    "verticalSliceMapUnits": [
+      2048,
+      2048
+    ],
+    "expandedMapUnits": [
+      4096,
+      4096
+    ]
+  },
+  "mvp": {
+    "fighters": [
+      "fighter_a",
+      "fighter_b"
+    ],
+    "rooms": "private_invite_code_guest",
+    "accountType": "ephemeral_guest",
+    "skillsPerFighter": 2,
+    "visuals": "legal placeholder/original art; licensed source metadata mandatory",
+    "mobileRequired": false,
+    "pcFirst": true,
+    "combatFocus": [
+      "ranged_jutsu",
+      "line_of_sight",
+      "counter_guard_parry",
+      "positioning",
+      "resource_management"
+    ],
+    "rosterReference": [
+      "Naruto-inspired private fighter_a",
+      "Sasuke-inspired private fighter_b"
+    ],
+    "skillsPerFighterStatus": "proposed_demo_scope_two_slots"
+  },
+  "decisions": [
+    {
+      "id": "Q01",
+      "title": "IP and public-release rights",
+      "value": "private_personal_naruto_sasuke_demo_not_public",
+      "status": "locked",
+      "selectedOption": "A",
+      "decided_at": "2026-10-15",
+      "evidence": "owner confirmation in conversation, 2026-10-15"
+    },
+    {
+      "id": "Q02",
+      "title": "Art budget and team",
+      "value": "solo_creator_ai_and_legally_licensed_assets",
+      "status": "locked",
+      "selectedOption": "A",
+      "decided_at": "2026-10-15",
+      "evidence": "owner confirmation in conversation, 2026-10-15"
+    },
+    {
+      "id": "Q03",
+      "title": "Combat pace",
+      "value": "tactical_ranged_jutsu_counterplay",
+      "status": "locked",
+      "selectedOption": "B",
+      "decided_at": "2026-10-15",
+      "evidence": "owner confirmation in conversation, 2026-10-15"
+    },
+    {
+      "id": "Q04",
+      "title": "Perspective",
+      "value": "orthogonal_three_quarter",
+      "status": "locked",
+      "selectedOption": "A",
+      "decided_at": "2026-10-15",
+      "evidence": "owner confirmation in conversation, 2026-10-15"
+    },
+    {
+      "id": "Q05",
+      "title": "Target devices and region",
+      "value": "pc_windows_first_mobile_later",
+      "status": "locked",
+      "selectedOption": "C",
+      "decided_at": "2026-10-15",
+      "evidence": "owner confirmation in conversation, 2026-10-15"
+    },
+    {
+      "id": "Q06",
+      "title": "Online room and release model",
+      "value": "private_invite_code_guest_no_login",
+      "status": "locked",
+      "selectedOption": "A",
+      "decided_at": "2026-10-15",
+      "evidence": "owner confirmation in conversation, 2026-10-15"
+    },
+    {
+      "id": "D07",
+      "title": "Disconnect behavior",
+      "value": "continue_round_neutralize_and_stop_disconnected_fighter_still_damageable_then_forfeit",
+      "status": "locked",
+      "decided_at": "2026-10-15",
+      "evidence": "Owner reply during documentation restructure: continue round, disconnected fighter idle and damageable, forfeit after grace."
+    },
+    {
+      "id": "D08",
+      "title": "Enemy visibility scope",
+      "value": "ui_concealment_only_full_position_state_sent_to_both_clients",
+      "status": "locked",
+      "decided_at": "2026-10-15",
+      "evidence": "Owner reply during documentation restructure: UI concealment only; document network-position exposure."
+    }
+  ],
+  "licensing": {
+    "narutoOfficialAssetsAllowed": false,
+    "spineRuntimeIntegrated": false,
+    "publicReleaseAllowed": false,
+    "notes": "Private demo scope grants no permission for third-party official/ripped assets. Only serve original or licensed exports with provenance and access restrictions.",
+    "distributionMode": "personal_local_or_access_restricted_demo_with_original_assets_only"
+  },
+  "sourceOfTruth": {
+    "decisionsAndGlobalParameters": "spec/project.config.json",
+    "decisionRationale": "docs/01_DECISIONS.md",
+    "combatSeed": "spec/skill_roster.v0.1.json",
+    "tasksAndGates": "spec/backlog.json",
+    "generatedViews": [
+      "docs/07_ROADMAP.md",
+      "tasks/README.md",
+      "tasks/P0.md",
+      "tasks/P1.md",
+      "tasks/P2.md",
+      "tasks/P3.md",
+      "tasks/P4.md",
+      "tasks/P5.md",
+      "tasks/P6.md",
+      "tasks/P7.md",
+      "tasks/P8.md",
+      "tasks/P9.md",
+      "tasks/P10.md"
+    ],
+    "workflow": "AGENTS.md"
+  },
+  "baselinePolicy": "Owner-requested document rebase; preserve locked decisions and implementation task IDs/statuses.",
+  "controls": {
+    "status": "proposed",
+    "movement": [
+      "WASD",
+      "arrows"
+    ],
+    "aim": "mouse_quantized_aim8",
+    "light": "J",
+    "skill1": "K",
+    "skill2": "L",
+    "dodge": "Space",
+    "guard": "Shift",
+    "lockOnToggle": "Tab",
+    "parry": "guard_press_edge",
+    "buttonBits": {
+      "light": 0,
+      "skill1": 1,
+      "skill2": 2,
+      "dodge": 3,
+      "guard": 4
+    },
+    "directionOrder": [
+      "N",
+      "NE",
+      "E",
+      "SE",
+      "S",
+      "SW",
+      "W",
+      "NW"
+    ]
+  }
+}

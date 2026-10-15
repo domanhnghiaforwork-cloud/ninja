@@ -1,0 +1,8 @@
+Packaging portability check — actual run 2026-10-15
+Archive: artifacts/ninja_arena_docs_v0_1.zip
+Root: ninja_arena_docs_v0_1/
+CRC: PASS
+Cache exclusion: PASS
+Extract into fresh temporary directory, then run extracted scripts/validate_docs.py: exit 0
+[OK] v0.1.0: 47 tasks / 11 phases; graph, decisions, gates, skill seed, generated views and 376 local links valid.
+[INFO] Documentation checks only; no gameplay/device/FPS/network acceptance is certified.

@@ -1,0 +1,233 @@
+{
+  "version": "0.1.0",
+  "status": "proposed_balancing_seed",
+  "combatTickHz": 30,
+  "characters": {
+    "fighter_a": "Naruto-inspired private reference",
+    "fighter_b": "Sasuke-inspired private reference"
+  },
+  "skills": [
+    {
+      "id": "fighter_a_clone_feint",
+      "intent": "decoy/zoning",
+      "cooldownTicks": 300,
+      "damage": 0,
+      "counterplay": "clone killed by 1 hit, visible tell, lifetime <= 3s",
+      "ownerId": "fighter_a",
+      "cost": {
+        "chakra": 25,
+        "stamina": 0
+      },
+      "timelineTicks": {
+        "startup": 9,
+        "active": 1,
+        "recovery": 8
+      },
+      "behavior": {
+        "maxHitsPerTarget": 1,
+        "canHitThroughWall": false,
+        "canCastDuringHitstun": false,
+        "canInterruptCommittedAction": false,
+        "lifetimeTicks": 90,
+        "hitsToDestroy": 1,
+        "maxActiveClones": 1,
+        "spawn": "nearest_valid_point_in_front_of_owner_within_64_world_units_else_owner_foot",
+        "blocksMovement": false
+      },
+      "hitbox": {
+        "shape": "spawn_clone"
+      },
+      "type": "decoy",
+      "presentation": {
+        "animationKey": "fighter_a_clone_feint",
+        "castVfxKey": "vfx_fighter_a_clone_feint_cast",
+        "impactVfxKey": "vfx_fighter_a_clone_feint_impact",
+        "sfxKey": "sfx_fighter_a_clone_feint"
+      }
+    },
+    {
+      "id": "fighter_a_wind_shuriken",
+      "intent": "ranged skillshot",
+      "cooldownTicks": 150,
+      "damage": 95,
+      "counterplay": "projectile intercepted by hard cover, parry window",
+      "ownerId": "fighter_a",
+      "cost": {
+        "chakra": 25,
+        "stamina": 0
+      },
+      "timelineTicks": {
+        "startup": 10,
+        "active": 1,
+        "recovery": 12
+      },
+      "behavior": {
+        "maxHitsPerTarget": 1,
+        "canHitThroughWall": false,
+        "canCastDuringHitstun": false,
+        "canInterruptCommittedAction": false,
+        "speedWorldUnitsPerSecond": 620,
+        "lifetimeTicks": 30,
+        "stopOnFirstImpact": true
+      },
+      "hitbox": {
+        "shape": "swept_circle",
+        "radiusWorldUnits": 22,
+        "maxDistanceWorldUnits": 540
+      },
+      "type": "projectile",
+      "presentation": {
+        "animationKey": "fighter_a_wind_shuriken",
+        "castVfxKey": "vfx_fighter_a_wind_shuriken_cast",
+        "impactVfxKey": "vfx_fighter_a_wind_shuriken_impact",
+        "sfxKey": "sfx_fighter_a_wind_shuriken"
+      }
+    },
+    {
+      "id": "fighter_b_fireball",
+      "intent": "zone denial",
+      "cooldownTicks": 210,
+      "damage": 105,
+      "counterplay": "wall blocks path, visible cast, dodge or block",
+      "ownerId": "fighter_b",
+      "cost": {
+        "chakra": 30,
+        "stamina": 0
+      },
+      "timelineTicks": {
+        "startup": 15,
+        "active": 1,
+        "recovery": 12
+      },
+      "behavior": {
+        "maxHitsPerTarget": 1,
+        "canHitThroughWall": false,
+        "canCastDuringHitstun": false,
+        "canInterruptCommittedAction": false,
+        "speedWorldUnitsPerSecond": 500,
+        "lifetimeTicks": 40,
+        "impactRequiresTargetLos": true,
+        "directAndAoeShareHitRegistry": true,
+        "stopOnFirstImpact": true
+      },
+      "hitbox": {
+        "shape": "swept_circle_then_impact_circle",
+        "radiusWorldUnits": 26,
+        "maxDistanceWorldUnits": 600,
+        "impactRadiusWorldUnits": 80
+      },
+      "type": "projectile_aoe",
+      "presentation": {
+        "animationKey": "fighter_b_fireball",
+        "castVfxKey": "vfx_fighter_b_fireball_cast",
+        "impactVfxKey": "vfx_fighter_b_fireball_impact",
+        "sfxKey": "sfx_fighter_b_fireball"
+      }
+    },
+    {
+      "id": "fighter_b_lightning_counter",
+      "intent": "counter/parry conversion",
+      "cooldownTicks": 240,
+      "damage": 125,
+      "counterplay": "bait out counter, punish recovery, ranged from flank",
+      "ownerId": "fighter_b",
+      "cost": {
+        "chakra": 25,
+        "stamina": 0
+      },
+      "timelineTicks": {
+        "startup": 4,
+        "active": 5,
+        "recovery": 16
+      },
+      "behavior": {
+        "maxHitsPerTarget": 1,
+        "canHitThroughWall": false,
+        "canCastDuringHitstun": false,
+        "canInterruptCommittedAction": false,
+        "counterRequiresCurrentLos": true,
+        "blockOutsideCounterRange": true,
+        "counterDamageOutsideRange": 0,
+        "maxTriggersPerCast": 1,
+        "counterOtherCounter": false
+      },
+      "hitbox": {
+        "shape": "front_arc_counter",
+        "frontArcDegrees": 120,
+        "counterRangeWorldUnits": 180
+      },
+      "type": "counter",
+      "presentation": {
+        "animationKey": "fighter_b_lightning_counter",
+        "castVfxKey": "vfx_fighter_b_lightning_counter_cast",
+        "impactVfxKey": "vfx_fighter_b_lightning_counter_impact",
+        "sfxKey": "sfx_fighter_b_lightning_counter"
+      }
+    }
+  ],
+  "notes": "All numbers are trial values, not accepted balance. Use server-side deterministic validation; change seed with tests/playtest evidence. Document version is independent of runtime protocol/schema.",
+  "schemaVersion": "1.0.0",
+  "fighters": {
+    "fighter_a": {
+      "hp": 1000,
+      "maxChakra": 100,
+      "maxStamina": 100,
+      "moveSpeedWorldUnitsPerSecond": 340
+    },
+    "fighter_b": {
+      "hp": 1000,
+      "maxChakra": 100,
+      "maxStamina": 100,
+      "moveSpeedWorldUnitsPerSecond": 355
+    }
+  },
+  "universal": {
+    "regen": {
+      "chakraPerSecond": 5,
+      "staminaPerSecond": 10,
+      "staminaWhileGuarding": false,
+      "rounding": "fixed_point_accumulator_per_tick_clamped_to_max",
+      "koRegen": false
+    },
+    "guard": {
+      "frontArcDegrees": 120,
+      "damageFractionReceived": 0.25,
+      "damageRounding": "floor",
+      "staminaCostPerHit": 18,
+      "breakHitstunTicks": 20,
+      "insufficientStamina": "set_zero_receive_full_hit_damage_and_break"
+    },
+    "parry": {
+      "windowTicks": 4,
+      "reentryCooldownTicks": 18,
+      "missRecoveryTicks": 8,
+      "maxHitsPerWindow": 1,
+      "effect": "consume_incoming_hit_destroy_projectile_no_reflection",
+      "afterWindow": "miss_recovery_then_resume_guard_if_still_held_without_reopening_parry"
+    },
+    "dodge": {
+      "staminaCost": 25,
+      "moveTicks": 10,
+      "iframeStartOffset": 0,
+      "iframeEndOffset": 4,
+      "recoveryTicks": 8,
+      "speedWorldUnitsPerSecond": 650,
+      "crossHardCover": false
+    },
+    "light": {
+      "damage": 40,
+      "startupTicks": 5,
+      "activeTicks": 2,
+      "recoveryTicks": 10,
+      "rangeWorldUnits": 70,
+      "frontArcDegrees": 90,
+      "hitstunTicks": 8,
+      "maxHitsPerTarget": 1
+    },
+    "defaultHitstunTicks": 8,
+    "castCostAndCooldownCommit": "at_valid_input_edge_no_refund_if_interrupted",
+    "counterCanCounterCounter": false,
+    "ownerDamage": false,
+    "tieOutcome": "draw"
+  }
+}

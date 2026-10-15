@@ -1,0 +1,57 @@
+{
+  "documentVersion": "0.1.0",
+  "baselineBackup": "C:\\Users\\Admin\\AppData\\Local\\Temp\\ninja_arena_docs_before_restructure_20261015_161604.zip",
+  "taskIdsDependenciesStatusesPreserved": true,
+  "added": [
+    ".gitignore",
+    "reports/DOCS-REBASE-01/checks.log",
+    "reports/DOCS-REBASE-01/files-changed.json",
+    "reports/DOCS-REBASE-01/packaging.log",
+    "reports/DOCS-REBASE-01/summary.md",
+    "scripts/render_tasks.py",
+    "spec/skill_roster.v0.1.json",
+    "tasks/P0.md",
+    "tasks/P1.md",
+    "tasks/P10.md",
+    "tasks/P2.md",
+    "tasks/P3.md",
+    "tasks/P4.md",
+    "tasks/P5.md",
+    "tasks/P6.md",
+    "tasks/P7.md",
+    "tasks/P8.md",
+    "tasks/P9.md",
+    "tasks/README.md",
+    "tests/test_docs_validation.py"
+  ],
+  "removed": [
+    "docs/13_FIRST_TASK_P0-02.md",
+    "spec/skill_roster.v0.2.json"
+  ],
+  "modified": [
+    "AGENTS.md",
+    "README.md",
+    "START_HERE.md",
+    "TASK_REPORT_TEMPLATE.md",
+    "docs/00_VISION_SCOPE.md",
+    "docs/01_DECISIONS.md",
+    "docs/02_TECH_ARCHITECTURE.md",
+    "docs/03_COMBAT_CHARACTERS.md",
+    "docs/04_NETCODE_PROTOCOL.md",
+    "docs/05_MAP_WORLD.md",
+    "docs/06_ASSET_PIPELINE.md",
+    "docs/07_ROADMAP.md",
+    "docs/08_TEST_QA.md",
+    "docs/09_DEPLOY_RELEASE.md",
+    "docs/10_AI_WORKFLOW.md",
+    "docs/11_RISKS_REFERENCES.md",
+    "docs/12_CHANGELOG.md",
+    "scripts/validate_docs.py",
+    "spec/backlog.json",
+    "spec/example_skill.json",
+    "spec/project.config.json"
+  ],
+  "unchanged": [
+    "reports/P0-02/setup.md"
+  ]
+}
